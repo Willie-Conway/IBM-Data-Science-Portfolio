@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!-- saved from url=(0153)https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMSkillsNetwork-DS0103EN-Coursera/labs/labactivity/M1_LA1_Business_Understanding.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><style>
+.abc {float:left;
+  background-color:darkblue;
+  color:white;
+ font-size: 16px;
+  border-radius:5px;
+  margin:5px;
+  padding:5px;
+font-family: 'Arial';
+}
+.xyz {
+    width:95%;
+    height:fit-content;
+    min-height: 250px;
+    overflow-y: auto;
+    border-radius:25px;
+    margin: 10px;
+  font-family: 'Arial';
+  vertical-align: baseline;
+  }
+
+.main{
+  border-radius:20px;
+  border:2px solid black;
+  font-family: 'Arial';
+  margin: 0 auto;
+  width:70%;
+}
+.goal{
+  border-radius:20px;
+  border: 1px Lavender;
+  font-family: 'Arial';
+text-align: justify;
+  margin: 0 auto;
+  width:90%;
+  border-radius:25px;
+  padding:15px;
+}
+table tr td {text-align: center;padding:1;}
+</style>
+</head><body onload="populate()" data-new-gr-c-s-check-loaded="14.1119.0" data-gr-ext-installed="">
+  <div class="main">
+<h1 style="color:darkblue;text-align:center">Business Understanding: Asking Questions </h1>
+<hr>
+  <div class="goal" style="background-color:Lavender"><h2 style="color:darkblue;text-align:center">Business Goal</h2>
+<h3>The company's e-commerce business goal is to optimize its pricing strategy to maximize revenue and profitability. 
+By leveraging data science, the company aims to identify patterns in historical sales data, pricing changes, and customer behavior to make informed decisions on pricing and promotional strategies.</h3></div>
+<hr>
+  <div style="background-color:LavenderBlush; font-size:120%;text-align:left">Directions: Determine which of the following questions are relevant to the company's business goal. Drag the questions into the correct categories.</div>
+<hr>
+<div style="display : flex; flex-direction: row;">
+  <div id="category1" style="font-size:120%; width:50%; margin-left: 30px;"><strong>Relevant Questions to Business Goal</strong></div>
+  <div id="category2" style="font-size:120%; width:50%; margin-left: 30px;"><strong>Not so Relevant Questions to Business Goal</strong></div>
+</div>
+<div style="display : flex; flex-direction: row;">
+  <div id="category1values" ondrop="drop(event)" ondragover="allowDrop(event)" style="background-color:LightGrey" class="xyz"></div>
+  <div id="category2values" ondrop="drop(event)" ondragover="allowDrop(event)" style="background-color:LightGrey;" class="xyz"></div>
+</div>
+<div style="display : flex; flex-direction: columns;">
+  <span id="options"><button draggable="true" ondragstart="drag(event)" class="abc" id="How do customer purchase behaviors change during specific promotional periods?">How do customer purchase behaviors change during specific promotional periods?</button><button draggable="true" ondragstart="drag(event)" class="abc" id="How many employees work in the marketing department?">How many employees work in the marketing department?</button><button draggable="true" ondragstart="drag(event)" class="abc" id="Which products have experienced the highest sales volumes in the past?">Which products have experienced the highest sales volumes in the past?</button><button draggable="true" ondragstart="drag(event)" class="abc" id="What are the customer&#39;s preferred payment methods?">What are the customer's preferred payment methods?</button><button draggable="true" ondragstart="drag(event)" class="abc" id="What are the profit margins for different products?">What are the profit margins for different products?</button><button draggable="true" ondragstart="drag(event)" class="abc" id="What is the historical website traffic data for the e-commerce site?">What is the historical website traffic data for the e-commerce site?</button><button draggable="true" ondragstart="drag(event)" class="abc" id="How do product ratings and reviews influence customer purchase decisions?">How do product ratings and reviews influence customer purchase decisions?</button><button draggable="true" ondragstart="drag(event)" class="abc" id="How do customer demographics influence their price sensitivity?">How do customer demographics influence their price sensitivity?</button><button draggable="true" ondragstart="drag(event)" class="abc" id="What is the company&#39;s organizational structure?">What is the company's organizational structure?</button><button draggable="true" ondragstart="drag(event)" class="abc" id="How much does the company spend on office supplies?">How much does the company spend on office supplies?</button></span>
+</div>
+<table border="0" align="center"><tbody><tr>
+      <td> 
+          <button onclick="getscore()"><font size="5," font="Arial">Check your score</font></button><font size="5," font="Arial"> &nbsp;&nbsp;</font></td>
+<td><font size="5">
+      Score <output id="score">0</output> &nbsp;</font></td>
+      <td>Keep trying until you score 100 percent! You've got this!&nbsp;</td><td>
+      <button onclick="location.reload()"><font size="5">Start Over</font></button><font size="5">
+        </font></td>
+  </tr></tbody></table>
+</div>
+
+<script>
+//---------------------------------------------------------------------------
+input={category1:"Relevant Questions to Business Goal",category2:"Not so Relevant Questions to Business Goal",
+category1values:["Which products have experienced the highest sales volumes in the past?",
+"How do customer purchase behaviors change during specific promotional periods?",
+"How do product ratings and reviews influence customer purchase decisions?",
+"How do customer demographics influence their price sensitivity?",
+"What are the profit margins for different products?"],
+category2values:["How many employees work in the marketing department?",
+"What are the customer's preferred payment methods?",
+"How much does the company spend on office supplies?",
+"What is the company's organizational structure?",
+"What is the historical website traffic data for the e-commerce site?"]
+}
+//---------------------------------------------------------------------------
+result={category1values:[],category2values:[]}
+
+function shuffle(array) {
+  let currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  let data = ev.dataTransfer.getData("text");
+  let targetbox =  ev.target
+  if (ev.target.id === "category1values" || ev.target.id === "category2values" || ev.target.id === "category3values") {
+    targetbox.appendChild(document.getElementById(data));
+  } else {
+    targetbox = ev.target.parentNode
+    targetbox.appendChild(document.getElementById(data));
+  }
+  console.log(targetbox.id);
+  if(targetbox.id === "category1values") {
+    let idx = result["category2values"].indexOf(data);
+    if (idx != -1) {
+      result["category2values"].splice(idx,1);
+    }
+  } else if (targetbox.id === "category2values") {
+    let idx = result["category1values"].indexOf(data);
+    if (idx != -1) {
+      result["category1values"].splice(idx,1);
+    }
+  }
+  result[targetbox.id].push(data);
+}
+
+function populate(){
+  document.getElementById("category1").innerHTML="<strong>" + input.category1 + "</strong>";
+  document.getElementById("category2").innerHTML="<strong>" + input.category2 + "</strong>";
+  let j = document.getElementById("options");
+  let x = input.category1values;
+  let y = input.category2values;
+  let bin = shuffle(x.concat(y));
+  j.innerHTML=""
+  for(let i=0;i<bin.length;i++){
+    let ele= '<button draggable="true" ondragstart="drag(event)" class="abc"';
+    ele+=' id="';
+    ele+=bin[i];
+    ele+='">';
+    ele+=bin[i] + '</button>';
+    j.innerHTML+=ele;
+  }
+
+}
+function contains(myarray,ele){
+  if (myarray.indexOf(ele) > -1){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+function getscore(){
+  let score=0;
+  
+
+  let y = input.category1values;
+  let x = result.category1values;
+
+  for(let i=0;i<y.length;i++){
+    if (contains(x,y[i])){
+      score+=1;
+    }
+  }
+  let y2 = input.category2values;
+  let x2 = result.category2values;
+
+  for(let i=0;i<y2.length;i++){
+    if (contains(x2,y2[i])){
+      score+=1;
+    } 
+  }
+  score = (score /10) * 100;
+  document.getElementById("score").value=Math.round(score) + " %";
+}
+
+</script>
+<a href="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-CD0101EN-SkillsNetwork/labs/demos/demo2-instructions.md.html">Back</a>
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+  div.grammarly-desktop-integration {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select:none;
+    user-select:none;
+  }
+
+  div.grammarly-desktop-integration:before {
+    content: attr(data-content);
+  }
+</style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>

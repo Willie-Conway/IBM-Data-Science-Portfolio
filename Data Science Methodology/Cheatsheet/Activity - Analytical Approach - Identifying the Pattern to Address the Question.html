@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252"><style>
+.abc {float:left;
+  background-color:darkblue;
+  color:white;
+ font-size: 16px;
+  border-radius:5px;
+  margin:5px;
+  padding:5px;
+font-family: 'Arial';
+}
+
+.category_head {
+  font-size:120%; 
+  width:50%;  
+  margin-left: 30px; 
+  align-self: center;
+}
+
+.xyz {
+    width:95%;
+    height:fit-content;
+    min-height: 250px;
+    overflow-y: auto;
+    border-radius:25px;
+    margin: 10px;
+  font-family: 'Arial';
+  vertical-align: baseline;
+  }
+
+.main{
+  border-radius:20px;
+  border:2px solid black;
+  font-family: 'Arial';
+  margin: 0 auto;
+  width:90%;
+}
+.goal{
+  border-radius:20px;
+  border: 1px Lavender;
+  font-family: 'Arial';
+text-align: justify;
+  margin: 0 auto;
+  width:90%;
+  border-radius:25px;
+  padding:15px;
+}
+table tr td {text-align: center;padding:1;}
+</style>
+</head><body onload="populate()">
+  <div class="main">
+<h1 style="color:darkblue;text-align:center">Analytical Approach</h1><h2 style="color:darkblue;text-align:center">Identifying the pattern to address the question</h2>
+<hr>
+  <div class="goal" style="background-color:Lavender"><h2 style="font-family: 'Arial'; color:darkblue;text-align:center">Business Goal</h2>
+<h3>A transportation company aims to optimize its delivery routes and schedules to minimize costs and improve delivery efficiency. The company wants to use data science to identify the most optimal routes and delivery time windows based on historical delivery data and 
+external factors such as traffic and weather conditions. </h3><h3 style="font-family: 'Arial'; text-align:left;">Various questions are targeted by data scientist to achieve this business goal</h3></div>
+<hr>
+<div style="background-color:LavenderBlush; font-size:120%;text-align:left">Directions: Identify the 'Question Pattern' relevant to each analytical approach. Drag each question into the relevant 'Analytical Approach' box.</div>
+<hr>
+
+ <div style="display : flex; flex-direction: row;">
+      <div id="category1" class="category_head"><strong>Predictive Model</strong></div>
+      <div id="category2" class="category_head"><strong>Descriptive Model</strong></div>
+      <div id="category3" class="category_head"><strong>Classification Model</strong></div>
+ </div>
+ <div style="display : flex; flex-direction: row;">
+      <div  id="category1values" ondrop="drop(event)" ondragover="allowDrop(event)" style="background-color:LightGrey" class="xyz"></div>
+      <div id="category2values" ondrop="drop(event)" ondragover="allowDrop(event)" style="background-color:LightGrey;" class="xyz"></div>
+      <div id="category3values" ondrop="drop(event)" ondragover="allowDrop(event)" style="background-color:LightGrey;" class="xyz"></div>
+ </div>
+ <div style="display : flex; flex-direction: columns;">
+  <span id="options"><button draggable="true" ondragstart="drag(event)" class="abc" id="How can we determine the most suitable delivery routes for perishable goods, ensuring timely deliveries without explicitly using past data to make predictions?">How can we determine the most suitable delivery routes for perishable goods, ensuring timely deliveries without explicitly using past data to make predictions?</button><button draggable="true" ondragstart="drag(event)" class="abc" id="What are the expected delivery time for each route considering historical traffic patterns and anticipated weather conditions?">What are the expected delivery time for each route considering historical traffic patterns and anticipated weather conditions?</button><button draggable="true" ondragstart="drag(event)" class="abc" id="How can we group delivery regions based on customer density and order frequency to optimize delivery route planning?">How can we group delivery regions based on customer density and order frequency to optimize delivery route planning?</button><button draggable="true" ondragstart="drag(event)" class="abc" id="What are the various time slots in which delivery schedules can be classified to balance workload and minimize delivery delays?">What are the various time slots in which delivery schedules can be classified to balance workload and minimize delivery delays?</button><button draggable="true" ondragstart="drag(event)" class="abc" id="What are the most frequently used routes and their respective delivery time variations during peak and off-peak hours?">What are the most frequently used routes and their respective delivery time variations during peak and off-peak hours?</button><button draggable="true" ondragstart="drag(event)" class="abc" id="What insights can be gathered on the average delivery times for different vehicle types, how do these times vary based on the complexity of the delivery route?">What
+ insights can be gathered on the average delivery times for different 
+vehicle types, how do these times vary based on the complexity of the 
+delivery route?</button><button draggable="true" ondragstart="drag(event)" class="abc" id="What historical data highlights the busiest delivery days and time intervals during the week based on past order data?">What historical data highlights the busiest delivery days and time intervals during the week based on past order data?</button><button draggable="true" ondragstart="drag(event)" class="abc" id="What are the average delivery costs for different delivery routes, and how do they vary during different times of the day?">What are the average delivery costs for different delivery routes, and how do they vary during different times of the day?</button><button draggable="true" ondragstart="drag(event)" class="abc" id="How can we classify delivery routes into different categories based on the average delivery time and order volume?">How can we classify delivery routes into different categories based on the average delivery time and order volume?</button><button draggable="true" ondragstart="drag(event)" class="abc" id="How can we cluster customer locations to create distinct groups for efficient delivery route planning, without explicitly making predictions based on past data?">How
+ can we cluster customer locations to create distinct groups for 
+efficient delivery route planning, without explicitly making predictions
+ based on past data?</button><button draggable="true" ondragstart="drag(event)" class="abc" id="How can we forecast the optimal number of delivery vehicles required for a specific day based on the expected order volume?">How can we forecast the optimal number of delivery vehicles required for a specific day based on the expected order volume?</button><button draggable="true" ondragstart="drag(event)" class="abc" id="How can we anticipate the potential impact of traffic incidents or road closures on delivery times to proactively adjust routes?">How can we anticipate the potential impact of traffic incidents or road closures on delivery times to proactively adjust routes?</button></span></td>
+</div>
+<table border="0" align="center"><tbody><tr>
+      <td> 
+          <button onclick="getscore()"><font size="5," font="Arial">Check your score</font></button><font size="5," font="Arial"> &nbsp;&nbsp;</font></td>
+<td><font size="5">
+      Score <output id="score">0</output> &nbsp;&nbsp;</font></td>
+     <td>Keep trying until you score 100 percent! You've got this!&nbsp;</td> <td>
+      <button onclick="location.reload()"><font size="5">Start Over</font></button><font size="5">
+        </font></td>
+  </tr></tbody></table>
+</div>
+
+<script>
+//---------------------------------------------------------------------------
+input={category1:"Predictive Model", category2:"Descriptive Model",category3:"Classification Model",
+category1values:["What are the expected delivery time for each route considering historical traffic patterns and anticipated weather conditions?",
+"How can we anticipate the potential impact of traffic incidents or road closures on delivery times to proactively adjust routes?",
+"How can we forecast the optimal number of delivery vehicles required for a specific day based on the expected order volume?",
+"How can we determine the most suitable delivery routes for perishable goods, ensuring timely deliveries without explicitly using past data to make predictions?"
+],
+category2values:["What are the most frequently used routes and their respective delivery time variations during peak and off-peak hours?",
+"What are the average delivery costs for different delivery routes, and how do they vary during different times of the day?",
+"What historical data highlights the busiest delivery days and time intervals during the week based on past order data?",
+"What insights can be gathered on the average delivery times for different vehicle types, how do these times vary based on the complexity of the delivery route?"
+],
+category3values:["How can we classify delivery routes into different categories based on the average delivery time and order volume?",
+"How can we group delivery regions based on customer density and order frequency to optimize delivery route planning?",
+"What are the various time slots in which delivery schedules can be classified to balance workload and minimize delivery delays?",
+"How can we cluster customer locations to create distinct groups for efficient delivery route planning, without explicitly making predictions based on past data?"
+]
+}
+//---------------------------------------------------------------------------
+result={category1values:[],category2values:[],category3values:[]}
+
+function shuffle(array) {
+  let currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+
+  let data = ev.dataTransfer.getData("text");
+  let targetbox =  ev.target
+
+  if (targetbox.id === "category1values" || targetbox.id === "category2values" || targetbox.id === "category3values") {
+    targetbox.appendChild(document.getElementById(data));
+    console.log(targetbox.id);
+  } else {
+    targetbox = ev.target.parentNode
+    targetbox.appendChild(document.getElementById(data));
+  }
+  if(targetbox.id === "category1values") {
+    let idx = result["category2values"].indexOf(data);
+    if (idx != -1) {
+      result["category2values"].splice(idx,1);
+    }
+  } else if (targetbox.id === "category2values") {
+    let idx = result["category1values"].indexOf(data);
+    if (idx != -1) {
+      result["category1values"].splice(idx,1);
+    }
+ } else if (targetbox.id === "category3values") {
+    let idx = result["category1values"].indexOf(data);
+    if (idx != -1) {
+      result["category1values"].splice(idx,1);
+    }
+  }
+  result[targetbox.id].push(data);
+}
+
+function populate(){
+  document.getElementById("category1").innerHTML="<strong>" + input.category1 + "</strong>";
+  document.getElementById("category2").innerHTML="<strong>" + input.category2 + "</strong>";
+  document.getElementById("category3").innerHTML="<strong>" + input.category3 + "</strong>";
+  let j = document.getElementById("options");
+  let x = input.category1values;
+  let y = input.category2values;
+  let z =input.category3values;
+
+  let e = shuffle(x.concat(y));
+  let bin = shuffle(e.concat(z));
+  j.innerHTML=""
+  for(let i=0;i<bin.length;i++){
+    let ele= '<button draggable="true" ondragstart="drag(event)" class="abc"';
+    ele+=' id="';
+    ele+=bin[i];
+    ele+='">';
+    ele+=bin[i] + '</button>';
+    j.innerHTML+=ele;
+  }
+
+}
+function contains(myarray,ele){
+  if (myarray.indexOf(ele) > -1){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+function getscore(){
+  let score=0;
+  
+
+  let y = input.category1values;
+  let x = result.category1values;
+
+  for(let i=0;i<y.length;i++){
+    if (contains(x,y[i])){
+      score+=1;
+    }
+  }
+  let y2 = input.category2values;
+  let x2 = result.category2values;
+
+  for(let i=0;i<y2.length;i++){
+    if (contains(x2,y2[i])){
+      score+=1;
+    } 
+}
+  let y3 = input.category3values;
+  let x3 = result.category3values;
+
+  for(let i=0;i<y3.length;i++){
+    if (contains(x3,y3[i])){
+      score+=1;
+    } 
+  }
+  score = (score /12) * 100;
+  document.getElementById("score").value=Math.round(score) + " %";
+}
+
+</script>
+<a href="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-CD0101EN-SkillsNetwork/labs/demos/demo2-instructions.md.html">Back</a>
+
+</body></html>

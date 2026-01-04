@@ -1,0 +1,173 @@
+import json
+
+notebook_content = {
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Data Science Tools and Ecosystem"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Exercise 2 - Create a markdown cell for an introduction\n",
+    "\n",
+    "In this notebook, Data Science Tools and Ecosystem are summarized."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Exercise 9 - Insert a markdown cell to list Objectives\n",
+    "\n",
+    "**Objectives:** \n",
+    "- List popular languages for Data Science\n",
+    "- List commonly used libraries in Data Science\n",
+    "- Create tables to showcase Data Science tools\n",
+    "- Demonstrate basic arithmetic operations in Python\n",
+    "- Convert units (minutes to hours) using Python"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Exercise 3 - Create a markdown cell to list data science languages\n",
+    "\n",
+    "Some of the popular languages that Data Scientists use are:\n",
+    "\n",
+    "1. Python\n",
+    "2. R\n",
+    "3. SQL\n",
+    "4. Julia\n",
+    "5. Scala"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Exercise 4 - Create a markdown cell to list data science libraries\n",
+    "\n",
+    "Some of the commonly used libraries used by Data Scientists include:\n",
+    "\n",
+    "1. Pandas\n",
+    "2. NumPy\n",
+    "3. Scikit-learn\n",
+    "4. TensorFlow\n",
+    "5. PyTorch\n",
+    "6. Matplotlib"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Exercise 5 - Create a markdown cell with a table of Data Science tools\n",
+    "\n",
+    "| Data Science Tools |\n",
+    "|-------------------|\n",
+    "| Jupyter Notebook  |\n",
+    "| RStudio           |\n",
+    "| VS Code           |\n",
+    "| Apache Zeppelin   |"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Exercise 6 - Create a markdown cell introducing arithmetic expression examples\n",
+    "\n",
+    "### Below are a few examples of evaluating arithmetic expressions in Python."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "17"
+      ]
+     },
+     "execution_count": 1,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "## Exercise 7 - Create a code cell to multiply and add numbers\n",
+    "\n",
+    "# This is a simple arithmetic expression to multiply then add integers\n",
+    "(3 * 4) + 5"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "3.3333333333333335"
+      ]
+     },
+     "execution_count": 2,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "## Exercise 8 - Create a code cell to convert minutes to hours\n",
+    "\n",
+    "# This will convert 200 minutes to hours by dividing by 60\n",
+    "200 / 60"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Exercise 10 - Create a markdown cell to indicate the Author's name\n",
+    "\n",
+    "## Author\n",
+    "John Doe"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.9.0"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
+
+# Save to file
+with open('Data_Science_Tools_and_Ecosystem.ipynb', 'w') as f:
+    json.dump(notebook_content, f)
+
+print("Jupyter Notebook file created: 'Data_Science_Tools_and_Ecosystem.ipynb'")

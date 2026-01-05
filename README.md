@@ -1,6 +1,6 @@
 # 📊 IBM Data Science Professional Certificate Portfolio
 
-![IBM Data Science](https://images.credly.com/size/680x680/images/73f2bfa1-7c73-4b3d-9496-7d6c0743b8d4/Professional_Certificate_-_Data_Science.png)
+![IBM Data Science](https://images.credly.com/size/680x680/images/42ce4209-8839-431a-9046-f2ce2e72e04b/Coursera_20Data_20Science_20Professional_20Certificate.png)
 
 ![GitHub](https://img.shields.io/badge/IBM-Data%20Science-FF6B35) ![GitHub](https://img.shields.io/badge/Status-Completed-brightgreen) ![GitHub](https://img.shields.io/badge/Courses-9+-blue) ![GitHub](https://img.shields.io/badge/Projects-20+-success)
 

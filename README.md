@@ -122,12 +122,12 @@ Welcome to my comprehensive portfolio documenting the completion of the **IBM Da
      - Data science ethics and best practices
 
 ### 10. 🤖 **Generative AI - Elevate Your Data Science Career**
-    - **Topics Covered**: AI-assisted data science, data generation, model development, visualization
-    - **Key Projects**:
-      - **Final Project**: Generative AI for Data Science
-      - Data preparation and augmentation with AI
-      - Database querying with natural language
-      - Ethical considerations in AI
+   - **Topics Covered**: AI-assisted data science, data generation, model development, visualization
+   - **Key Projects**:
+     - **Final Project**: Generative AI for Data Science
+     - Data preparation and augmentation with AI
+     - Database querying with natural language
+     - Ethical considerations in AI
 
 ## 🛠️ **Technical Skills Demonstrated**
 

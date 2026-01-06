@@ -8,6 +8,37 @@
 
 Welcome to my comprehensive portfolio documenting the completion of the **IBM Data Science Professional Certificate**! This repository showcases hands-on projects, labs, and assignments covering the complete data science workflow from data collection to predictive modeling and interactive visualization.
 
+<p float="left">
+    <img src="https://github.com/Willie-Conway/IBM-Data-Science-Portfolio/blob/700a4e0bdccc05a8b89222fc8cb823fbcdafa1a1/Images/Build%20a%20multiple%20linear%20regression%20model.png" width="300" />
+    <img src="https://github.com/Willie-Conway/IBM-Data-Science-Portfolio/blob/700a4e0bdccc05a8b89222fc8cb823fbcdafa1a1/Images/Creating%20the%20Visual%20Plot.png" width="300" />
+    <img src="https://github.com/Willie-Conway/IBM-Data-Science-Portfolio/blob/700a4e0bdccc05a8b89222fc8cb823fbcdafa1a1/Images/Explore%20and%20select%20features.png" width="300" />
+    <img src="https://github.com/Willie-Conway/IBM-Data-Science-Portfolio/blob/700a4e0bdccc05a8b89222fc8cb823fbcdafa1a1/Images/Histograms.png" width="300" />
+</p>
+
+<p float="left">
+    <img src="https://github.com/Willie-Conway/IBM-Data-Science-Portfolio/blob/700a4e0bdccc05a8b89222fc8cb823fbcdafa1a1/Images/Initialize%20a%20PCA%20model%20and%20reduce%20the%20Iris%20data%20set%20dimensionality%20to%20two%20components.png" width="300" />
+    <img src="https://github.com/Willie-Conway/IBM-Data-Science-Portfolio/blob/700a4e0bdccc05a8b89222fc8cb823fbcdafa1a1/Images/K-Means%20on%20a%20synthetic%20data%20set.png" width="300" />
+    <img src="https://github.com/Willie-Conway/IBM-Data-Science-Portfolio/blob/700a4e0bdccc05a8b89222fc8cb823fbcdafa1a1/Images/Logistic%20Regression%20Classifier%20modeling.png" width="300" />
+    <img src="https://github.com/Willie-Conway/IBM-Data-Science-Portfolio/blob/700a4e0bdccc05a8b89222fc8cb823fbcdafa1a1/Images/Model%20coefficients.png" width="300" />
+</p>
+
+<p float="left">
+    <img src="https://github.com/Willie-Conway/IBM-Data-Science-Portfolio/blob/700a4e0bdccc05a8b89222fc8cb823fbcdafa1a1/Images/Modeling%20Insights.png" width="300" />
+    <img src="https://github.com/Willie-Conway/IBM-Data-Science-Portfolio/blob/700a4e0bdccc05a8b89222fc8cb823fbcdafa1a1/Images/Pairwise%20scatter%20plot.png" width="300" />
+    <img src="https://github.com/Willie-Conway/IBM-Data-Science-Portfolio/blob/700a4e0bdccc05a8b89222fc8cb823fbcdafa1a1/Images/Plot%20Actual%20vs%20Predicted%20values.png" width="300" />
+    <img src="https://github.com/Willie-Conway/IBM-Data-Science-Portfolio/blob/700a4e0bdccc05a8b89222fc8cb823fbcdafa1a1/Images/Plot%20the%20confusion%20matrices.png" width="300" />
+    <img src="https://github.com/Willie-Conway/IBM-Data-Science-Portfolio/blob/700a4e0bdccc05a8b89222fc8cb823fbcdafa1a1/Images/Plot%20the%20data%20and%20the%20predictions%20for%20comparison.png" width="300" />
+    <img src="https://github.com/Willie-Conway/IBM-Data-Science-Portfolio/blob/700a4e0bdccc05a8b89222fc8cb823fbcdafa1a1/Images/Plot%20the%20data%20with%20outliers%20and%20the%20ideal%20fit%20line.png" width="300" />
+    <img src="https://github.com/Willie-Conway/IBM-Data-Science-Portfolio/blob/700a4e0bdccc05a8b89222fc8cb823fbcdafa1a1/Images/Plot%20the%20hierarchically%20clustered%20museums%20on%20a%20basemap%20of%20Canada%2C%20colored%20by%20cluster%20label.png" width="300" />
+    <img src="https://github.com/Willie-Conway/IBM-Data-Science-Portfolio/blob/700a4e0bdccc05a8b89222fc8cb823fbcdafa1a1/Images/Plot%20the%20model%20residual%20errors%20by%20median%20house%20value.png" width="300" />
+    <img src="https://github.com/Willie-Conway/IBM-Data-Science-Portfolio/blob/700a4e0bdccc05a8b89222fc8cb823fbcdafa1a1/Images/Plot%20the%20museums%20on%20a%20basemap%20of%20Canada%2C%20colored%20by%20cluster%20label.png" width="300" />
+    <img src="https://github.com/Willie-Conway/IBM-Data-Science-Portfolio/blob/700a4e0bdccc05a8b89222fc8cb823fbcdafa1a1/Images/Visualize%20the%20tree.png" width="300" />
+   <img src="https://github.com/Willie-Conway/IBM-Data-Science-Portfolio/blob/700a4e0bdccc05a8b89222fc8cb823fbcdafa1a1/Images/Plot%20the%20results.png" width="300" />
+   <img src="https://github.com/Willie-Conway/IBM-Data-Science-Portfolio/blob/700a4e0bdccc05a8b89222fc8cb823fbcdafa1a1/Images/Produce%20a%20scatterplot%20of%20CO2%20emission%20against%20ENGINESIZE.png" width="300" />
+    <img src="https://github.com/Willie-Conway/IBM-Data-Science-Portfolio/blob/700a4e0bdccc05a8b89222fc8cb823fbcdafa1a1/Applied%20Data%20Science%20Capstone/Labs/Interactive%20Visual%20Analytics%20and%20Dashboard/Build%20an%20Interactive%20Dashboard%20with%20Plotly%20Dash/Screenshots/SpaceX%20Launch%20Records%20Dashboard.gif" width="300" />
+</p>
+
+
 ## 🏆 Certificate Details
 
 - **Certificate**: IBM Data Science Professional Certificate

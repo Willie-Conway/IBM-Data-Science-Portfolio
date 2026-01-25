@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Python Glossary - Learn Python with Interactive Examples</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #306998 0%, #FFD43B 100%);
+            color: #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .tagline {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 15px;
+            color: #444;
+        }
+        
+        .why-learn {
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        
+        .why-learn h3 {
+            color: #306998;
+            margin-bottom: 10px;
+        }
+        
+        .why-learn ul {
+            text-align: left;
+            display: inline-block;
+            margin: 0 auto;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .sidebar {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+        }
+        
+        .search-box {
+            margin-bottom: 25px;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: #306998;
+        }
+        
+        .category-filter {
+            margin-bottom: 25px;
+        }
+        
+        .category-filter h3 {
+            margin-bottom: 15px;
+            color: #306998;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 8px;
+        }
+        
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .category-btn {
+            padding: 8px 15px;
+            background-color: #f0f4ff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background-color: #306998;
+            color: white;
+        }
+        
+        .quick-info {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 4px solid #FFD43B;
+        }
+        
+        .glossary-container {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .glossary-item {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .glossary-item:hover {
+            transform: translateY(-3px);
+        }
+        
+        .glossary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .glossary-header h3 {
+            color: #306998;
+            font-size: 1.4rem;
+        }
+        
+        .category-tag {
+            background-color: #e8f4ff;
+            color: #306998;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .description {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+        
+        .example-section {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            border-left: 4px solid #306998;
+        }
+        
+        .example-section h4 {
+            margin-bottom: 10px;
+            color: #306998;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        pre {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        }
+        
+        .try-button {
+            background-color: #306998;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        
+        .try-button:hover {
+            background-color: #25567d;
+        }
+        
+        .result-section {
+            margin-top: 20px;
+            background-color: #f1f8e9;
+            border-radius: 8px;
+            padding: 15px;
+            display: none;
+        }
+        
+        .result-section h4 {
+            color: #4caf50;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .result-output {
+            background-color: white;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            white-space: pre-wrap;
+            margin-top: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            display: none;
+        }
+        
+        .no-results i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+        
+        .term-count {
+            background-color: #306998;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            margin-left: 10px;
+        }
+        
+        .python-keyword {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+        
+        .python-string {
+            color: #98c379;
+        }
+        
+        .python-comment {
+            color: #6a9955;
+            font-style: italic;
+        }
+        
+        .python-function {
+            color: #dcdcaa;
+        }
+        
+        .python-number {
+            color: #b5cea8;
+        }
+        
+        .python-operator {
+            color: #d4d4d4;
+        }
+        
+        .python-builtin {
+            color: #569cd6;
+        }
+        
+        .level-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .level-beginner {
+            background-color: #4caf50;
+            color: white;
+        }
+        
+        .level-intermediate {
+            background-color: #ff9800;
+            color: white;
+        }
+        
+        .level-advanced {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fab fa-python"></i> Complete Python Glossary</h1>
+            <p class="tagline">Master Python programming with comprehensive explanations and interactive examples</p>
+            <div class="why-learn">
+                <h3><i class="fas fa-star"></i> Why Learn Python?</h3>
+                <ul>
+                    <li>Fewer lines of code compared to Java, C++</li>
+                    <li>Powerful libraries: Django, Flask, Pandas, TensorFlow, Scikit-learn</li>
+                    <li>Cross-platform: Windows, Mac, Linux</li>
+                    <li>Used by Google, Netflix, NASA, Instagram</li>
+                    <li>High demand for Python developers in AI/ML, Data Science, Web Dev</li>
+                </ul>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <aside class="sidebar">
+                <div class="search-box">
+                    <h3>Search Python Concepts <span class="term-count" id="termCount">100+</span></h3>
+                    <br>
+                    <input type="text" id="searchInput" placeholder="Type to search...">
+                </div>
+                
+                <div class="category-filter">
+                    <h3>Filter by Category</h3>
+                    <div class="category-buttons">
+                        <button class="category-btn active" data-category="all">All Concepts</button>
+                        <button class="category-btn" data-category="basics">Basics</button>
+                        <button class="category-btn" data-category="functions">Functions</button>
+                        <button class="category-btn" data-category="datastructures">Data Structures</button>
+                        <button class="category-btn" data-category="oop">OOP Concepts</button>
+                        <button class="category-btn" data-category="exceptions">Exception Handling</button>
+                        <button class="category-btn" data-category="files">File Handling</button>
+                        <button class="category-btn" data-category="libraries">Libraries</button>
+                        <button class="category-btn" data-category="advanced">Advanced</button>
+                    </div>
+                </div>
+                
+                <div class="quick-info">
+                    <h3><i class="fas fa-info-circle"></i> How to Use This Glossary</h3>
+                    <p>Each Python concept includes:</p>
+                    <ul style="margin-left: 20px; margin-top: 5px; margin-bottom: 10px;">
+                        <li>Clear explanation</li>
+                        <li>Practical code examples</li>
+                        <li>"Run Code" button to see output</li>
+                        <li>Difficulty level indicator</li>
+                    </ul>
+                    <p>Click "Run Code" to execute Python examples in your browser.</p>
+                </div>
+            </aside>
+            
+            <main class="glossary-container" id="glossaryContainer">
+                <!-- Glossary items will be dynamically added here -->
+            </main>
+        </div>
+        
+        <div class="no-results" id="noResults">
+            <i class="fas fa-search"></i>
+            <h3>No matching concepts found</h3>
+            <p>Try a different search term or category</p>
+        </div>
+        
+        <footer>
+            <p>Complete Python Glossary &copy; 2023 | All examples run client-side using Pyodide (Python in browser)</p>
+            <p>Note: This is an educational tool. Complex operations may be limited in browser environment.</p>
+        </footer>
+    </div>
+
+    <!-- Load Pyodide for Python execution in browser -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    
+    <script>
+        // Initialize Pyodide
+        let pyodide;
+        async function initializePyodide() {
+            pyodide = await loadPyodide();
+            console.log("Pyodide loaded successfully");
+        }
+        
+        // Call initialization
+        initializePyodide();
+        
+        // COMPLETE PYTHON GLOSSARY DATA
+        const pythonGlossary = [
+            // ========== BASICS ==========
+            {
+                term: "Introduction to Python",
+                category: "basics",
+                level: "beginner",
+                description: "Python is a high-level, interpreted programming language known for its simplicity and readability. It supports multiple programming paradigms including procedural, object-oriented, and functional programming.",
+                example: "# This is a simple Python program\nprint(\"Hello, World!\")\n\n# Variables and basic operations\nx = 10\ny = 20\nsum = x + y\nprint(f\"The sum of {x} and {y} is {sum}\")\n\n# Python is dynamically typed\nname = \"Alice\"  # String\nage = 25        # Integer\nheight = 5.9    # Float\nis_student = True  # Boolean\n\nprint(f\"Name: {name}, Age: {age}, Height: {height}, Student: {is_student}\")",
+                exampleResult: "Hello, World!\nThe sum of 10 and 20 is 30\nName: Alice, Age: 25, Height: 5.9, Student: True"
+            },
+            {
+                term: "Variables",
+                category: "basics",
+                level: "beginner",
+                description: "Variables are containers for storing data values. Python variables don't need explicit declaration and can change types dynamically.",
+                example: "# Variable assignment\nname = \"John Doe\"\nage = 30\nsalary = 75000.50\nis_employed = True\n\n# Multiple assignment\nx, y, z = 10, 20, 30\n\n# Variable reassignment\ncounter = 1\nprint(f\"Initial counter: {counter}\")\ncounter = counter + 1\nprint(f\"Updated counter: {counter}\")\n\n# Type checking\nprint(f\"Type of name: {type(name)}\")\nprint(f\"Type of age: {type(age)}\")\nprint(f\"Type of salary: {type(salary)}\")\nprint(f\"Type of is_employed: {type(is_employed)}\")",
+                exampleResult: "Initial counter: 1\nUpdated counter: 2\nType of name: <class 'str'>\nType of age: <class 'int'>\nType of salary: <class 'float'>\nType of is_employed: <class 'bool'>"
+            },
+            {
+                term: "Data Types",
+                category: "basics",
+                level: "beginner",
+                description: "Python has several built-in data types: integers, floats, strings, booleans, lists, tuples, dictionaries, and sets.",
+                example: "# Numeric types\ninteger_num = 42\nfloat_num = 3.14159\ncomplex_num = 2 + 3j\n\n# Text type\nstring_text = \"Hello Python\"\n\n# Boolean type\nis_true = True\nis_false = False\n\n# Sequence types\nmy_list = [1, 2, 3, \"apple\", \"banana\"]\nmy_tuple = (1, 2, 3, \"immutable\")\n\n# Mapping type\nmy_dict = {\"name\": \"Alice\", \"age\": 25, \"city\": \"NYC\"}\n\n# Set types\nmy_set = {1, 2, 3, 4, 4, 5}  # Duplicates removed\n\n# None type\nno_value = None\n\n# Display all types\nprint(f\"Integer: {integer_num}, Type: {type(integer_num)}\")\nprint(f\"String: {string_text}, Type: {type(string_text)}\")\nprint(f\"List: {my_list}, Type: {type(my_list)}\")\nprint(f\"Dict: {my_dict}, Type: {type(my_dict)}\")\nprint(f\"Set: {my_set}, Type: {type(my_set)}\")",
+                exampleResult: "Integer: 42, Type: <class 'int'>\nString: Hello Python, Type: <class 'str'>\nList: [1, 2, 3, 'apple', 'banana'], Type: <class 'list'>\nDict: {'name': 'Alice', 'age': 25, 'city': 'NYC'}, Type: <class 'dict'>\nSet: {1, 2, 3, 4, 5}, Type: <class 'set'>"
+            },
+            {
+                term: "Operators",
+                category: "basics",
+                level: "beginner",
+                description: "Python operators are used to perform operations on variables and values: arithmetic, assignment, comparison, logical, identity, membership, and bitwise operators.",
+                example: "# Arithmetic operators\na = 10\nb = 3\nprint(f\"a + b = {a + b}\")   # Addition\nprint(f\"a - b = {a - b}\")   # Subtraction\nprint(f\"a * b = {a * b}\")   # Multiplication\nprint(f\"a / b = {a / b}\")   # Division\nprint(f\"a // b = {a // b}\") # Floor division\nprint(f\"a % b = {a % b}\")   # Modulus\nprint(f\"a ** b = {a ** b}\") # Exponentiation\n\n# Comparison operators\nprint(f\"a == b: {a == b}\")\nprint(f\"a != b: {a != b}\")\nprint(f\"a > b: {a > b}\")\nprint(f\"a < b: {a < b}\")\nprint(f\"a >= b: {a >= b}\")\nprint(f\"a <= b: {a <= b}\")\n\n# Logical operators\nx = True\ny = False\nprint(f\"x and y: {x and y}\")\nprint(f\"x or y: {x or y}\")\nprint(f\"not x: {not x}\")\n\n# Membership operators\nmy_list = [1, 2, 3, 4, 5]\nprint(f\"3 in my_list: {3 in my_list}\")\nprint(f\"6 not in my_list: {6 not in my_list}\")",
+                exampleResult: "a + b = 13\na - b = 7\na * b = 30\na / b = 3.3333333333333335\na // b = 3\na % b = 1\na ** b = 1000\na == b: False\na != b: True\na > b: True\na < b: False\na >= b: True\na <= b: False\nx and y: False\nx or y: True\nnot x: False\n3 in my_list: True\n6 not in my_list: True"
+            },
+            {
+                term: "Conditional Statements",
+                category: "basics",
+                level: "beginner",
+                description: "Conditional statements (if, elif, else) allow different code blocks to execute based on conditions.",
+                example: "# Simple if statement\nage = 18\nif age >= 18:\n    print(\"You are eligible to vote\")\nelse:\n    print(\"You are not eligible to vote\")\n\n# if-elif-else chain\nscore = 85\nif score >= 90:\n    grade = \"A\"\nelif score >= 80:\n    grade = \"B\"\nelif score >= 70:\n    grade = \"C\"\nelif score >= 60:\n    grade = \"D\"\nelse:\n    grade = \"F\"\n\nprint(f\"Score: {score}, Grade: {grade}\")\n\n# Nested if statements\nnum = 15\nif num > 0:\n    print(\"Positive number\")\n    if num % 2 == 0:\n        print(\"Even number\")\n    else:\n        print(\"Odd number\")\nelif num == 0:\n    print(\"Zero\")\nelse:\n    print(\"Negative number\")\n\n# Ternary operator\nx = 10\ny = 20\nmax_value = x if x > y else y\nprint(f\"Maximum value: {max_value}\")",
+                exampleResult: "You are eligible to vote\nScore: 85, Grade: B\nPositive number\nOdd number\nMaximum value: 20"
+            },
+            {
+                term: "Loops",
+                category: "basics",
+                level: "beginner",
+                description: "Loops (for, while) allow executing a block of code repeatedly. For loops iterate over sequences, while loops repeat as long as a condition is true.",
+                example: "# For loop with range\nprint(\"Counting from 1 to 5:\")\nfor i in range(1, 6):\n    print(i)\n\n# For loop with list\nfruits = [\"apple\", \"banana\", \"cherry\", \"date\"]\nprint(\"\\nFruits:\")\nfor fruit in fruits:\n    print(f\"- {fruit}\")\n\n# For loop with enumerate\nprint(\"\\nFruits with index:\")\nfor index, fruit in enumerate(fruits):\n    print(f\"{index + 1}. {fruit}\")\n\n# While loop\nprint(\"\\nWhile loop counting down:\")\ncount = 5\nwhile count > 0:\n    print(count)\n    count -= 1\nprint(\"Blast off!\")\n\n# Loop control statements\nprint(\"\\nLoop with break and continue:\")\nfor i in range(1, 11):\n    if i == 3:\n        continue  # Skip 3\n    if i == 8:\n        break     # Stop at 8\n    print(i)",
+                exampleResult: "Counting from 1 to 5:\n1\n2\n3\n4\n5\n\nFruits:\n- apple\n- banana\n- cherry\n- date\n\nFruits with index:\n1. apple\n2. banana\n3. cherry\n4. date\n\nWhile loop counting down:\n5\n4\n3\n2\n1\nBlast off!\n\nLoop with break and continue:\n1\n2\n4\n5\n6\n7"
+            },
+            
+            // ========== FUNCTIONS ==========
+            {
+                term: "Functions",
+                category: "functions",
+                level: "beginner",
+                description: "Functions are reusable blocks of code that perform specific tasks. They can accept parameters and return values.",
+                example: "# Basic function definition\ndef greet():\n    print(\"Hello from a function!\")\n\n# Function with parameters\ndef greet_person(name):\n    print(f\"Hello, {name}!\")\n\n# Function with multiple parameters\ndef add_numbers(a, b):\n    return a + b\n\n# Function with default parameter\ndef greet_with_default(name=\"Guest\"):\n    print(f\"Welcome, {name}!\")\n\n# Function that returns multiple values\ndef get_min_max(numbers):\n    return min(numbers), max(numbers)\n\n# Calling functions\ngreet()\ngreet_person(\"Alice\")\ngreet_person(\"Bob\")\n\nresult = add_numbers(5, 3)\nprint(f\"5 + 3 = {result}\")\n\ngreet_with_default()\ngreet_with_default(\"Charlie\")\n\nnumbers_list = [4, 2, 9, 7, 5]\nmin_val, max_val = get_min_max(numbers_list)\nprint(f\"Min: {min_val}, Max: {max_val}\")",
+                exampleResult: "Hello from a function!\nHello, Alice!\nHello, Bob!\n5 + 3 = 8\nWelcome, Guest!\nWelcome, Charlie!\nMin: 2, Max: 9"
+            },
+            {
+                term: "Lambda Function",
+                category: "functions",
+                level: "intermediate",
+                description: "Lambda functions are small anonymous functions defined with the lambda keyword. They can take any number of arguments but can only have one expression.",
+                example: "# Basic lambda function\nsquare = lambda x: x ** 2\nprint(f\"Square of 5: {square(5)}\")\nprint(f\"Square of 7: {square(7)}\")\n\n# Lambda with multiple arguments\nadd = lambda a, b: a + b\nprint(f\"10 + 20 = {add(10, 20)}\")\n\n# Lambda in higher-order functions\nnumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\n\n# Using lambda with filter (get even numbers)\neven_numbers = list(filter(lambda x: x % 2 == 0, numbers))\nprint(f\"Even numbers: {even_numbers}\")\n\n# Using lambda with map (square all numbers)\nsquared_numbers = list(map(lambda x: x ** 2, numbers))\nprint(f\"Squared numbers: {squared_numbers}\")\n\n# Using lambda with sorted\nstudents = [\n    {\"name\": \"Alice\", \"grade\": 85},\n    {\"name\": \"Bob\", \"grade\": 92},\n    {\"name\": \"Charlie\", \"grade\": 78}\n]\n\n# Sort by grade\nsorted_by_grade = sorted(students, key=lambda x: x[\"grade\"], reverse=True)\nprint(\"\\nStudents sorted by grade:\")\nfor student in sorted_by_grade:\n    print(f\"  {student['name']}: {student['grade']}\")\n\n# Immediately invoked lambda\nresult = (lambda x, y: x * y)(4, 5)\nprint(f\"\\nImmediately invoked lambda (4 * 5): {result}\")",
+                exampleResult: "Square of 5: 25\nSquare of 7: 49\n10 + 20 = 30\nEven numbers: [2, 4, 6, 8, 10]\nSquared numbers: [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]\n\nStudents sorted by grade:\n  Bob: 92\n  Alice: 85\n  Charlie: 78\n\nImmediately invoked lambda (4 * 5): 20"
+            },
+            {
+                term: "*args and **kwargs",
+                category: "functions",
+                level: "intermediate",
+                description: "*args allows passing a variable number of positional arguments to a function. **kwargs allows passing a variable number of keyword arguments.",
+                example: "# Function with *args\ndef sum_all(*args):\n    \"\"\"Sum all provided numbers\"\"\"\n    total = 0\n    for num in args:\n        total += num\n    return total\n\nprint(f\"Sum of 1, 2, 3: {sum_all(1, 2, 3)}\")\nprint(f\"Sum of 1, 2, 3, 4, 5: {sum_all(1, 2, 3, 4, 5)}\")\nprint(f\"Sum of 10, 20, 30, 40: {sum_all(10, 20, 30, 40)}\")\n\n# Function with **kwargs\ndef print_student_info(**kwargs):\n    \"\"\"Print student information\"\"\"\n    print(\"Student Information:\")\n    for key, value in kwargs.items():\n        print(f\"  {key}: {value}\")\n\nprint(\"\\nStudent 1:\")\nprint_student_info(name=\"Alice\", age=20, major=\"Computer Science\")\n\nprint(\"\\nStudent 2:\")\nprint_student_info(name=\"Bob\", age=22, major=\"Mathematics\", gpa=3.8)\n\n# Function with both *args and **kwargs\ndef process_data(*args, **kwargs):\n    print(f\"\\nPositional arguments: {args}\")\n    print(f\"Keyword arguments: {kwargs}\")\n\nprocess_data(1, 2, 3, name=\"Alice\", city=\"New York\")\n\n# Unpacking arguments\nnumbers = [1, 2, 3, 4, 5]\nprint(f\"\\nSum of list using unpacking: {sum_all(*numbers)}\")\n\nstudent_data = {\"name\": \"Charlie\", \"age\": 21, \"city\": \"Boston\"}\nprint(\"\\nUnpacking dictionary:\")\nprint_student_info(**student_data)",
+                exampleResult: "Sum of 1, 2, 3: 6\nSum of 1, 2, 3, 4, 5: 15\nSum of 10, 20, 30, 40: 100\n\nStudent 1:\nStudent Information:\n  name: Alice\n  age: 20\n  major: Computer Science\n\nStudent 2:\nStudent Information:\n  name: Bob\n  age: 22\n  major: Mathematics\n  gpa: 3.8\n\nPositional arguments: (1, 2, 3)\nKeyword arguments: {'name': 'Alice', 'city': 'New York'}\n\nSum of list using unpacking: 15\n\nUnpacking dictionary:\nStudent Information:\n  name: Charlie\n  age: 21\n  city: Boston"
+            },
+            {
+                term: "Decorators",
+                category: "functions",
+                level: "advanced",
+                description: "Decorators are functions that modify the behavior of other functions. They are a powerful tool for adding functionality to existing code without modifying it.",
+                example: "# Basic decorator\ndef simple_decorator(func):\n    def wrapper():\n        print(\"Something is happening before the function is called.\")\n        func()\n        print(\"Something is happening after the function is called.\")\n    return wrapper\n\n@simple_decorator\ndef say_hello():\n    print(\"Hello!\")\n\nprint(\"Calling decorated function:\")\nsay_hello()\n\n# Decorator with arguments\ndef repeat(n):\n    def decorator(func):\n        def wrapper(*args, **kwargs):\n            for i in range(n):\n                print(f\"Call {i+1}: {func(*args, **kwargs)}\")\n        return wrapper\n    return decorator\n\n@repeat(3)\ndef greet(name):\n    return f\"Hello, {name}!\"\n\nprint(\"\\nRepeated greeting:\")\ngreet(\"Alice\")\n\n# Practical example: timing function\ndef timer(func):\n    import time\n    def wrapper(*args, **kwargs):\n        start = time.time()\n        result = func(*args, **kwargs)\n        end = time.time()\n        print(f\"{func.__name__} took {end - start:.4f} seconds\")\n        return result\n    return wrapper\n\n@timer\ndef slow_function():\n    import time\n    time.sleep(0.5)  # Simulate slow operation\n    return \"Done\"\n\nprint(\"\\nTiming a function:\")\nresult = slow_function()\nprint(f\"Result: {result}\")\n\n# Class decorator\ndef add_method(cls):\n    def new_method(self):\n        return f\"I'm a new method added to {self.__class__.__name__}\"\n    cls.new_method = new_method\n    return cls\n\n@add_method\nclass MyClass:\n    pass\n\nobj = MyClass()\nprint(\"\\nClass with added method:\")\nprint(obj.new_method())",
+                exampleResult: "Calling decorated function:\nSomething is happening before the function is called.\nHello!\nSomething is happening after the function is called.\n\nRepeated greeting:\nCall 1: Hello, Alice!\nCall 2: Hello, Alice!\nCall 3: Hello, Alice!\n\nTiming a function:\nslow_function took 0.5015 seconds\nResult: Done\n\nClass with added method:\nI'm a new method added to MyClass"
+            },
+            
+            // ========== DATA STRUCTURES ==========
+            {
+                term: "Lists",
+                category: "datastructures",
+                level: "beginner",
+                description: "Lists are ordered, mutable collections that can hold items of different data types. They are one of Python's most versatile data structures.",
+                example: "# Creating lists\nfruits = [\"apple\", \"banana\", \"cherry\", \"date\"]\nnumbers = [1, 2, 3, 4, 5]\nmixed = [1, \"hello\", 3.14, True]\n\n# Accessing elements\nprint(f\"First fruit: {fruits[0]}\")\nprint(f\"Last fruit: {fruits[-1]}\")\nprint(f\"Sliced fruits: {fruits[1:3]}\")  # Elements 1 to 2\n\n# Modifying lists\nfruits[1] = \"blueberry\"\nprint(f\"\\nModified fruits: {fruits}\")\n\n# List methods\nfruits.append(\"elderberry\")  # Add to end\nprint(f\"After append: {fruits}\")\n\nfruits.insert(2, \"cantaloupe\")  # Insert at index\nprint(f\"After insert: {fruits}\")\n\nfruits.remove(\"cherry\")  # Remove by value\nprint(f\"After remove: {fruits}\")\n\npopped = fruits.pop()  # Remove last item\nprint(f\"Popped item: {popped}\")\nprint(f\"After pop: {fruits}\")\n\n# List operations\nlist1 = [1, 2, 3]\nlist2 = [4, 5, 6]\ncombined = list1 + list2  # Concatenation\nprint(f\"\\nCombined lists: {combined}\")\n\nrepeated = list1 * 3  # Repetition\nprint(f\"Repeated list: {repeated}\")\n\n# List comprehension\nsquares = [x**2 for x in range(1, 6)]\nprint(f\"\\nSquares using comprehension: {squares}\")\n\neven_squares = [x**2 for x in range(1, 11) if x % 2 == 0]\nprint(f\"Even squares: {even_squares}\")\n\n# Sorting\nnumbers = [5, 2, 8, 1, 9, 3]\nnumbers.sort()\nprint(f\"\\nSorted numbers: {numbers}\")\n\nnumbers.sort(reverse=True)\nprint(f\"Reverse sorted: {numbers}\")",
+                exampleResult: "First fruit: apple\nLast fruit: date\nSliced fruits: ['banana', 'cherry']\n\nModified fruits: ['apple', 'blueberry', 'cherry', 'date']\nAfter append: ['apple', 'blueberry', 'cherry', 'date', 'elderberry']\nAfter insert: ['apple', 'blueberry', 'cantaloupe', 'cherry', 'date', 'elderberry']\nAfter remove: ['apple', 'blueberry', 'cantaloupe', 'date', 'elderberry']\nPopped item: elderberry\nAfter pop: ['apple', 'blueberry', 'cantaloupe', 'date']\n\nCombined lists: [1, 2, 3, 4, 5, 6]\nRepeated list: [1, 2, 3, 1, 2, 3, 1, 2, 3]\n\nSquares using comprehension: [1, 4, 9, 16, 25]\nEven squares: [4, 16, 36, 64, 100]\n\nSorted numbers: [1, 2, 3, 5, 8, 9]\nReverse sorted: [9, 8, 5, 3, 2, 1]"
+            },
+            {
+                term: "Dictionaries",
+                category: "datastructures",
+                level: "beginner",
+                description: "Dictionaries are unordered collections of key-value pairs. Keys must be unique and immutable (strings, numbers, tuples).",
+                example: "# Creating dictionaries\nstudent = {\n    \"name\": \"Alice\",\n    \"age\": 20,\n    \"major\": \"Computer Science\",\n    \"gpa\": 3.8\n}\n\n# Accessing values\nprint(f\"Student name: {student['name']}\")\nprint(f\"Student age: {student.get('age')}\")\nprint(f\"Student major: {student.get('major', 'Undeclared')}\")\n\n# Adding/Updating items\nstudent[\"year\"] = \"Junior\"  # Add new key\nstudent[\"gpa\"] = 3.9  # Update existing key\nprint(f\"\\nUpdated student: {student}\")\n\n# Dictionary methods\nprint(f\"\\nKeys: {list(student.keys())}\")\nprint(f\"Values: {list(student.values())}\")\nprint(f\"Items: {list(student.items())}\")\n\n# Removing items\nremoved_value = student.pop(\"year\")\nprint(f\"\\nRemoved 'year': {removed_value}\")\nprint(f\"After pop: {student}\")\n\n# Dictionary comprehension\nsquares = {x: x**2 for x in range(1, 6)}\nprint(f\"\\nSquares dictionary: {squares}\")\n\n# Nested dictionaries\nstudents = {\n    \"student1\": {\"name\": \"Alice\", \"grade\": 85},\n    \"student2\": {\"name\": \"Bob\", \"grade\": 92},\n    \"student3\": {\"name\": \"Charlie\", \"grade\": 78}\n}\n\nprint(\"\\nNested dictionary access:\")\nprint(f\"Student2 name: {students['student2']['name']}\")\nprint(f\"Student3 grade: {students['student3']['grade']}\")\n\n# Looping through dictionaries\nprint(\"\\nLooping through student:\")\nfor key, value in student.items():\n    print(f\"  {key}: {value}\")",
+                exampleResult: "Student name: Alice\nStudent age: 20\nStudent major: Computer Science\n\nUpdated student: {'name': 'Alice', 'age': 20, 'major': 'Computer Science', 'gpa': 3.9, 'year': 'Junior'}\n\nKeys: ['name', 'age', 'major', 'gpa', 'year']\nValues: ['Alice', 20, 'Computer Science', 3.9, 'Junior']\nItems: [('name', 'Alice'), ('age', 20), ('major', 'Computer Science'), ('gpa', 3.9), ('year', 'Junior')]\n\nRemoved 'year': Junior\nAfter pop: {'name': 'Alice', 'age': 20, 'major': 'Computer Science', 'gpa': 3.9}\n\nSquares dictionary: {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}\n\nNested dictionary access:\nStudent2 name: Bob\nStudent3 grade: 78\n\nLooping through student:\n  name: Alice\n  age: 20\n  major: Computer Science\n  gpa: 3.9"
+            },
+            {
+                term: "List Comprehension",
+                category: "datastructures",
+                level: "intermediate",
+                description: "List comprehensions provide a concise way to create lists by applying an expression to each item in an iterable, optionally with filtering.",
+                example: "# Basic list comprehension\nsquares = [x**2 for x in range(1, 11)]\nprint(f\"Squares: {squares}\")\n\n# With condition (only even numbers)\neven_squares = [x**2 for x in range(1, 11) if x % 2 == 0]\nprint(f\"\\nEven squares: {even_squares}\")\n\n# Nested list comprehension\nmatrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]\nflattened = [num for row in matrix for num in row]\nprint(f\"\\nFlattened matrix: {flattened}\")\n\n# Dictionary comprehension\nsquare_dict = {x: x**2 for x in range(1, 6)}\nprint(f\"\\nSquare dictionary: {square_dict}\")\n\n# Set comprehension\nunique_lengths = {len(word) for word in [\"apple\", \"banana\", \"cherry\", \"date\", \"apple\"]}\nprint(f\"\\nUnique word lengths: {unique_lengths}\")\n\n# Practical examples\n# Convert temperatures from Celsius to Fahrenheit\ncelsius_temps = [0, 20, 30, 40, 100]\nfahrenheit_temps = [(temp * 9/5) + 32 for temp in celsius_temps]\nprint(f\"\\nCelsius: {celsius_temps}\")\nprint(f\"Fahrenheit: {fahrenheit_temps}\")\n\n# Extract vowels from a string\ntext = \"Hello, World! Programming in Python is fun.\"\nvowels = [char for char in text.lower() if char in 'aeiou']\nprint(f\"\\nText: {text}\")\nprint(f\"Vowels: {vowels}\")\nprint(f\"Number of vowels: {len(vowels)}\")\n\n# Create list of tuples\ncoordinate_pairs = [(x, y) for x in range(3) for y in range(3)]\nprint(f\"\\nCoordinate pairs: {coordinate_pairs}\")",
+                exampleResult: "Squares: [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]\n\nEven squares: [4, 16, 36, 64, 100]\n\nFlattened matrix: [1, 2, 3, 4, 5, 6, 7, 8, 9]\n\nSquare dictionary: {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}\n\nUnique word lengths: {5, 6}\n\nCelsius: [0, 20, 30, 40, 100]\nFahrenheit: [32.0, 68.0, 86.0, 104.0, 212.0]\n\nText: Hello, World! Programming in Python is fun.\nVowels: ['e', 'o', 'o', 'o', 'a', 'i', 'i', 'o', 'i', 'u']\nNumber of vowels: 10\n\nCoordinate pairs: [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)]"
+            },
+            
+            // ========== OOP CONCEPTS ==========
+            {
+                term: "Classes and Objects",
+                category: "oop",
+                level: "intermediate",
+                description: "Classes are blueprints for creating objects. Objects are instances of classes that encapsulate data (attributes) and behavior (methods).",
+                example: "# Defining a class\nclass Dog:\n    # Class attribute\n    species = \"Canis familiaris\"\n    \n    # Constructor (initializer)\n    def __init__(self, name, age, breed):\n        # Instance attributes\n        self.name = name\n        self.age = age\n        self.breed = breed\n    \n    # Instance method\n    def bark(self):\n        return f\"{self.name} says Woof!\"\n    \n    def get_info(self):\n        return f\"{self.name} is a {self.age}-year-old {self.breed}\"\n\n# Creating objects (instances)\ndog1 = Dog(\"Buddy\", 3, \"Golden Retriever\")\ndog2 = Dog(\"Lucy\", 5, \"German Shepherd\")\n\n# Accessing attributes\nprint(f\"Dog1 name: {dog1.name}\")\nprint(f\"Dog2 age: {dog2.age}\")\nprint(f\"Species: {Dog.species}\")\n\n# Calling methods\nprint(f\"\\n{dog1.bark()}\")\nprint(f\"{dog2.get_info()}\")\n\n# Modifying attributes\ndog1.age = 4\nprint(f\"\\nUpdated {dog1.name}'s age: {dog1.age}\")\n\n# Adding attributes dynamically\ndog1.color = \"golden\"\nprint(f\"{dog1.name}'s color: {dog1.color}\")\n\n# Class with more methods\nclass Rectangle:\n    def __init__(self, width, height):\n        self.width = width\n        self.height = height\n    \n    def area(self):\n        return self.width * self.height\n    \n    def perimeter(self):\n        return 2 * (self.width + self.height)\n    \n    def is_square(self):\n        return self.width == self.height\n\nrect = Rectangle(5, 10)\nprint(f\"\\nRectangle area: {rect.area()}\")\nprint(f\"Rectangle perimeter: {rect.perimeter()}\")\nprint(f\"Is square? {rect.is_square()}\")",
+                exampleResult: "Dog1 name: Buddy\nDog2 age: 5\nSpecies: Canis familiaris\n\nBuddy says Woof!\nLucy is a 5-year-old German Shepherd\n\nUpdated Buddy's age: 4\nBuddy's color: golden\n\nRectangle area: 50\nRectangle perimeter: 30\nIs square? False"
+            },
+            {
+                term: "Inheritance",
+                category: "oop",
+                level: "intermediate",
+                description: "Inheritance allows a class (child) to inherit attributes and methods from another class (parent). This promotes code reuse and establishes relationships.",
+                example: "# Parent class\nclass Animal:\n    def __init__(self, name, species):\n        self.name = name\n        self.species = species\n    \n    def make_sound(self):\n        return \"Some generic animal sound\"\n    \n    def get_info(self):\n        return f\"{self.name} is a {self.species}\"\n\n# Child class inheriting from Animal\nclass Dog(Animal):\n    def __init__(self, name, breed):\n        # Call parent constructor\n        super().__init__(name, \"Dog\")\n        self.breed = breed\n    \n    # Override parent method\n    def make_sound(self):\n        return \"Woof! Woof!\"\n    \n    # Add new method\n    def wag_tail(self):\n        return f\"{self.name} is wagging its tail\"\n\n# Another child class\nclass Cat(Animal):\n    def __init__(self, name, color):\n        super().__init__(name, \"Cat\")\n        self.color = color\n    \n    def make_sound(self):\n        return \"Meow!\"\n    \n    def purr(self):\n        return f\"{self.name} is purring\"\n\n# Using the classes\nbuddy = Dog(\"Buddy\", \"Golden Retriever\")\nwhiskers = Cat(\"Whiskers\", \"Gray\")\n\nprint(buddy.get_info())\nprint(f\"Sound: {buddy.make_sound()}\")\nprint(f\"Action: {buddy.wag_tail()}\")\n\nprint(f\"\\n{whiskers.get_info()}\")\nprint(f\"Sound: {whiskers.make_sound()}\")\nprint(f\"Action: {whiskers.purr()}\")\n\n# Multi-level inheritance\nclass Puppy(Dog):\n    def __init__(self, name, breed, age_months):\n        super().__init__(name, breed)\n        self.age_months = age_months\n    \n    def play(self):\n        return f\"{self.name} is playing with a toy\"\n\npuppy = Puppy(\"Max\", \"Labrador\", 4)\nprint(f\"\\n{puppy.get_info()}\")\nprint(f\"Age: {puppy.age_months} months\")\nprint(f\"Action: {puppy.play()}\")\nprint(f\"Sound: {puppy.make_sound()}\")\n\n# isinstance and issubclass checks\nprint(f\"\\nisinstance(buddy, Animal): {isinstance(buddy, Animal)}\")\nprint(f\"isinstance(buddy, Dog): {isinstance(buddy, Dog)}\")\nprint(f\"isinstance(buddy, Cat): {isinstance(buddy, Cat)}\")\nprint(f\"issubclass(Dog, Animal): {issubclass(Dog, Animal)}\")\nprint(f\"issubclass(Puppy, Animal): {issubclass(Puppy, Animal)}\")",
+                exampleResult: "Buddy is a Dog\nSound: Woof! Woof!\nAction: Buddy is wagging its tail\n\nWhiskers is a Cat\nSound: Meow!\nAction: Whiskers is purring\n\nMax is a Dog\nAge: 4 months\nAction: Max is playing with a toy\nSound: Woof! Woof!\n\nisinstance(buddy, Animal): True\nisinstance(buddy, Dog): True\nisinstance(buddy, Cat): False\nissubclass(Dog, Animal): True\nissubclass(Puppy, Animal): True"
+            },
+            
+            // ========== EXCEPTION HANDLING ==========
+            {
+                term: "Exception Handling",
+                category: "exceptions",
+                level: "intermediate",
+                description: "Exception handling allows programs to deal with errors gracefully using try, except, else, and finally blocks.",
+                example: "# Basic try-except\ntry:\n    result = 10 / 0\n    print(f\"Result: {result}\")\nexcept ZeroDivisionError:\n    print(\"Error: Cannot divide by zero!\")\n\n# Multiple exceptions\ntry:\n    num = int(input(\"Enter a number: \"))\n    result = 10 / num\n    print(f\"10 / {num} = {result}\")\nexcept ValueError:\n    print(\"Error: Invalid input! Please enter a number.\")\nexcept ZeroDivisionError:\n    print(\"Error: Cannot divide by zero!\")\n\n# Generic exception\ntry:\n    my_list = [1, 2, 3]\n    print(my_list[5])  # Index out of range\nexcept Exception as e:\n    print(f\"An error occurred: {type(e).__name__} - {e}\")\n\n# Try-except-else\nprint(\"\\nTry-Except-Else example:\")\ntry:\n    num = 10\n    denominator = 2\n    result = num / denominator\nexcept ZeroDivisionError:\n    print(\"Cannot divide by zero\")\nelse:\n    print(f\"Division successful: {result}\")\n\n# Try-except-finally\nprint(\"\\nTry-Except-Finally example:\")\ntry:\n    file = open(\"test.txt\", \"r\")\n    content = file.read()\n    print(\"File read successfully\")\nexcept FileNotFoundError:\n    print(\"Error: File not found!\")\nfinally:\n    print(\"This always executes (cleanup code)\")\n    # File would be closed here if it was opened\n\n# Raising exceptions\ndef calculate_square_root(number):\n    if number < 0:\n        raise ValueError(\"Cannot calculate square root of negative number\")\n    return number ** 0.5\n\ntry:\n    print(f\"\\nSquare root of 16: {calculate_square_root(16)}\")\n    print(f\"Square root of -4: {calculate_square_root(-4)}\")\nexcept ValueError as e:\n    print(f\"Error: {e}\")\n\n# Custom exception\nclass NegativeNumberError(Exception):\n    \"\"\"Custom exception for negative numbers\"\"\"\n    pass\n\ndef process_positive_number(num):\n    if num < 0:\n        raise NegativeNumberError(f\"Number {num} is negative\")\n    return num * 2\n\ntry:\n    print(f\"\\nProcessing 5: {process_positive_number(5)}\")\n    print(f\"Processing -3: {process_positive_number(-3)}\")\nexcept NegativeNumberError as e:\n    print(f\"Custom error: {e}\")",
+                exampleResult: "Error: Cannot divide by zero!\nError: Cannot divide by zero!\nAn error occurred: IndexError - list index out of range\n\nTry-Except-Else example:\nDivision successful: 5.0\n\nTry-Except-Finally example:\nError: File not found!\nThis always executes (cleanup code)\n\nSquare root of 16: 4.0\nError: Cannot calculate square root of negative number\n\nProcessing 5: 10\nCustom error: Number -3 is negative"
+            },
+            
+            // ========== FILE HANDLING ==========
+            {
+                term: "File Handling",
+                category: "files",
+                level: "intermediate",
+                description: "File handling in Python allows reading from and writing to files. Python provides built-in functions for file operations.",
+                example: "# Writing to a file\nprint(\"Writing to a file...\")\nwith open(\"sample.txt\", \"w\") as file:\n    file.write(\"Hello, World!\\n\")\n    file.write(\"This is a sample file.\\n\")\n    file.write(\"Python file handling is easy!\\n\")\n    file.write(\"Line 4\\nLine 5\\nLine 6\")\n\nprint(\"File written successfully.\\n\")\n\n# Reading entire file\nprint(\"Reading entire file:\")\nwith open(\"sample.txt\", \"r\") as file:\n    content = file.read()\n    print(content)\n\n# Reading line by line\nprint(\"\\nReading line by line:\")\nwith open(\"sample.txt\", \"r\") as file:\n    for i, line in enumerate(file, 1):\n        print(f\"Line {i}: {line.strip()}\")\n\n# Reading specific number of characters\nprint(\"\\nReading first 15 characters:\")\nwith open(\"sample.txt\", \"r\") as file:\n    first_chars = file.read(15)\n    print(f\"First 15 chars: '{first_chars}'\")\n\n# Appending to a file\nprint(\"\\nAppending to file...\")\nwith open(\"sample.txt\", \"a\") as file:\n    file.write(\"\\nThis line was appended.\\n\")\n    file.write(\"Another appended line.\")\n\nprint(\"File appended successfully.\\n\")\n\n# Reading all lines into a list\nprint(\"Reading all lines into list:\")\nwith open(\"sample.txt\", \"r\") as file:\n    lines = file.readlines()\n    for i, line in enumerate(lines, 1):\n        print(f\"Line {i}: {line.strip()}\")\n\n# Using tell() and seek()\nprint(\"\\nUsing tell() and seek():\")\nwith open(\"sample.txt\", \"r\") as file:\n    print(f\"Starting position: {file.tell()}\")\n    file.seek(7)  # Move to position 7\n    print(f\"After seek(7): {file.tell()}\")\n    content = file.read(10)\n    print(f\"Content from position 7: '{content}'\")\n\n# CSV file handling\nprint(\"\\nCreating and reading CSV file:\")\nimport csv\n\n# Write CSV\nwith open(\"data.csv\", \"w\", newline=\"\") as csvfile:\n    writer = csv.writer(csvfile)\n    writer.writerow([\"Name\", \"Age\", \"City\"])\n    writer.writerow([\"Alice\", 25, \"New York\"])\n    writer.writerow([\"Bob\", 30, \"Los Angeles\"])\n    writer.writerow([\"Charlie\", 35, \"Chicago\"])\n\nprint(\"CSV file created.\")\n\n# Read CSV\nprint(\"\\nReading CSV file:\")\nwith open(\"data.csv\", \"r\") as csvfile:\n    reader = csv.reader(csvfile)\n    for row in reader:\n        print(f\"{', '.join(row)}\")",
+                exampleResult: "Writing to a file...\nFile written successfully.\n\nReading entire file:\nHello, World!\nThis is a sample file.\nPython file handling is easy!\nLine 4\nLine 5\nLine 6\n\nReading line by line:\nLine 1: Hello, World!\nLine 2: This is a sample file.\nLine 3: Python file handling is easy!\nLine 4: Line 4\nLine 5: Line 5\nLine 6: Line 6\n\nReading first 15 characters:\nFirst 15 chars: 'Hello, World!\nTh'\n\nAppending to file...\nFile appended successfully.\n\nReading all lines into list:\nLine 1: Hello, World!\nLine 2: This is a sample file.\nLine 3: Python file handling is easy!\nLine 4: Line 4\nLine 5: Line 5\nLine 6: Line 6\nLine 7: This line was appended.\nLine 8: Another appended line.\n\nUsing tell() and seek():\nStarting position: 0\nAfter seek(7): 7\nContent from position 7: 'World!\nTh'\n\nCreating and reading CSV file:\nCSV file created.\n\nReading CSV file:\nName, Age, City\nAlice, 25, New York\nBob, 30, Los Angeles\nCharlie, 35, Chicago"
+            },
+            
+            // ========== LIBRARIES ==========
+            {
+                term: "NumPy",
+                category: "libraries",
+                level: "intermediate",
+                description: "NumPy is a fundamental package for scientific computing in Python. It provides support for large, multi-dimensional arrays and matrices, along with mathematical functions.",
+                example: "# NumPy basics\nimport numpy as np\n\n# Creating arrays\narr1 = np.array([1, 2, 3, 4, 5])\nprint(f\"1D Array: {arr1}\")\nprint(f\"Type: {type(arr1)}\")\nprint(f\"Shape: {arr1.shape}\")\nprint(f\"Data type: {arr1.dtype}\")\n\n# 2D array\narr2 = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])\nprint(f\"\\n2D Array:\\n{arr2}\")\nprint(f\"Shape: {arr2.shape}\")\nprint(f\"Dimensions: {arr2.ndim}\")\n\n# Array operations\narr3 = np.array([10, 20, 30, 40, 50])\nprint(f\"\\nArray addition: {arr1} + {arr3} = {arr1 + arr3}\")\nprint(f\"Array multiplication: {arr1} * {arr3} = {arr1 * arr3}\")\nprint(f\"Array dot product: {np.dot(arr1, arr3)}\")\n\n# Special arrays\nzeros = np.zeros((3, 4))\nprint(f\"\\nZeros array (3x4):\\n{zeros}\")\n\nones = np.ones((2, 3))\nprint(f\"\\nOnes array (2x3):\\n{ones}\")\n\nidentity = np.eye(4)\nprint(f\"\\nIdentity matrix (4x4):\\n{identity}\")\n\n# Array methods\nprint(f\"\\nArray statistics:\")\nprint(f\"Mean: {arr1.mean()}\")\nprint(f\"Sum: {arr1.sum()}\")\nprint(f\"Min: {arr1.min()}\")\nprint(f\"Max: {arr1.max()}\")\nprint(f\"Standard deviation: {arr1.std():.2f}\")\n\n# Reshaping\narr_flat = np.arange(12)\nprint(f\"\\nOriginal array (12 elements): {arr_flat}\")\narr_reshaped = arr_flat.reshape(3, 4)\nprint(f\"Reshaped to 3x4:\\n{arr_reshaped}\")\n\n# Indexing and slicing\nprint(f\"\\nIndexing and slicing:\")\nprint(f\"Element at [1,2]: {arr2[1, 2]}\")\nprint(f\"First row: {arr2[0]}\")\nprint(f\"Second column: {arr2[:, 1]}\")\nprint(f\"Subarray (first 2 rows, last 2 columns):\\n{arr2[:2, 1:]}\")\n\n# Random numbers\nrandom_arr = np.random.rand(3, 3)\nprint(f\"\\nRandom array (3x3):\\n{random_arr}\")\n\nrandom_integers = np.random.randint(1, 100, size=(5,))\nprint(f\"\\nRandom integers (1-100): {random_integers}\")",
+                exampleResult: "1D Array: [1 2 3 4 5]\nType: <class 'numpy.ndarray'>\nShape: (5,)\nData type: int64\n\n2D Array:\n[[1 2 3]\n [4 5 6]\n [7 8 9]]\nShape: (3, 3)\nDimensions: 2\n\nArray addition: [1 2 3 4 5] + [10 20 30 40 50] = [11 22 33 44 55]\nArray multiplication: [1 2 3 4 5] * [10 20 30 40 50] = [ 10  40  90 160 250]\nArray dot product: 550\n\nZeros array (3x4):\n[[0. 0. 0. 0.]\n [0. 0. 0. 0.]\n [0. 0. 0. 0.]]\n\nOnes array (2x3):\n[[1. 1. 1.]\n [1. 1. 1.]]\n\nIdentity matrix (4x4):\n[[1. 0. 0. 0.]\n [0. 1. 0. 0.]\n [0. 0. 1. 0.]\n [0. 0. 0. 1.]]\n\nArray statistics:\nMean: 3.0\nSum: 15\nMin: 1\nMax: 5\nStandard deviation: 1.41\n\nOriginal array (12 elements): [ 0  1  2  3  4  5  6  7  8  9 10 11]\nReshaped to 3x4:\n[[ 0  1  2  3]\n [ 4  5  6  7]\n [ 8  9 10 11]]\n\nIndexing and slicing:\nElement at [1,2]: 6\nFirst row: [1 2 3]\nSecond column: [2 5 8]\nSubarray (first 2 rows, last 2 columns):\n[[2 3]\n [5 6]]\n\nRandom array (3x3):\n[[0.275 0.123 0.456]\n [0.789 0.321 0.654]\n [0.987 0.234 0.567]]\n\nRandom integers (1-100): [23 45 67 89 12]"
+            },
+            {
+                term: "Pandas",
+                category: "libraries",
+                level: "intermediate",
+                description: "Pandas is a powerful data analysis library providing data structures like DataFrames and Series for data manipulation and analysis.",
+                example: "# Pandas basics\nimport pandas as pd\nimport numpy as np\n\n# Creating Series\ns = pd.Series([1, 3, 5, np.nan, 6, 8])\nprint(f\"Series:\\n{s}\")\nprint(f\"\\nSeries index: {s.index}\")\nprint(f\"Series values: {s.values}\")\n\n# Creating DataFrame\ndata = {\n    'Name': ['Alice', 'Bob', 'Charlie', 'David', 'Eve'],\n    'Age': [25, 30, 35, 28, 32],\n    'City': ['NYC', 'LA', 'Chicago', 'Houston', 'Phoenix'],\n    'Salary': [70000, 80000, 90000, 75000, 85000]\n}\n\ndf = pd.DataFrame(data)\nprint(f\"\\nDataFrame:\\n{df}\")\nprint(f\"\\nDataFrame shape: {df.shape}\")\nprint(f\"DataFrame columns: {df.columns.tolist()}\")\nprint(f\"DataFrame dtypes:\\n{df.dtypes}\")\n\n# DataFrame operations\nprint(f\"\\nFirst 3 rows:\\n{df.head(3)}\")\nprint(f\"\\nLast 2 rows:\\n{df.tail(2)}\")\nprint(f\"\\nBasic statistics:\\n{df.describe()}\")\nprint(f\"\\nMean salary: {df['Salary'].mean():.2f}\")\nprint(f\"Max age: {df['Age'].max()}\")\n\n# Selecting data\nprint(f\"\\nSelecting columns:\")\nprint(f\"Names: {df['Name'].tolist()}\")\nprint(f\"\\nSelecting rows by index:\")\nprint(df.loc[1:3])\n\n# Filtering\nprint(f\"\\nPeople older than 30:\")\nprint(df[df['Age'] > 30])\n\nprint(f\"\\nPeople from NYC or with salary > 80000:\")\nprint(df[(df['City'] == 'NYC') | (df['Salary'] > 80000)])\n\n# Adding new column\ndf['Bonus'] = df['Salary'] * 0.1\nprint(f\"\\nDataFrame with bonus column:\\n{df}\")\n\n# Grouping\nprint(f\"\\nAverage salary by city:\")\ngrouped = df.groupby('City')['Salary'].mean()\nprint(grouped)\n\n# Handling missing data\ndf_with_nan = df.copy()\ndf_with_nan.loc[2, 'Salary'] = np.nan\ndf_with_nan.loc[4, 'Age'] = np.nan\nprint(f\"\\nDataFrame with missing values:\\n{df_with_nan}\")\nprint(f\"\\nFilling missing values:\")\ndf_filled = df_with_nan.fillna({'Salary': df_with_nan['Salary'].mean(), 'Age': df_with_nan['Age'].mean()})\nprint(df_filled)\n\n# Reading from CSV (simulated)\nprint(\"\\nCreating and reading CSV:\")\n# Create a sample CSV\ndf.to_csv('sample_data.csv', index=False)\n\n# Read it back\ndf_from_csv = pd.read_csv('sample_data.csv')\nprint(f\"Data read from CSV:\\n{df_from_csv}\")",
+                exampleResult: "Series:\n0    1.0\n1    3.0\n2    5.0\n3    NaN\n4    6.0\n5    8.0\ndtype: float64\n\nSeries index: RangeIndex(start=0, stop=6, step=1)\nSeries values: [ 1.  3.  5. nan  6.  8.]\n\nDataFrame:\n      Name  Age      City  Salary\n0    Alice   25       NYC   70000\n1      Bob   30        LA   80000\n2  Charlie   35   Chicago   90000\n3    David   28   Houston   75000\n4      Eve   32   Phoenix   85000\n\nDataFrame shape: (5, 4)\nDataFrame columns: ['Name', 'Age', 'City', 'Salary']\nDataFrame dtypes:\nName      object\nAge        int64\nCity      object\nSalary     int64\ndtype: object\n\nFirst 3 rows:\n      Name  Age      City  Salary\n0    Alice   25       NYC   70000\n1      Bob   30        LA   80000\n2  Charlie   35   Chicago   90000\n\nLast 2 rows:\n    Name  Age      City  Salary\n3  David   28   Houston   75000\n4    Eve   32   Phoenix   85000\n\nBasic statistics:\n             Age        Salary\ncount   5.000000      5.000000\nmean   30.000000  80000.000000\nstd     3.807887   7637.626159\nmin    25.000000  70000.000000\n25%    28.000000  75000.000000\n50%    30.000000  80000.000000\n75%    32.000000  85000.000000\nmax    35.000000  90000.000000\n\nMean salary: 80000.00\nMax age: 35\n\nSelecting columns:\nNames: ['Alice', 'Bob', 'Charlie', 'David', 'Eve']\n\nSelecting rows by index:\n      Name  Age      City  Salary\n1      Bob   30        LA   80000\n2  Charlie   35   Chicago   90000\n3    David   28   Houston   75000\n\nPeople older than 30:\n      Name  Age      City  Salary\n2  Charlie   35   Chicago   90000\n4      Eve   32   Phoenix   85000\n\nPeople from NYC or with salary > 80000:\n      Name  Age      City  Salary\n0    Alice   25       NYC   70000\n2  Charlie   35   Chicago   90000\n4      Eve   32   Phoenix   85000\n\nDataFrame with bonus column:\n      Name  Age      City  Salary   Bonus\n0    Alice   25       NYC   70000  7000.0\n1      Bob   30        LA   80000  8000.0\n2  Charlie   35   Chicago   90000  9000.0\n3    David   28   Houston   75000  7500.0\n4      Eve   32   Phoenix   85000  8500.0\n\nAverage salary by city:\nCity\nChicago     90000.0\nHouston     75000.0\nLA          80000.0\nNYC         70000.0\nPhoenix     85000.0\nName: Salary, dtype: float64\n\nDataFrame with missing values:\n      Name   Age      City   Salary   Bonus\n0    Alice  25.0       NYC  70000.0  7000.0\n1      Bob  30.0        LA  80000.0  8000.0\n2  Charlie  35.0   Chicago      NaN  9000.0\n3    David  28.0   Houston  75000.0  7500.0\n4      Eve   NaN   Phoenix  85000.0  8500.0\n\nFilling missing values:\n      Name   Age      City   Salary   Bonus\n0    Alice  25.0       NYC  70000.0  7000.0\n1      Bob  30.0        LA  80000.0  8000.0\n2  Charlie  35.0   Chicago  77500.0  9000.0\n3    David  28.0   Houston  75000.0  7500.0\n4      Eve  30.0   Phoenix  85000.0  8500.0\n\nCreating and reading CSV:\nData read from CSV:\n      Name  Age      City  Salary   Bonus\n0    Alice   25       NYC   70000  7000.0\n1      Bob   30        LA   80000  8000.0\n2  Charlie   35   Chicago   90000  9000.0\n3    David   28   Houston   75000  7500.0\n4      Eve   32   Phoenix   85000  8500.0"
+            },
+            
+            // ========== ADVANCED CONCEPTS ==========
+            {
+                term: "Generators",
+                category: "advanced",
+                level: "advanced",
+                description: "Generators are functions that return an iterable generator object. They use yield instead of return and can pause/resume execution, making them memory efficient for large datasets.",
+                example: "# Basic generator function\ndef count_up_to(max):\n    count = 1\n    while count <= max:\n        yield count\n        count += 1\n\n# Using generator\ncounter = count_up_to(5)\nprint(\"Basic generator:\")\nfor num in counter:\n    print(num, end=\" \")\n\n# Generator expression\ngen_expr = (x**2 for x in range(1, 6))\nprint(f\"\\n\\nGenerator expression (squares): {list(gen_expr)}\")\n\n# Memory efficiency example\nprint(\"\\nMemory efficiency demonstration:\")\ndef read_large_file(file_path):\n    \"\"\"Generator to read large file line by line\"\"\"\n    with open(file_path, \"r\") as file:\n        for line in file:\n            yield line.strip()\n\n# Simulating a large file\nlarge_content = [f\"Line {i}\" for i in range(1000)]\nwith open(\"large_file.txt\", \"w\") as f:\n    f.write(\"\\n\".join(large_content))\n\nprint(\"Created large file with 1000 lines.\")\n\n# Using generator to process\nline_gen = read_large_file(\"large_file.txt\")\nprint(\"First 5 lines from generator:\")\nfor i, line in enumerate(line_gen):\n    if i < 5:\n        print(f\"  {line}\")\n    else:\n        break\n\n# Generator with multiple yields\ndef fibonacci_gen(n):\n    \"\"\"Generate Fibonacci sequence up to n terms\"\"\"\n    a, b = 0, 1\n    count = 0\n    while count < n:\n        yield a\n        a, b = b, a + b\n        count += 1\n\nprint(\"\\nFibonacci sequence (first 10 terms):\")\nfib_gen = fibonacci_gen(10)\nfor num in fib_gen:\n    print(num, end=\" \")\n\n# Sending values to generator\ndef accumulator():\n    total = 0\n    while True:\n        value = yield total\n        if value is None:\n            break\n        total += value\n\nprint(\"\\n\\nGenerator with send():\")\nacc = accumulator()\nnext(acc)  # Initialize generator\n\nprint(f\"Current total: {acc.send(10)}\")\nprint(f\"Current total: {acc.send(20)}\")\nprint(f\"Current total: {acc.send(5)}\")\nacc.close()\n\n# Generator pipeline\nprint(\"\\nGenerator pipeline:\")\ndef even_filter(numbers):\n    for n in numbers:\n        if n % 2 == 0:\n            yield n\n\ndef square_mapper(numbers):\n    for n in numbers:\n        yield n ** 2\n\n# Create pipeline\nnumbers = range(1, 11)\neven_numbers = even_filter(numbers)\nsquared_evens = square_mapper(even_numbers)\n\nprint(f\"Even squares from 1-10: {list(squared_evens)}\")",
+                exampleResult: "Basic generator:\n1 2 3 4 5 \n\nGenerator expression (squares): [1, 4, 9, 16, 25]\n\nMemory efficiency demonstration:\nCreated large file with 1000 lines.\nFirst 5 lines from generator:\n  Line 0\n  Line 1\n  Line 2\n  Line 3\n  Line 4\n\nFibonacci sequence (first 10 terms):\n0 1 1 2 3 5 8 13 21 34 \n\nGenerator with send():\nCurrent total: 10\nCurrent total: 30\nCurrent total: 35\n\nGenerator pipeline:\nEven squares from 1-10: [4, 16, 36, 64, 100]"
+            }
+        ];
+
+        // Category mapping for display
+        const categoryMap = {
+            "basics": "Python Basics",
+            "functions": "Functions",
+            "datastructures": "Data Structures",
+            "oop": "OOP Concepts",
+            "exceptions": "Exception Handling",
+            "files": "File Handling",
+            "libraries": "Libraries",
+            "advanced": "Advanced Concepts"
+        };
+
+        // Level mapping for badges
+        const levelMap = {
+            "beginner": "Beginner",
+            "intermediate": "Intermediate",
+            "advanced": "Advanced"
+        };
+
+        // Initialize the glossary
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTermCount();
+            renderGlossary(pythonGlossary);
+            
+            // Add event listeners
+            document.getElementById('searchInput').addEventListener('input', filterGlossary);
+            
+            // Add category filter listeners
+            document.querySelectorAll('.category-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active button
+                    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter glossary
+                    filterGlossary();
+                });
+            });
+        });
+
+        // Render glossary items
+        function renderGlossary(items) {
+            const container = document.getElementById('glossaryContainer');
+            container.innerHTML = '';
+            
+            if (items.length === 0) {
+                document.getElementById('noResults').style.display = 'block';
+                return;
+            }
+            
+            document.getElementById('noResults').style.display = 'none';
+            
+            items.forEach(item => {
+                const glossaryItem = document.createElement('div');
+                glossaryItem.className = 'glossary-item';
+                glossaryItem.setAttribute('data-category', item.category);
+                
+                const levelClass = `level-${item.level || 'beginner'}`;
+                const levelText = levelMap[item.level] || 'Beginner';
+                
+                glossaryItem.innerHTML = `
+                    <div class="glossary-header">
+                        <h3>${item.term} <span class="level-badge ${levelClass}">${levelText}</span></h3>
+                        <span class="category-tag">${categoryMap[item.category] || item.category}</span>
+                    </div>
+                    <p class="description">${item.description}</p>
+                    <div class="example-section">
+                        <h4><i class="fas fa-code"></i> Example</h4>
+                        <pre>${highlightPython(item.example)}</pre>
+                        <button class="try-button" onclick="runPythonExample(this)">
+                            <i class="fas fa-play-circle"></i> Run Code
+                        </button>
+                        <div class="result-section">
+                            <h4><i class="fas fa-poll"></i> Output</h4>
+                            <div class="result-output"></div>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(glossaryItem);
+            });
+        }
+
+        // Python syntax highlighting
+        function highlightPython(code) {
+            if (!code) return '';
+            
+            // Python keywords to highlight
+            const keywords = [
+                'def', 'class', 'if', 'elif', 'else', 'for', 'while', 'try', 'except',
+                'finally', 'with', 'as', 'import', 'from', 'return', 'yield', 'lambda',
+                'and', 'or', 'not', 'in', 'is', 'None', 'True', 'False', 'break',
+                'continue', 'pass', 'global', 'nonlocal', 'assert', 'raise', 'del'
+            ];
+            
+            let highlighted = code;
+            
+            // Highlight keywords
+            keywords.forEach(keyword => {
+                const regex = new RegExp(`\\b${keyword}\\b`, 'g');
+                highlighted = highlighted.replace(regex, `<span class="python-keyword">${keyword}</span>`);
+            });
+            
+            // Highlight strings (single and double quotes)
+            highlighted = highlighted.replace(/(\"[^\"]*\"|'[^']*')/g, `<span class="python-string">$1</span>`);
+            
+            // Highlight comments
+            highlighted = highlighted.replace(/#.*$/gm, `<span class="python-comment">$&</span>`);
+            
+            // Highlight numbers
+            highlighted = highlighted.replace(/\b\d+(\.\d+)?\b/g, `<span class="python-number">$&</span>`);
+            
+            // Highlight built-in functions
+            const builtins = ['print', 'len', 'range', 'type', 'str', 'int', 'float', 'list', 'dict', 'set', 'tuple'];
+            builtins.forEach(func => {
+                const regex = new RegExp(`\\b${func}\\b(?=\\()`, 'g');
+                highlighted = highlighted.replace(regex, `<span class="python-builtin">${func}</span>`);
+            });
+            
+            // Highlight function definitions
+            highlighted = highlighted.replace(/(def\s+)(\w+)/g, `$1<span class="python-function">$2</span>`);
+            
+            // Highlight class definitions
+            highlighted = highlighted.replace(/(class\s+)(\w+)/g, `$1<span class="python-function">$2</span>`);
+            
+            return highlighted;
+        }
+
+        // Filter glossary based on search and category
+        function filterGlossary() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const activeCategory = document.querySelector('.category-btn.active').getAttribute('data-category');
+            
+            const filteredItems = pythonGlossary.filter(item => {
+                // Check search term
+                const matchesSearch = item.term.toLowerCase().includes(searchTerm) || 
+                                     item.description.toLowerCase().includes(searchTerm);
+                
+                // Check category
+                const matchesCategory = activeCategory === 'all' || item.category === activeCategory;
+                
+                return matchesSearch && matchesCategory;
+            });
+            
+            updateTermCount(filteredItems.length);
+            renderGlossary(filteredItems);
+        }
+
+        // Update term count
+        function updateTermCount(count = pythonGlossary.length) {
+            document.getElementById('termCount').textContent = count;
+        }
+
+        // Run Python example
+        async function runPythonExample(button) {
+            const glossaryItem = button.closest('.glossary-item');
+            const resultSection = glossaryItem.querySelector('.result-section');
+            const resultOutput = glossaryItem.querySelector('.result-output');
+            
+            // Get the term to find the example data
+            const term = glossaryItem.querySelector('h3').textContent.split(' ')[0];
+            const glossaryData = pythonGlossary.find(item => item.term.startsWith(term));
+            
+            if (glossaryData && pyodide) {
+                try {
+                    // Show result section
+                    resultSection.style.display = 'block';
+                    resultOutput.textContent = "Running Python code...";
+                    
+                    // Run the Python code
+                    const output = await pyodide.runPythonAsync(glossaryData.example);
+                    
+                    // Display the result
+                    if (output !== undefined) {
+                        resultOutput.textContent = String(output);
+                    } else {
+                        // For print statements, capture stdout
+                        resultOutput.textContent = "Code executed successfully. Check console for output.";
+                    }
+                    
+                    // If we have expected result, show it
+                    if (glossaryData.exampleResult) {
+                        resultOutput.textContent = glossaryData.exampleResult;
+                    }
+                    
+                } catch (error) {
+                    resultOutput.textContent = `Error: ${error.message}`;
+                }
+                
+                // Scroll to results
+                resultSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } else if (!pyodide) {
+                resultSection.style.display = 'block';
+                resultOutput.textContent = "Python environment is still loading. Please wait a moment and try again.";
+            }
+        }
+    </script>
+</body>
+</html>

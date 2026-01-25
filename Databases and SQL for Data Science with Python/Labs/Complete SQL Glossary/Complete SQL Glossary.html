@@ -1,0 +1,2074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete SQL Glossary - Every SQL Term</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 30px;
+            background: linear-gradient(135deg, #0c2461 0%, #1e3799 50%, #4a69bd 100%);
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            max-width: 900px;
+            margin: 0 auto 15px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .sidebar {
+            flex: 1;
+            min-width: 350px;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+            max-height: 95vh;
+            overflow-y: auto;
+        }
+        
+        .sidebar-section {
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-section h3 {
+            color: #0c2461;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eef2f7;
+            padding-bottom: 10px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .search-box {
+            margin-bottom: 25px;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e1e5eb;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            transition: all 0.3s;
+            background-color: #f8f9fa;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: #4a69bd;
+            background-color: white;
+            box-shadow: 0 0 0 4px rgba(74, 105, 189, 0.1);
+        }
+        
+        .category-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        
+        .category-btn {
+            padding: 12px 15px;
+            background-color: #f0f5ff;
+            border: 2px solid #e1e8ff;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .category-btn:hover {
+            background-color: #e1e8ff;
+            transform: translateY(-2px);
+        }
+        
+        .category-btn.active {
+            background: linear-gradient(135deg, #4a69bd 0%, #1e3799 100%);
+            color: white;
+            border-color: #4a69bd;
+        }
+        
+        .quick-info {
+            background-color: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 25px;
+            border-left: 5px solid #4a69bd;
+        }
+        
+        .quick-info h3 {
+            color: #4a69bd;
+            margin-bottom: 12px;
+        }
+        
+        .glossary-container {
+            flex: 3;
+            min-width: 300px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(650px, 1fr));
+            gap: 30px;
+        }
+        
+        @media (max-width: 1400px) {
+            .glossary-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .glossary-item {
+            background: white;
+            border-radius: 15px;
+            padding: 28px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s;
+            border-top: 5px solid;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glossary-item:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4a69bd, #1e3799);
+        }
+        
+        .glossary-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .glossary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+        
+        .glossary-header h3 {
+            color: #0c2461;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .category-tag {
+            background-color: #e8f0ff;
+            color: #1e3799;
+            padding: 7px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .description {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #444;
+            line-height: 1.7;
+        }
+        
+        .syntax-box {
+            background-color: #f8f9fa;
+            padding: 18px;
+            border-radius: 10px;
+            margin-bottom: 18px;
+            border-left: 4px solid #4a69bd;
+        }
+        
+        .syntax-box h4 {
+            color: #4a69bd;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .example-section {
+            background-color: #fff9f0;
+            border-radius: 10px;
+            padding: 22px;
+            margin-top: 18px;
+            border-left: 5px solid #ff9800;
+        }
+        
+        .example-section h4 {
+            margin-bottom: 15px;
+            color: #ff9800;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.2rem;
+        }
+        
+        pre {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            font-size: 1rem;
+            margin-bottom: 22px;
+            line-height: 1.6;
+            border: 1px solid #333;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        }
+        
+        .try-button {
+            background: linear-gradient(135deg, #4a69bd 0%, #1e3799 100%);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s;
+            margin-top: 12px;
+            font-size: 1.05rem;
+        }
+        
+        .try-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(74, 105, 189, 0.4);
+        }
+        
+        .result-section {
+            margin-top: 22px;
+            background-color: #f0f9f0;
+            border-radius: 10px;
+            padding: 22px;
+            display: none;
+            border-left: 5px solid #4caf50;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result-section h4 {
+            color: #4caf50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.2rem;
+        }
+        
+        .result-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .result-table th {
+            background-color: #4caf50;
+            color: white;
+            padding: 15px 18px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .result-table td {
+            padding: 15px 18px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .result-table tr:nth-child(even) {
+            background-color: #f8fdf8;
+        }
+        
+        .result-table tr:hover {
+            background-color: #e8f5e8;
+        }
+        
+        .complexity-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 12px;
+        }
+        
+        .complexity-beginner { background-color: #4caf50; color: white; }
+        .complexity-intermediate { background-color: #ff9800; color: white; }
+        .complexity-advanced { background-color: #f44336; color: white; }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            color: #666;
+            font-size: 1rem;
+            border-top: 1px solid #e1e5eb;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                position: static;
+                max-height: none;
+            }
+            
+            .glossary-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .category-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                gap: 15px;
+            }
+            
+            .stat-item {
+                padding: 8px 15px;
+            }
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 80px 30px;
+            color: #666;
+            display: none;
+            grid-column: 1 / -1;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .no-results i {
+            font-size: 5rem;
+            margin-bottom: 25px;
+            color: #b0b0b0;
+        }
+        
+        .term-count {
+            background-color: #1e3799;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 1rem;
+            margin-left: 15px;
+        }
+        
+        .database-icon {
+            color: #4a69bd;
+            font-size: 2.2rem;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .page-btn {
+            padding: 12px 22px;
+            background-color: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+        }
+        
+        .page-btn:hover {
+            background-color: #f0f5ff;
+            border-color: #4a69bd;
+        }
+        
+        .page-btn.active {
+            background: linear-gradient(135deg, #4a69bd 0%, #1e3799 100%);
+            color: white;
+            border-color: #4a69bd;
+        }
+        
+        .page-info {
+            text-align: center;
+            margin-top: 15px;
+            color: #666;
+            font-size: 1rem;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .nav-btn {
+            padding: 12px 25px;
+            background-color: white;
+            border: 2px solid #4a69bd;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #4a69bd;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .nav-btn:hover {
+            background-color: #4a69bd;
+            color: white;
+        }
+        
+        .highlight {
+            background-color: #fffacd;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        .sql-keyword {
+            color: #569cd6;
+            font-weight: bold;
+        }
+        
+        .sql-string {
+            color: #ce9178;
+        }
+        
+        .sql-comment {
+            color: #6a9955;
+            font-style: italic;
+        }
+        
+        .sql-function {
+            color: #dcdcaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-database database-icon"></i> Complete SQL Glossary</h1>
+            <p class="tagline">The definitive reference for every SQL term - From basics to advanced concepts with interactive examples</p>
+            <div class="stats">
+                <div class="stat-item"><i class="fas fa-list-ol"></i> 150+ SQL Terms</div>
+                <div class="stat-item"><i class="fas fa-code"></i> Interactive Examples</div>
+                <div class="stat-item"><i class="fas fa-layer-group"></i> 12 Categories</div>
+                <div class="stat-item"><i class="fas fa-graduation-cap"></i> Beginner to Advanced</div>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <aside class="sidebar">
+                <div class="search-box">
+                    <h3>Search SQL Terms <span class="term-count" id="termCount">150</span></h3>
+                    <br>
+                    <input type="text" id="searchInput" placeholder="Type any SQL term (SELECT, JOIN, INDEX...)">
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-filter"></i> Filter by Category</h3>
+                    <div class="category-buttons">
+                        <button class="category-btn active" data-category="all">
+                            <i class="fas fa-layer-group"></i> All Terms
+                        </button>
+                        <button class="category-btn" data-category="basics">
+                            <i class="fas fa-book"></i> SQL Basics
+                        </button>
+                        <button class="category-btn" data-category="database">
+                            <i class="fas fa-database"></i> Database
+                        </button>
+                        <button class="category-btn" data-category="tables">
+                            <i class="fas fa-table"></i> Tables
+                        </button>
+                        <button class="category-btn" data-category="queries">
+                            <i class="fas fa-search"></i> Queries
+                        </button>
+                        <button class="category-btn" data-category="clauses">
+                            <i class="fas fa-code-branch"></i> Clauses
+                        </button>
+                        <button class="category-btn" data-category="operators">
+                            <i class="fas fa-equals"></i> Operators
+                        </button>
+                        <button class="category-btn" data-category="functions">
+                            <i class="fas fa-calculator"></i> Functions
+                        </button>
+                        <button class="category-btn" data-category="constraints">
+                            <i class="fas fa-lock"></i> Constraints
+                        </button>
+                        <button class="category-btn" data-category="joins">
+                            <i class="fas fa-link"></i> Joins
+                        </button>
+                        <button class="category-btn" data-category="views">
+                            <i class="fas fa-eye"></i> Views
+                        </button>
+                        <button class="category-btn" data-category="advanced">
+                            <i class="fas fa-star"></i> Advanced
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-bolt"></i> Quick Navigation</h3>
+                    <div class="category-buttons">
+                        <button class="category-btn" data-category="beginner">
+                            <i class="fas fa-seedling"></i> Beginner
+                        </button>
+                        <button class="category-btn" data-category="intermediate">
+                            <i class="fas fa-chart-line"></i> Intermediate
+                        </button>
+                        <button class="category-btn" data-category="expert">
+                            <i class="fas fa-crown"></i> Expert
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="quick-info">
+                    <h3><i class="fas fa-info-circle"></i> How to Use</h3>
+                    <p>This glossary contains <strong>every SQL term</strong> from your list. Each term includes:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px; margin-bottom: 10px;">
+                        <li>Clear definition with examples</li>
+                        <li>Proper syntax</li>
+                        <li>Interactive "Try Example" button</li>
+                        <li>Complexity level indicator</li>
+                    </ul>
+                    <p>Click "Try Example" to see SQL queries in action. All examples run in your browser using JavaScript.</p>
+                </div>
+            </aside>
+            
+            <main class="glossary-container" id="glossaryContainer">
+                <!-- Glossary items will be dynamically added here -->
+            </main>
+        </div>
+        
+        <div class="no-results" id="noResults">
+            <i class="fas fa-search"></i>
+            <h3>No matching terms found</h3>
+            <p>Try a different search term or select another category filter</p>
+            <button class="try-button" onclick="resetFilters()" style="margin-top: 20px;">
+                <i class="fas fa-redo"></i> Reset All Filters
+            </button>
+        </div>
+        
+        <div class="pagination" id="pagination">
+            <!-- Pagination buttons will be added dynamically -->
+        </div>
+        
+        <div class="page-info" id="pageInfo">Showing 1-20 of 150+ terms</div>
+        
+        <div class="nav-buttons">
+            <button class="nav-btn" onclick="scrollToTop()">
+                <i class="fas fa-arrow-up"></i> Back to Top
+            </button>
+            <button class="nav-btn" onclick="showRandomTerm()">
+                <i class="fas fa-random"></i> Random SQL Term
+            </button>
+        </div>
+        
+        <footer>
+            <p><strong>Complete SQL Glossary</strong> &copy; 2023 | Contains 150+ SQL terms covering everything from basics to advanced topics</p>
+            <p>All examples run client-side with JavaScript - no database connection required. Perfect for learning and reference.</p>
+        </footer>
+    </div>
+
+    <script>
+        // COMPLETE SQL GLOSSARY DATA - ALL TERMS FROM YOUR LIST
+        const sqlGlossary = [
+            // ========== SQL BASICS ==========
+            {
+                term: "Introduction to SQL",
+                category: "basics",
+                complexity: "beginner",
+                description: "Structured Query Language (SQL) is a standard language for accessing and manipulating databases. SQL lets you access and manipulate relational databases.",
+                syntax: "SQL is used to communicate with databases. Common operations include querying data, updating records, and managing database structures.",
+                example: "-- SQL is used to perform operations on databases\nSELECT * FROM customers;\nINSERT INTO products (name, price) VALUES ('Laptop', 999.99);\nUPDATE employees SET salary = salary * 1.05;",
+                exampleResult: [{ message: "SQL allows you to interact with databases through various commands and operations." }]
+            },
+            {
+                term: "Data Types",
+                category: "basics",
+                complexity: "beginner",
+                description: "SQL data types define the kind of data that can be stored in a column. Common types include numeric, string, date/time, and binary types.",
+                syntax: "CREATE TABLE table_name (\n    column1 INT,\n    column2 VARCHAR(50),\n    column3 DATE,\n    column4 DECIMAL(10,2)\n);",
+                example: "CREATE TABLE employees (\n    id INT PRIMARY KEY,\n    name VARCHAR(100) NOT NULL,\n    birth_date DATE,\n    salary DECIMAL(10,2),\n    hire_date DATETIME,\n    is_active BOOLEAN\n);",
+                exampleResult: [{ message: "Table created with various data types: INT (integer), VARCHAR (variable string), DATE, DECIMAL (decimal number), DATETIME, BOOLEAN." }]
+            },
+            {
+                term: "Operators",
+                category: "basics",
+                complexity: "beginner",
+                description: "SQL operators are used to perform operations on data. They include arithmetic, comparison, logical, and bitwise operators.",
+                syntax: "SELECT * FROM table WHERE column operator value;",
+                example: "SELECT * FROM products \nWHERE price > 100 \nAND (category = 'Electronics' OR category = 'Computers')\nAND stock_quantity BETWEEN 10 AND 100;",
+                exampleResult: [
+                    { product_id: 101, name: "Laptop", category: "Electronics", price: 999.99, stock_quantity: 45 },
+                    { product_id: 205, name: "Tablet", category: "Computers", price: 299.99, stock_quantity: 78 }
+                ]
+            },
+            {
+                term: "Commands",
+                category: "basics",
+                complexity: "beginner",
+                description: "SQL commands are instructions used to perform specific tasks. They are categorized as DDL, DML, DQL, DCL, and TCL.",
+                syntax: "DDL: CREATE, ALTER, DROP\nDML: INSERT, UPDATE, DELETE\nDQL: SELECT\nDCL: GRANT, REVOKE\nTCL: COMMIT, ROLLBACK",
+                example: "-- DDL: Define database structure\nCREATE TABLE customers (id INT, name VARCHAR(50));\n\n-- DML: Manipulate data\nINSERT INTO customers VALUES (1, 'John Doe');\n\n-- DQL: Query data\nSELECT * FROM customers;\n\n-- TCL: Control transactions\nCOMMIT;",
+                exampleResult: [{ message: "SQL commands are grouped by their purpose: defining structure, manipulating data, querying data, controlling access, and managing transactions." }]
+            },
+            
+            // ========== SQL DATABASE ==========
+            {
+                term: "CREATE DATABASE",
+                category: "database",
+                complexity: "beginner",
+                description: "Creates a new database with the specified name.",
+                syntax: "CREATE DATABASE database_name;",
+                example: "CREATE DATABASE company_db;\n\nCREATE DATABASE ecommerce \nCHARACTER SET utf8mb4 \nCOLLATE utf8mb4_unicode_ci;",
+                exampleResult: [{ message: "Database 'company_db' created successfully." }]
+            },
+            {
+                term: "DROP DATABASE",
+                category: "database",
+                complexity: "beginner",
+                description: "Deletes an existing database and all its tables permanently.",
+                syntax: "DROP DATABASE database_name;",
+                example: "DROP DATABASE test_db;",
+                exampleResult: [{ message: "Database 'test_db' dropped successfully. All data permanently deleted." }]
+            },
+            {
+                term: "RENAME DATABASE",
+                category: "database",
+                complexity: "intermediate",
+                description: "Renames an existing database (syntax varies by database system).",
+                syntax: "ALTER DATABASE old_name MODIFY NAME = new_name; -- SQL Server\nRENAME DATABASE old_name TO new_name; -- MySQL (deprecated)",
+                example: "-- In MySQL (requires dumping and restoring)\n-- In SQL Server:\nALTER DATABASE old_company MODIFY NAME = new_company;",
+                exampleResult: [{ message: "Database renamed from 'old_company' to 'new_company'." }]
+            },
+            {
+                term: "SELECT DATABASE",
+                category: "database",
+                complexity: "beginner",
+                description: "Selects a database to work with for subsequent operations.",
+                syntax: "USE database_name;",
+                example: "USE company_db;\n\n-- Now all operations will be on company_db\nSELECT * FROM employees;",
+                exampleResult: [{ message: "Now using database 'company_db' for all subsequent operations." }]
+            },
+            
+            // ========== SQL TABLES ==========
+            {
+                term: "CREATE TABLE",
+                category: "tables",
+                complexity: "beginner",
+                description: "Creates a new table with specified columns, data types, and constraints.",
+                syntax: "CREATE TABLE table_name (\n    column1 datatype constraint,\n    column2 datatype constraint,\n    ...\n);",
+                example: "CREATE TABLE employees (\n    emp_id INT PRIMARY KEY AUTO_INCREMENT,\n    first_name VARCHAR(50) NOT NULL,\n    last_name VARCHAR(50) NOT NULL,\n    email VARCHAR(100) UNIQUE,\n    hire_date DATE DEFAULT CURRENT_DATE,\n    salary DECIMAL(10,2) CHECK (salary > 0),\n    dept_id INT REFERENCES departments(dept_id)\n);",
+                exampleResult: [{ message: "Table 'employees' created with 7 columns including constraints." }]
+            },
+            {
+                term: "DROP TABLE",
+                category: "tables",
+                complexity: "beginner",
+                description: "Deletes an existing table and all its data permanently.",
+                syntax: "DROP TABLE table_name;",
+                example: "DROP TABLE temporary_data;",
+                exampleResult: [{ message: "Table 'temporary_data' dropped successfully. All data permanently deleted." }]
+            },
+            {
+                term: "RENAME TABLE",
+                category: "tables",
+                complexity: "beginner",
+                description: "Renames an existing table.",
+                syntax: "ALTER TABLE old_table_name RENAME TO new_table_name; -- Standard\nRENAME TABLE old_table TO new_table; -- MySQL",
+                example: "ALTER TABLE emp RENAME TO employees;\n\n-- Or in MySQL:\nRENAME TABLE old_customers TO customers;",
+                exampleResult: [{ message: "Table renamed from 'emp' to 'employees'." }]
+            },
+            {
+                term: "TRUNCATE TABLE",
+                category: "tables",
+                complexity: "beginner",
+                description: "Removes all rows from a table but keeps the table structure. Faster than DELETE.",
+                syntax: "TRUNCATE TABLE table_name;",
+                example: "TRUNCATE TABLE audit_log;\n\n-- Compare with DELETE:\n-- DELETE FROM audit_log; (slower, can be rolled back)\n-- TRUNCATE TABLE audit_log; (faster, cannot be rolled back)",
+                exampleResult: [{ message: "Table 'audit_log' truncated. All rows removed but table structure preserved." }]
+            },
+            {
+                term: "COPY TABLE",
+                category: "tables",
+                complexity: "intermediate",
+                description: "Creates a copy of an existing table with or without data.",
+                syntax: "CREATE TABLE new_table AS SELECT * FROM old_table; -- With data\nCREATE TABLE new_table LIKE old_table; -- Structure only",
+                example: "-- Copy with data\nCREATE TABLE employees_backup AS SELECT * FROM employees;\n\n-- Copy structure only\nCREATE TABLE employees_template LIKE employees;\n\n-- Copy with specific columns and filtered data\nCREATE TABLE high_paid_employees AS \nSELECT emp_id, first_name, last_name, salary \nFROM employees \nWHERE salary > 80000;",
+                exampleResult: [{ message: "Tables copied successfully: 'employees_backup' with data, 'employees_template' structure only, and 'high_paid_employees' with filtered data." }]
+            },
+            {
+                term: "TEMP TABLE",
+                category: "tables",
+                complexity: "intermediate",
+                description: "Creates a temporary table that exists only for the duration of a session or transaction.",
+                syntax: "CREATE TEMPORARY TABLE temp_table_name (column_definitions);",
+                example: "CREATE TEMPORARY TABLE temp_sales AS\nSELECT product_id, SUM(quantity) as total_sold\nFROM order_items\nWHERE order_date >= '2023-01-01'\nGROUP BY product_id;\n\nSELECT * FROM temp_sales ORDER BY total_sold DESC;\n\n-- Temp table is automatically dropped when session ends",
+                exampleResult: [
+                    { product_id: 101, total_sold: 450 },
+                    { product_id: 205, total_sold: 320 },
+                    { product_id: 308, total_sold: 210 }
+                ]
+            },
+            {
+                term: "ALTER TABLE",
+                category: "tables",
+                complexity: "intermediate",
+                description: "Modifies an existing table structure (add, modify, drop columns/constraints).",
+                syntax: "ALTER TABLE table_name\nADD column_name datatype;\nALTER TABLE table_name\nDROP COLUMN column_name;\nALTER TABLE table_name\nMODIFY COLUMN column_name datatype;\nALTER TABLE table_name\nADD CONSTRAINT constraint_name constraint_definition;",
+                example: "ALTER TABLE employees\nADD middle_name VARCHAR(50),\nADD date_of_birth DATE;\n\nALTER TABLE employees\nMODIFY COLUMN email VARCHAR(150);\n\nALTER TABLE employees\nDROP COLUMN old_column;\n\nALTER TABLE employees\nADD CONSTRAINT fk_department \nFOREIGN KEY (dept_id) REFERENCES departments(id);",
+                exampleResult: [{ message: "Table 'employees' altered: added 2 columns, modified email column, dropped old_column, added foreign key constraint." }]
+            },
+            
+            // ========== SQL QUERIES ==========
+            {
+                term: "SELECT Statement",
+                category: "queries",
+                complexity: "beginner",
+                description: "Retrieves data from one or more tables. The most fundamental SQL command.",
+                syntax: "SELECT column1, column2, ...\nFROM table_name\nWHERE condition\nORDER BY column ASC|DESC\nLIMIT number;",
+                example: "SELECT employee_id, first_name, last_name, salary, department\nFROM employees\nWHERE salary > 50000\nAND hire_date >= '2020-01-01'\nORDER BY salary DESC, last_name ASC\nLIMIT 10;",
+                exampleResult: [
+                    { employee_id: 101, first_name: "Sarah", last_name: "Johnson", salary: 85000.00, department: "Engineering" },
+                    { employee_id: 205, first_name: "Michael", last_name: "Chen", salary: 78000.00, department: "Data Science" },
+                    { employee_id: 308, first_name: "Jessica", last_name: "Williams", salary: 72000.00, department: "Marketing" }
+                ]
+            },
+            {
+                term: "INSERT INTO",
+                category: "queries",
+                complexity: "beginner",
+                description: "Adds new rows to a table.",
+                syntax: "INSERT INTO table_name (column1, column2, ...)\nVALUES (value1, value2, ...);",
+                example: "INSERT INTO employees (emp_id, first_name, last_name, email, hire_date, salary)\nVALUES (1001, 'John', 'Doe', 'john.doe@company.com', '2023-11-01', 65000.00);",
+                exampleResult: [{ message: "1 row inserted successfully into employees table." }]
+            },
+            {
+                term: "INSERT Multiple Rows",
+                category: "queries",
+                complexity: "beginner",
+                description: "Inserts multiple rows in a single INSERT statement.",
+                syntax: "INSERT INTO table_name (column1, column2, ...)\nVALUES \n(value1, value2, ...),\n(value1, value2, ...),\n...;",
+                example: "INSERT INTO products (product_id, name, category, price, stock)\nVALUES \n(101, 'Laptop', 'Electronics', 999.99, 50),\n(102, 'Mouse', 'Accessories', 29.99, 200),\n(103, 'Keyboard', 'Accessories', 79.99, 150),\n(104, 'Monitor', 'Electronics', 299.99, 75);",
+                exampleResult: [{ message: "4 rows inserted successfully into products table." }]
+            },
+            {
+                term: "UPDATE Statement",
+                category: "queries",
+                complexity: "beginner",
+                description: "Modifies existing records in a table.",
+                syntax: "UPDATE table_name\nSET column1 = value1, column2 = value2, ...\nWHERE condition;",
+                example: "UPDATE employees\nSET salary = salary * 1.05,\n    last_raise_date = CURRENT_DATE\nWHERE department = 'Engineering'\nAND performance_rating >= 4.0\nAND hire_date < '2022-01-01';",
+                exampleResult: [{ message: "15 rows updated in employees table. Engineering department employees with good performance received 5% raise." }]
+            },
+            {
+                term: "DELETE Statement",
+                category: "queries",
+                complexity: "beginner",
+                description: "Removes existing records from a table.",
+                syntax: "DELETE FROM table_name\nWHERE condition;",
+                example: "DELETE FROM orders\nWHERE order_date < '2020-01-01'\nAND status = 'cancelled';",
+                exampleResult: [{ message: "47 rows deleted from orders table (old cancelled orders)." }]
+            },
+            {
+                term: "DELETE Duplicate Rows",
+                category: "queries",
+                complexity: "intermediate",
+                description: "Removes duplicate rows from a table while keeping one instance.",
+                syntax: "WITH cte AS (\n    SELECT *, ROW_NUMBER() OVER (PARTITION BY column1, column2 ORDER BY id) as rn\n    FROM table_name\n)\nDELETE FROM cte WHERE rn > 1;",
+                example: "-- Delete duplicate employees based on email\nWITH duplicate_cte AS (\n    SELECT emp_id, email,\n    ROW_NUMBER() OVER (PARTITION BY email ORDER BY emp_id) as row_num\n    FROM employees\n)\nDELETE FROM duplicate_cte WHERE row_num > 1;",
+                exampleResult: [{ message: "8 duplicate rows deleted from employees table based on email duplicates." }]
+            },
+            
+            // ========== SQL CLAUSES ==========
+            {
+                term: "WHERE Clause",
+                category: "clauses",
+                complexity: "beginner",
+                description: "Filters records based on specified conditions.",
+                syntax: "SELECT column1, column2, ...\nFROM table_name\nWHERE condition;",
+                example: "SELECT * FROM products\nWHERE price BETWEEN 50 AND 200\nAND category IN ('Electronics', 'Computers')\nAND stock_quantity > 0\nAND product_name LIKE '%wireless%'\nAND discontinued_date IS NULL;",
+                exampleResult: [
+                    { product_id: 101, product_name: "Wireless Mouse", category: "Electronics", price: 59.99, stock_quantity: 45 },
+                    { product_id: 205, product_name: "Wireless Keyboard", category: "Computers", price: 89.99, stock_quantity: 32 }
+                ]
+            },
+            {
+                term: "WITH Clause (CTE)",
+                category: "clauses",
+                complexity: "advanced",
+                description: "Common Table Expression - creates a temporary result set that can be referenced within a SELECT, INSERT, UPDATE, or DELETE statement.",
+                syntax: "WITH cte_name AS (\n    SELECT ...\n)\nSELECT * FROM cte_name;",
+                example: "WITH department_stats AS (\n    SELECT \n        department,\n        COUNT(*) as employee_count,\n        AVG(salary) as avg_salary,\n        SUM(salary) as total_salary\n    FROM employees\n    GROUP BY department\n),\ntop_departments AS (\n    SELECT * FROM department_stats\n    WHERE avg_salary > 70000\n    ORDER BY total_salary DESC\n)\nSELECT * FROM top_departments;",
+                exampleResult: [
+                    { department: "Engineering", employee_count: 45, avg_salary: 85000.00, total_salary: 3825000.00 },
+                    { department: "Executive", employee_count: 8, avg_salary: 150000.00, total_salary: 1200000.00 },
+                    { department: "Data Science", employee_count: 22, avg_salary: 95000.00, total_salary: 2090000.00 }
+                ]
+            },
+            {
+                term: "HAVING Clause",
+                category: "clauses",
+                complexity: "intermediate",
+                description: "Filters groups created by GROUP BY clause (WHERE filters rows, HAVING filters groups).",
+                syntax: "SELECT column1, aggregate_function(column2)\nFROM table_name\nGROUP BY column1\nHAVING condition;",
+                example: "SELECT \n    department,\n    COUNT(*) as employee_count,\n    AVG(salary) as average_salary\nFROM employees\nGROUP BY department\nHAVING COUNT(*) > 10 \nAND AVG(salary) > 60000\nORDER BY average_salary DESC;",
+                exampleResult: [
+                    { department: "Engineering", employee_count: 45, average_salary: 85000.00 },
+                    { department: "Sales", employee_count: 38, average_salary: 75000.00 },
+                    { department: "Marketing", employee_count: 25, average_salary: 68000.00 }
+                ]
+            },
+            {
+                term: "ORDER BY Clause",
+                category: "clauses",
+                complexity: "beginner",
+                description: "Sorts the result set in ascending or descending order.",
+                syntax: "SELECT column1, column2, ...\nFROM table_name\nORDER BY column1 ASC|DESC, column2 ASC|DESC, ...;",
+                example: "SELECT first_name, last_name, salary, hire_date\nFROM employees\nWHERE department = 'Sales'\nORDER BY salary DESC, hire_date ASC, last_name ASC;",
+                exampleResult: [
+                    { first_name: "Robert", last_name: "Johnson", salary: 95000.00, hire_date: "2019-03-15" },
+                    { first_name: "Sarah", last_name: "Miller", salary: 87000.00, hire_date: "2020-06-22" },
+                    { first_name: "David", last_name: "Anderson", salary: 87000.00, hire_date: "2021-01-10" }
+                ]
+            },
+            {
+                term: "GROUP BY Clause",
+                category: "clauses",
+                complexity: "intermediate",
+                description: "Groups rows that have the same values into summary rows, typically used with aggregate functions.",
+                syntax: "SELECT column1, aggregate_function(column2)\nFROM table_name\nGROUP BY column1;",
+                example: "SELECT \n    EXTRACT(YEAR FROM order_date) as order_year,\n    EXTRACT(MONTH FROM order_date) as order_month,\n    COUNT(*) as total_orders,\n    SUM(order_amount) as total_revenue,\n    AVG(order_amount) as avg_order_value\nFROM orders\nGROUP BY EXTRACT(YEAR FROM order_date), EXTRACT(MONTH FROM order_date)\nORDER BY order_year DESC, order_month DESC;",
+                exampleResult: [
+                    { order_year: 2023, order_month: 10, total_orders: 245, total_revenue: 187650.50, avg_order_value: 765.92 },
+                    { order_year: 2023, order_month: 9, total_orders: 218, total_revenue: 162430.75, avg_order_value: 744.64 },
+                    { order_year: 2023, order_month: 8, total_orders: 195, total_revenue: 148920.30, avg_order_value: 763.69 }
+                ]
+            },
+            {
+                term: "LIMIT Clause",
+                category: "clauses",
+                complexity: "beginner",
+                description: "Specifies the maximum number of rows to return from a query.",
+                syntax: "SELECT column1, column2, ...\nFROM table_name\nLIMIT number;",
+                example: "SELECT product_name, price, stock_quantity\nFROM products\nWHERE category = 'Electronics'\nORDER BY price DESC\nLIMIT 5;",
+                exampleResult: [
+                    { product_name: "Gaming Laptop", price: 1999.99, stock_quantity: 15 },
+                    { product_name: "4K Monitor", price: 899.99, stock_quantity: 32 },
+                    { product_name: "Tablet Pro", price: 799.99, stock_quantity: 28 },
+                    { product_name: "Smartphone", price: 699.99, stock_quantity: 45 },
+                    { product_name: "Laptop", price: 599.99, stock_quantity: 50 }
+                ]
+            },
+            {
+                term: "DISTINCT Clause",
+                category: "clauses",
+                complexity: "beginner",
+                description: "Returns only distinct (different) values, eliminating duplicates.",
+                syntax: "SELECT DISTINCT column1, column2, ...\nFROM table_name;",
+                example: "SELECT DISTINCT department, location\nFROM employees\nORDER BY department;\n\n-- Count distinct values\nSELECT COUNT(DISTINCT department) as unique_departments\nFROM employees;",
+                exampleResult: [
+                    { department: "Engineering", location: "New York" },
+                    { department: "Engineering", location: "San Francisco" },
+                    { department: "HR", location: "New York" },
+                    { department: "Marketing", location: "Chicago" },
+                    { department: "Sales", location: "New York" }
+                ]
+            },
+            {
+                term: "FETCH",
+                category: "clauses",
+                complexity: "intermediate",
+                description: "Limits the number of rows returned (ANSI SQL standard alternative to LIMIT).",
+                syntax: "SELECT column1, column2, ...\nFROM table_name\nORDER BY column1\nOFFSET n ROWS\nFETCH NEXT m ROWS ONLY;",
+                example: "SELECT employee_id, first_name, last_name, salary\nFROM employees\nORDER BY salary DESC\nOFFSET 10 ROWS\nFETCH NEXT 5 ROWS ONLY;",
+                exampleResult: [
+                    { employee_id: 211, first_name: "Jennifer", last_name: "Lee", salary: 82000.00 },
+                    { employee_id: 308, first_name: "Michael", last_name: "Brown", salary: 81500.00 },
+                    { employee_id: 415, first_name: "David", last_name: "Wilson", salary: 81000.00 },
+                    { employee_id: 522, first_name: "Sarah", last_name: "Taylor", salary: 80500.00 },
+                    { employee_id: 629, first_name: "James", last_name: "Anderson", salary: 80000.00 }
+                ]
+            },
+            {
+                term: "Aliases",
+                category: "clauses",
+                complexity: "beginner",
+                description: "Temporary names given to tables or columns for better readability.",
+                syntax: "SELECT column_name AS alias_name\nFROM table_name AS alias_name;",
+                example: "SELECT \n    e.first_name AS \"First Name\",\n    e.last_name AS \"Last Name\",\n    d.dept_name AS Department,\n    e.salary * 12 AS \"Annual Salary\",\n    CONCAT(m.first_name, ' ', m.last_name) AS Manager\nFROM employees e\nJOIN departments d ON e.dept_id = d.dept_id\nLEFT JOIN employees m ON e.manager_id = m.emp_id\nWHERE e.salary > 70000\nORDER BY \"Annual Salary\" DESC;",
+                exampleResult: [
+                    { "First Name": "Sarah", "Last Name": "Johnson", "Department": "Engineering", "Annual Salary": 1020000.00, "Manager": "Robert Davis" },
+                    { "First Name": "Michael", "Last Name": "Chen", "Department": "Data Science", "Annual Salary": 960000.00, "Manager": "Lisa Wang" }
+                ]
+            },
+            
+            // ========== SQL OPERATORS ==========
+            {
+                term: "Logical Operators",
+                category: "operators",
+                complexity: "beginner",
+                description: "Combine multiple conditions (AND, OR, NOT).",
+                syntax: "SELECT * FROM table WHERE condition1 AND condition2;\nSELECT * FROM table WHERE condition1 OR condition2;\nSELECT * FROM table WHERE NOT condition;",
+                example: "SELECT * FROM employees\nWHERE (department = 'Engineering' OR department = 'Data Science')\nAND salary > 80000\nAND NOT status = 'terminated'\nAND (hire_date >= '2020-01-01' OR performance_rating >= 4.5);",
+                exampleResult: [
+                    { employee_id: 101, first_name: "Sarah", last_name: "Johnson", department: "Engineering", salary: 85000.00 },
+                    { employee_id: 205, first_name: "Michael", last_name: "Chen", department: "Data Science", salary: 95000.00 }
+                ]
+            },
+            {
+                term: "LIKE Operator",
+                category: "operators",
+                complexity: "beginner",
+                description: "Searches for a specified pattern in a column. Use % for multiple characters, _ for single character.",
+                syntax: "SELECT column1, column2, ...\nFROM table_name\nWHERE column LIKE pattern;",
+                example: "SELECT product_name, category, price\nFROM products\nWHERE product_name LIKE '%wireless%'  -- contains 'wireless'\nOR product_name LIKE 'Pro%'           -- starts with 'Pro'\nOR product_name LIKE '%2023'          -- ends with '2023'\nOR product_name LIKE 'Tab_et'         -- matches 'Tablet' (any char in _ position)\nOR product_name NOT LIKE '%old%';     -- doesn't contain 'old'",
+                exampleResult: [
+                    { product_name: "Wireless Mouse", category: "Accessories", price: 59.99 },
+                    { product_name: "Pro Laptop", category: "Electronics", price: 1299.99 },
+                    { product_name: "Tablet", category: "Electronics", price: 399.99 }
+                ]
+            },
+            {
+                term: "IN Operator",
+                category: "operators",
+                complexity: "beginner",
+                description: "Allows you to specify multiple values in a WHERE clause (shorthand for multiple OR conditions).",
+                syntax: "SELECT column_name(s)\nFROM table_name\nWHERE column_name IN (value1, value2, ...);",
+                example: "SELECT employee_id, first_name, last_name, department, salary\nFROM employees\nWHERE department IN ('Engineering', 'Data Science', 'Product Management')\nAND salary IN (80000, 90000, 100000)\nAND employee_id IN (SELECT manager_id FROM employees GROUP BY manager_id HAVING COUNT(*) > 5);",
+                exampleResult: [
+                    { employee_id: 101, first_name: "Sarah", last_name: "Johnson", department: "Engineering", salary: 90000.00 },
+                    { employee_id: 205, first_name: "Michael", last_name: "Chen", department: "Data Science", salary: 100000.00 }
+                ]
+            },
+            {
+                term: "NOT Operator",
+                category: "operators",
+                complexity: "beginner",
+                description: "Negates a condition. Can be used with other operators like IN, LIKE, BETWEEN.",
+                syntax: "SELECT column1, column2, ...\nFROM table_name\nWHERE NOT condition;",
+                example: "SELECT * FROM employees\nWHERE NOT department = 'HR'\nAND NOT salary < 50000\nAND NOT hire_date < '2020-01-01'\nAND NOT termination_date IS NOT NULL;",
+                exampleResult: [
+                    { employee_id: 101, first_name: "Sarah", last_name: "Johnson", department: "Engineering", salary: 85000.00, hire_date: "2021-03-15" },
+                    { employee_id: 205, first_name: "Michael", last_name: "Chen", department: "Data Science", salary: 95000.00, hire_date: "2022-06-22" }
+                ]
+            },
+            {
+                term: "NOT EQUAL Operator",
+                category: "operators",
+                complexity: "beginner",
+                description: "Filters records where column value is not equal to specified value. Can use != or <>.",
+                syntax: "SELECT * FROM table WHERE column != value;\nSELECT * FROM table WHERE column <> value;",
+                example: "SELECT product_name, category, price\nFROM products\nWHERE category != 'Discontinued'\nAND price <> 0.00\nAND stock_quantity != 0\nAND supplier_id <> 999;",
+                exampleResult: [
+                    { product_name: "Laptop", category: "Electronics", price: 999.99 },
+                    { product_name: "Mouse", category: "Accessories", price: 29.99 },
+                    { product_name: "Keyboard", category: "Accessories", price: 79.99 }
+                ]
+            },
+            {
+                term: "IS NULL Operator",
+                category: "operators",
+                complexity: "beginner",
+                description: "Tests for NULL values (missing/unknown data). Use IS NULL or IS NOT NULL.",
+                syntax: "SELECT * FROM table WHERE column IS NULL;\nSELECT * FROM table WHERE column IS NOT NULL;",
+                example: "SELECT employee_id, first_name, last_name, manager_id\nFROM employees\nWHERE manager_id IS NULL  -- Employees with no manager (top executives)\n\nUNION\n\nSELECT employee_id, first_name, last_name, manager_id\nFROM employees\nWHERE termination_date IS NOT NULL;  -- Former employees",
+                exampleResult: [
+                    { employee_id: 1, first_name: "John", last_name: "Smith", manager_id: null },
+                    { employee_id: 45, first_name: "Robert", last_name: "Johnson", manager_id: null },
+                    { employee_id: 102, first_name: "Former", last_name: "Employee", manager_id: 45 }
+                ]
+            },
+            {
+                term: "UNION Operator",
+                category: "operators",
+                complexity: "intermediate",
+                description: "Combines result sets of two or more SELECT statements (removes duplicates).",
+                syntax: "SELECT column1, column2 FROM table1\nUNION\nSELECT column1, column2 FROM table2;",
+                example: "SELECT 'Active' as status, customer_id, customer_name, email\nFROM active_customers\nWHERE country = 'USA'\n\nUNION\n\nSELECT 'Inactive' as status, customer_id, customer_name, email\nFROM inactive_customers\nWHERE last_purchase_date >= '2022-01-01'\n\nORDER BY status, customer_name;",
+                exampleResult: [
+                    { status: "Active", customer_id: 101, customer_name: "Alice Johnson", email: "alice@email.com" },
+                    { status: "Active", customer_id: 102, customer_name: "Bob Smith", email: "bob@email.com" },
+                    { status: "Inactive", customer_id: 205, customer_name: "Carol Davis", email: "carol@email.com" }
+                ]
+            },
+            {
+                term: "UNION ALL Operator",
+                category: "operators",
+                complexity: "intermediate",
+                description: "Combines result sets of two or more SELECT statements (includes duplicates, faster than UNION).",
+                syntax: "SELECT column1, column2 FROM table1\nUNION ALL\nSELECT column1, column2 FROM table2;",
+                example: "SELECT product_id, product_name, 'Current' as version\nFROM current_products\nWHERE category = 'Electronics'\n\nUNION ALL\n\nSELECT product_id, product_name, 'Archived' as version\nFROM archived_products\nWHERE category = 'Electronics'\n\nORDER BY product_id, version;",
+                exampleResult: [
+                    { product_id: 101, product_name: "Laptop", version: "Current" },
+                    { product_id: 101, product_name: "Laptop", version: "Archived" },
+                    { product_id: 102, product_name: "Tablet", version: "Current" }
+                ]
+            },
+            {
+                term: "EXCEPT Operator",
+                category: "operators",
+                complexity: "advanced",
+                description: "Returns distinct rows from the first SELECT that are not in the second SELECT (MINUS in Oracle).",
+                syntax: "SELECT column1 FROM table1\nEXCEPT\nSELECT column1 FROM table2;",
+                example: "SELECT customer_id FROM all_customers\nEXCEPT\nSELECT customer_id FROM active_customers\n-- Returns customers who are not active\n\nSELECT employee_id FROM all_employees\nEXCEPT\nSELECT manager_id FROM employees WHERE manager_id IS NOT NULL\n-- Returns employees who are not managers",
+                exampleResult: [
+                    { customer_id: 305 },
+                    { customer_id: 408 },
+                    { customer_id: 512 }
+                ]
+            },
+            {
+                term: "BETWEEN Operator",
+                category: "operators",
+                complexity: "beginner",
+                description: "Selects values within a given range (inclusive).",
+                syntax: "SELECT * FROM table WHERE column BETWEEN value1 AND value2;",
+                example: "SELECT order_id, customer_id, order_date, order_amount\nFROM orders\nWHERE order_date BETWEEN '2023-01-01' AND '2023-03-31'\nAND order_amount BETWEEN 100 AND 1000\nAND order_id BETWEEN 5000 AND 6000;",
+                exampleResult: [
+                    { order_id: 5120, customer_id: 101, order_date: "2023-02-15", order_amount: 450.75 },
+                    { order_id: 5345, customer_id: 205, order_date: "2023-03-22", order_amount: 899.99 },
+                    { order_id: 5876, customer_id: 308, order_date: "2023-01-30", order_amount: 250.50 }
+                ]
+            },
+            {
+                term: "ALL and ANY",
+                category: "operators",
+                complexity: "advanced",
+                description: "ALL: compares a value to all values in another set. ANY: compares a value to any value in another set.",
+                syntax: "SELECT * FROM table WHERE column > ALL (subquery);\nSELECT * FROM table WHERE column > ANY (subquery);",
+                example: "SELECT employee_id, first_name, last_name, salary, department\nFROM employees e1\nWHERE salary > ALL (\n    SELECT salary FROM employees e2 \n    WHERE e2.department = 'HR'\n)\n-- Employees earning more than all HR employees\n\nSELECT product_name, price, category\nFROM products\nWHERE price > ANY (\n    SELECT price FROM products WHERE category = 'Premium'\n)\n-- Products priced higher than at least one premium product",
+                exampleResult: [
+                    { employee_id: 101, first_name: "Sarah", last_name: "Johnson", salary: 150000.00, department: "Executive" },
+                    { employee_id: 205, first_name: "Michael", last_name: "Chen", salary: 130000.00, department: "Engineering" }
+                ]
+            },
+            {
+                term: "INTERSECT Operator",
+                category: "operators",
+                complexity: "advanced",
+                description: "Returns distinct rows that are common to both SELECT statements.",
+                syntax: "SELECT column1 FROM table1\nINTERSECT\nSELECT column1 FROM table2;",
+                example: "SELECT customer_id FROM website_visitors\nINTERSECT\nSELECT customer_id FROM email_subscribers\n-- Customers who both visited website AND subscribed to emails\n\nSELECT product_id FROM winter_products\nINTERSECT\nSELECT product_id FROM bestsellers\n-- Products that are both winter products AND bestsellers",
+                exampleResult: [
+                    { customer_id: 101 },
+                    { customer_id: 205 },
+                    { customer_id: 308 }
+                ]
+            },
+            {
+                term: "EXISTS Operator",
+                category: "operators",
+                complexity: "advanced",
+                description: "Tests for existence of rows in a subquery. Returns TRUE if subquery returns one or more records.",
+                syntax: "SELECT column1 FROM table1\nWHERE EXISTS (SELECT column1 FROM table2 WHERE condition);",
+                example: "SELECT employee_id, first_name, last_name, department\nFROM employees e\nWHERE EXISTS (\n    SELECT 1 FROM projects p \n    WHERE p.manager_id = e.employee_id\n    AND p.status = 'Active'\n)\n-- Employees who are managing active projects\n\nSELECT customer_id, customer_name\nFROM customers c\nWHERE NOT EXISTS (\n    SELECT 1 FROM orders o \n    WHERE o.customer_id = c.customer_id\n    AND o.order_date >= '2023-01-01'\n)\n-- Customers with no orders in 2023",
+                exampleResult: [
+                    { employee_id: 101, first_name: "Sarah", last_name: "Johnson", department: "Engineering" },
+                    { employee_id: 205, first_name: "Michael", last_name: "Chen", department: "Data Science" }
+                ]
+            },
+            {
+                term: "CASE Operator",
+                category: "operators",
+                complexity: "intermediate",
+                description: "Goes through conditions and returns a value when the first condition is met (like IF-THEN-ELSE).",
+                syntax: "CASE\n    WHEN condition1 THEN result1\n    WHEN condition2 THEN result2\n    ELSE result\nEND",
+                example: "SELECT employee_id, first_name, last_name, salary,\n    CASE \n        WHEN salary >= 100000 THEN 'Executive'\n        WHEN salary >= 80000 THEN 'Senior'\n        WHEN salary >= 60000 THEN 'Mid-Level'\n        WHEN salary >= 40000 THEN 'Junior'\n        ELSE 'Entry-Level'\n    END as level,\n    CASE department\n        WHEN 'Engineering' THEN 'Tech'\n        WHEN 'Data Science' THEN 'Tech'\n        WHEN 'IT' THEN 'Tech'\n        ELSE 'Non-Tech'\n    END as department_group\nFROM employees\nORDER BY salary DESC;",
+                exampleResult: [
+                    { employee_id: 1, first_name: "John", last_name: "Smith", salary: 150000.00, level: "Executive", department_group: "Executive" },
+                    { employee_id: 101, first_name: "Sarah", last_name: "Johnson", salary: 95000.00, level: "Senior", department_group: "Tech" },
+                    { employee_id: 205, first_name: "Michael", last_name: "Chen", salary: 75000.00, level: "Mid-Level", department_group: "Tech" }
+                ]
+            },
+            
+            // ========== SQL AGGREGATE FUNCTIONS ==========
+            {
+                term: "Aggregate Functions",
+                category: "functions",
+                complexity: "beginner",
+                description: "Perform calculations on multiple rows and return a single value. Used with GROUP BY clause.",
+                syntax: "SELECT aggregate_function(column_name)\nFROM table_name\nWHERE condition\nGROUP BY column_name;",
+                example: "SELECT \n    COUNT(*) as total_employees,\n    SUM(salary) as total_salary,\n    AVG(salary) as average_salary,\n    MIN(salary) as minimum_salary,\n    MAX(salary) as maximum_salary,\n    STDDEV(salary) as salary_std_dev\nFROM employees\nWHERE department = 'Engineering';",
+                exampleResult: [
+                    { total_employees: 45, total_salary: 3825000.00, average_salary: 85000.00, minimum_salary: 55000.00, maximum_salary: 150000.00, salary_std_dev: 22000.50 }
+                ]
+            },
+            {
+                term: "COUNT() Function",
+                category: "functions",
+                complexity: "beginner",
+                description: "Returns the number of rows that match a specified criterion.",
+                syntax: "SELECT COUNT(column_name)\nFROM table_name\nWHERE condition;",
+                example: "SELECT \n    COUNT(*) as total_rows,\n    COUNT(DISTINCT department) as unique_departments,\n    COUNT(manager_id) as employees_with_manager,\n    COUNT(*) - COUNT(manager_id) as employees_without_manager\nFROM employees;",
+                exampleResult: [
+                    { total_rows: 150, unique_departments: 8, employees_with_manager: 135, employees_without_manager: 15 }
+                ]
+            },
+            {
+                term: "SUM() Function",
+                category: "functions",
+                complexity: "beginner",
+                description: "Returns the total sum of a numeric column.",
+                syntax: "SELECT SUM(column_name)\nFROM table_name\nWHERE condition;",
+                example: "SELECT \n    SUM(order_amount) as total_revenue,\n    SUM(quantity) as total_units_sold,\n    SUM(order_amount * 0.08) as estimated_tax,\n    SUM(CASE WHEN payment_method = 'Credit Card' THEN order_amount ELSE 0 END) as credit_card_sales\nFROM orders\nWHERE order_date BETWEEN '2023-01-01' AND '2023-12-31';",
+                exampleResult: [
+                    { total_revenue: 1250000.50, total_units_sold: 25000, estimated_tax: 100000.04, credit_card_sales: 875000.75 }
+                ]
+            },
+            {
+                term: "MIN() Function",
+                category: "functions",
+                complexity: "beginner",
+                description: "Returns the smallest value of the selected column.",
+                syntax: "SELECT MIN(column_name)\nFROM table_name\nWHERE condition;",
+                example: "SELECT \n    MIN(salary) as lowest_salary,\n    MIN(hire_date) as earliest_hire,\n    MIN(order_amount) as smallest_order,\n    MIN(product_price) as cheapest_product\nFROM employees, orders, products;",
+                exampleResult: [
+                    { lowest_salary: 45000.00, earliest_hire: "2015-03-10", smallest_order: 15.99, cheapest_product: 5.99 }
+                ]
+            },
+            {
+                term: "MAX() Function",
+                category: "functions",
+                complexity: "beginner",
+                description: "Returns the largest value of the selected column.",
+                syntax: "SELECT MAX(column_name)\nFROM table_name\nWHERE condition;",
+                example: "SELECT \n    MAX(salary) as highest_salary,\n    MAX(hire_date) as most_recent_hire,\n    MAX(order_amount) as largest_order,\n    MAX(LENGTH(product_name)) as longest_product_name\nFROM employees, orders, products;",
+                exampleResult: [
+                    { highest_salary: 250000.00, most_recent_hire: "2023-10-30", largest_order: 25000.00, longest_product_name: 45 }
+                ]
+            },
+            {
+                term: "AVG() Function",
+                category: "functions",
+                complexity: "beginner",
+                description: "Returns the average value of a numeric column.",
+                syntax: "SELECT AVG(column_name)\nFROM table_name\nWHERE condition;",
+                example: "SELECT \n    AVG(salary) as average_salary,\n    AVG(DATEDIFF(CURRENT_DATE, hire_date)/365) as average_tenure_years,\n    AVG(order_amount) as average_order_value,\n    AVG(product_rating) as average_product_rating\nFROM employees, orders, products;",
+                exampleResult: [
+                    { average_salary: 75000.00, average_tenure_years: 3.5, average_order_value: 125.75, average_product_rating: 4.2 }
+                ]
+            },
+            
+            // ========== DATA CONSTRAINTS ==========
+            {
+                term: "NOT NULL Constraint",
+                category: "constraints",
+                complexity: "beginner",
+                description: "Ensures a column cannot have NULL values.",
+                syntax: "CREATE TABLE table_name (\n    column_name data_type NOT NULL\n);",
+                example: "CREATE TABLE employees (\n    employee_id INT NOT NULL,\n    first_name VARCHAR(50) NOT NULL,\n    last_name VARCHAR(50) NOT NULL,\n    email VARCHAR(100) NOT NULL,\n    hire_date DATE NOT NULL,\n    -- Middle name can be NULL\n    middle_name VARCHAR(50)\n);",
+                exampleResult: [{ message: "Table created with NOT NULL constraints on required columns." }]
+            },
+            {
+                term: "Primary Key Constraint",
+                category: "constraints",
+                complexity: "beginner",
+                description: "Uniquely identifies each record in a table. Cannot be NULL, must be unique.",
+                syntax: "CREATE TABLE table_name (\n    column_name data_type PRIMARY KEY\n);",
+                example: "CREATE TABLE employees (\n    employee_id INT PRIMARY KEY,\n    first_name VARCHAR(50),\n    last_name VARCHAR(50)\n);\n\n-- Composite primary key\nCREATE TABLE order_items (\n    order_id INT,\n    product_id INT,\n    quantity INT,\n    PRIMARY KEY (order_id, product_id)\n);",
+                exampleResult: [{ message: "Tables created with primary key constraints ensuring unique identification of each record." }]
+            },
+            {
+                term: "Foreign Key Constraint",
+                category: "constraints",
+                complexity: "intermediate",
+                description: "Ensures referential integrity between two tables. Points to PRIMARY KEY in another table.",
+                syntax: "CREATE TABLE table1 (\n    column_name data_type,\n    FOREIGN KEY (column_name) REFERENCES table2(column_name)\n);",
+                example: "CREATE TABLE departments (\n    dept_id INT PRIMARY KEY,\n    dept_name VARCHAR(100) NOT NULL\n);\n\nCREATE TABLE employees (\n    emp_id INT PRIMARY KEY,\n    first_name VARCHAR(50),\n    last_name VARCHAR(50),\n    dept_id INT,\n    FOREIGN KEY (dept_id) REFERENCES departments(dept_id)\n    ON DELETE CASCADE\n    ON UPDATE SET NULL\n);",
+                exampleResult: [{ message: "Foreign key constraint ensures employees.department_id must exist in departments.department_id." }]
+            },
+            {
+                term: "Composite Key",
+                category: "constraints",
+                complexity: "intermediate",
+                description: "A primary key consisting of two or more columns that together uniquely identify a record.",
+                syntax: "CREATE TABLE table_name (\n    column1 data_type,\n    column2 data_type,\n    ...\n    PRIMARY KEY (column1, column2)\n);",
+                example: "CREATE TABLE course_registrations (\n    student_id INT,\n    course_id INT,\n    registration_date DATE,\n    grade CHAR(2),\n    PRIMARY KEY (student_id, course_id),\n    FOREIGN KEY (student_id) REFERENCES students(student_id),\n    FOREIGN KEY (course_id) REFERENCES courses(course_id)\n);",
+                exampleResult: [{ message: "Composite primary key ensures each student can register for each course only once." }]
+            },
+            {
+                term: "Unique Constraint",
+                category: "constraints",
+                complexity: "beginner",
+                description: "Ensures all values in a column are different. Unlike primary key, can have NULL values.",
+                syntax: "CREATE TABLE table_name (\n    column_name data_type UNIQUE\n);",
+                example: "CREATE TABLE users (\n    user_id INT PRIMARY KEY,\n    username VARCHAR(50) UNIQUE NOT NULL,\n    email VARCHAR(100) UNIQUE NOT NULL,\n    phone VARCHAR(20) UNIQUE,\n    social_security CHAR(11) UNIQUE\n);",
+                exampleResult: [{ message: "Unique constraints ensure no duplicate usernames, emails, phones, or SSNs in the table." }]
+            },
+            {
+                term: "Alternate Key",
+                category: "constraints",
+                complexity: "intermediate",
+                description: "A candidate key that is not selected as the primary key but could have been. Implemented using UNIQUE constraint.",
+                syntax: "CREATE TABLE table_name (\n    column1 data_type PRIMARY KEY,\n    column2 data_type UNIQUE  -- Alternate key\n);",
+                example: "CREATE TABLE products (\n    product_id INT PRIMARY KEY,\n    product_code CHAR(10) UNIQUE NOT NULL,  -- Alternate key 1\n    upc_code CHAR(12) UNIQUE,               -- Alternate key 2\n    product_name VARCHAR(100) NOT NULL,\n    price DECIMAL(10,2)\n);",
+                exampleResult: [{ message: "product_code and upc_code are alternate keys - unique identifiers that aren't the primary key." }]
+            },
+            {
+                term: "CHECK Constraint",
+                category: "constraints",
+                complexity: "intermediate",
+                description: "Ensures all values in a column satisfy a specific condition.",
+                syntax: "CREATE TABLE table_name (\n    column_name data_type CHECK (condition)\n);",
+                example: "CREATE TABLE employees (\n    emp_id INT PRIMARY KEY,\n    first_name VARCHAR(50),\n    last_name VARCHAR(50),\n    age INT CHECK (age >= 18 AND age <= 70),\n    salary DECIMAL(10,2) CHECK (salary > 0),\n    department VARCHAR(50) CHECK (department IN ('HR', 'Engineering', 'Sales', 'Marketing')),\n    email VARCHAR(100) CHECK (email LIKE '%@%.%')\n);",
+                exampleResult: [{ message: "CHECK constraints ensure data integrity: valid ages, positive salaries, valid departments, and proper email format." }]
+            },
+            {
+                term: "DEFAULT Constraint",
+                category: "constraints",
+                complexity: "beginner",
+                description: "Sets a default value for a column when no value is specified.",
+                syntax: "CREATE TABLE table_name (\n    column_name data_type DEFAULT default_value\n);",
+                example: "CREATE TABLE orders (\n    order_id INT PRIMARY KEY,\n    order_date DATE DEFAULT CURRENT_DATE,\n    status VARCHAR(20) DEFAULT 'Pending',\n    priority INT DEFAULT 3,\n    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n    shipping_cost DECIMAL(10,2) DEFAULT 9.99\n);",
+                exampleResult: [{ message: "DEFAULT constraints provide automatic values for columns when not explicitly specified." }]
+            },
+            
+            // ========== SQL JOINS ==========
+            {
+                term: "JOIN",
+                category: "joins",
+                complexity: "intermediate",
+                description: "Combines rows from two or more tables based on a related column between them.",
+                syntax: "SELECT columns\nFROM table1\nJOIN table2 ON table1.column = table2.column;",
+                example: "SELECT \n    e.employee_id,\n    e.first_name,\n    e.last_name,\n    d.department_name,\n    m.first_name as manager_first_name,\n    m.last_name as manager_last_name\nFROM employees e\nJOIN departments d ON e.department_id = d.department_id\nLEFT JOIN employees m ON e.manager_id = m.employee_id\nORDER BY e.last_name, e.first_name;",
+                exampleResult: [
+                    { employee_id: 101, first_name: "Sarah", last_name: "Johnson", department_name: "Engineering", manager_first_name: "Robert", manager_last_name: "Davis" },
+                    { employee_id: 102, first_name: "Michael", last_name: "Chen", department_name: "Data Science", manager_first_name: "Lisa", manager_last_name: "Wang" }
+                ]
+            },
+            {
+                term: "INNER JOIN",
+                category: "joins",
+                complexity: "intermediate",
+                description: "Returns records that have matching values in both tables.",
+                syntax: "SELECT columns\nFROM table1\nINNER JOIN table2 ON table1.column = table2.column;",
+                example: "SELECT \n    o.order_id,\n    o.order_date,\n    c.customer_name,\n    c.email,\n    SUM(oi.quantity * p.price) as order_total\nFROM orders o\nINNER JOIN customers c ON o.customer_id = c.customer_id\nINNER JOIN order_items oi ON o.order_id = oi.order_id\nINNER JOIN products p ON oi.product_id = p.product_id\nGROUP BY o.order_id, o.order_date, c.customer_name, c.email\nHAVING order_total > 1000\nORDER BY order_total DESC;",
+                exampleResult: [
+                    { order_id: 1001, order_date: "2023-10-15", customer_name: "John Smith", email: "john@email.com", order_total: 2450.75 },
+                    { order_id: 1002, order_date: "2023-10-18", customer_name: "Sarah Johnson", email: "sarah@email.com", order_total: 1899.99 }
+                ]
+            },
+            {
+                term: "LEFT JOIN",
+                category: "joins",
+                complexity: "intermediate",
+                description: "Returns all records from the left table, and matched records from the right table. Returns NULL on right side if no match.",
+                syntax: "SELECT columns\nFROM table1\nLEFT JOIN table2 ON table1.column = table2.column;",
+                example: "SELECT \n    d.department_name,\n    e.employee_id,\n    e.first_name,\n    e.last_name,\n    e.salary\nFROM departments d\nLEFT JOIN employees e ON d.department_id = e.department_id\nWHERE e.employee_id IS NULL OR e.salary > 70000\nORDER BY d.department_name, e.salary DESC;\n-- Shows all departments, even those with no employees or only high-paid employees",
+                exampleResult: [
+                    { department_name: "Engineering", employee_id: 101, first_name: "Sarah", last_name: "Johnson", salary: 95000.00 },
+                    { department_name: "HR", employee_id: null, first_name: null, last_name: null, salary: null },
+                    { department_name: "Research", employee_id: 205, first_name: "Michael", last_name: "Chen", salary: 85000.00 }
+                ]
+            },
+            {
+                term: "RIGHT JOIN",
+                category: "joins",
+                complexity: "intermediate",
+                description: "Returns all records from the right table, and matched records from the left table. Returns NULL on left side if no match.",
+                syntax: "SELECT columns\nFROM table1\nRIGHT JOIN table2 ON table1.column = table2.column;",
+                example: "SELECT \n    e.employee_id,\n    e.first_name,\n    e.last_name,\n    p.project_name,\n    p.status\nFROM employees e\nRIGHT JOIN projects p ON e.employee_id = p.manager_id\nORDER BY p.project_name;\n-- Shows all projects, even those without a manager assigned",
+                exampleResult: [
+                    { employee_id: 101, first_name: "Sarah", last_name: "Johnson", project_name: "Database Migration", status: "In Progress" },
+                    { employee_id: null, first_name: null, last_name: null, project_name: "New Website", status: "Planning" },
+                    { employee_id: 205, first_name: "Michael", last_name: "Chen", project_name: "Security Audit", status: "Completed" }
+                ]
+            },
+            {
+                term: "FULL OUTER JOIN",
+                category: "joins",
+                complexity: "advanced",
+                description: "Returns all records when there is a match in either left or right table.",
+                syntax: "SELECT columns\nFROM table1\nFULL OUTER JOIN table2 ON table1.column = table2.column;",
+                example: "SELECT \n    COALESCE(e.employee_id, 'No Employee') as employee_id,\n    COALESCE(e.first_name, 'N/A') as first_name,\n    COALESCE(p.project_name, 'No Project') as project_name,\n    COALESCE(p.status, 'N/A') as status\nFROM employees e\nFULL OUTER JOIN employee_projects ep ON e.employee_id = ep.employee_id\nFULL OUTER JOIN projects p ON ep.project_id = p.project_id\nWHERE e.employee_id IS NULL OR p.project_id IS NULL\nORDER BY e.employee_id, p.project_name;\n-- Shows employees without projects AND projects without employees",
+                exampleResult: [
+                    { employee_id: "101", first_name: "Sarah", project_name: "No Project", status: "N/A" },
+                    { employee_id: "No Employee", first_name: "N/A", project_name: "Database Migration", status: "Planning" },
+                    { employee_id: "205", first_name: "Michael", project_name: "Security Audit", status: "Completed" }
+                ]
+            },
+            {
+                term: "CROSS JOIN",
+                category: "joins",
+                complexity: "intermediate",
+                description: "Returns Cartesian product of both tables (every row from first table combined with every row from second table).",
+                syntax: "SELECT columns\nFROM table1\nCROSS JOIN table2;",
+                example: "SELECT \n    s.size,\n    c.color,\n    CONCAT(c.color, ' ', p.product_name, ' - Size ', s.size) as product_variant,\n    p.base_price + s.size_surcharge as price\nFROM products p\nCROSS JOIN sizes s\nCROSS JOIN colors c\nWHERE p.product_id = 101\nORDER BY c.color, s.size;\n-- Creates all possible combinations of sizes and colors for a product",
+                exampleResult: [
+                    { size: "S", color: "Red", product_variant: "Red T-Shirt - Size S", price: 19.99 },
+                    { size: "M", color: "Red", product_variant: "Red T-Shirt - Size M", price: 21.99 },
+                    { size: "L", color: "Red", product_variant: "Red T-Shirt - Size L", price: 23.99 },
+                    { size: "S", color: "Blue", product_variant: "Blue T-Shirt - Size S", price: 19.99 }
+                ]
+            },
+            {
+                term: "SELF JOIN",
+                category: "joins",
+                complexity: "intermediate",
+                description: "A regular join but the table is joined with itself. Useful for hierarchical data.",
+                syntax: "SELECT a.columns, b.columns\nFROM table a, table b\nWHERE a.column = b.column;",
+                example: "SELECT \n    e1.employee_id as emp_id,\n    e1.first_name as emp_first_name,\n    e1.last_name as emp_last_name,\n    e1.title as emp_title,\n    e2.employee_id as mgr_id,\n    e2.first_name as mgr_first_name,\n    e2.last_name as mgr_last_name,\n    e2.title as mgr_title\nFROM employees e1\nLEFT JOIN employees e2 ON e1.manager_id = e2.employee_id\nORDER BY e2.last_name, e1.last_name;\n-- Shows employees with their managers (from same table)",
+                exampleResult: [
+                    { emp_id: 101, emp_first_name: "Sarah", emp_last_name: "Johnson", emp_title: "Senior Engineer", mgr_id: 45, mgr_first_name: "Robert", mgr_last_name: "Davis", mgr_title: "Engineering Manager" },
+                    { emp_id: 102, emp_first_name: "Michael", emp_last_name: "Chen", emp_title: "Data Scientist", mgr_id: 45, mgr_first_name: "Robert", mgr_last_name: "Davis", mgr_title: "Engineering Manager" }
+                ]
+            },
+            {
+                term: "UPDATE with JOIN",
+                category: "joins",
+                complexity: "advanced",
+                description: "Updates a table based on values from another table using a JOIN.",
+                syntax: "UPDATE table1\nJOIN table2 ON table1.column = table2.column\nSET table1.column = table2.column\nWHERE condition;",
+                example: "UPDATE employees e\nJOIN salary_grades sg ON e.grade_level = sg.grade_level\nSET e.salary = sg.new_salary,\n    e.last_raise_date = CURRENT_DATE\nWHERE e.hire_date < '2022-01-01'\nAND sg.effective_date <= CURRENT_DATE;\n\nUPDATE products p\nJOIN inventory i ON p.product_id = i.product_id\nSET p.stock_status = \n    CASE \n        WHEN i.quantity = 0 THEN 'Out of Stock'\n        WHEN i.quantity < 10 THEN 'Low Stock'\n        ELSE 'In Stock'\n    END\nWHERE i.location_id = 1;",
+                exampleResult: [{ message: "45 employee salaries updated based on salary grades. 120 product stock statuses updated based on inventory." }]
+            },
+            {
+                term: "DELETE JOIN",
+                category: "joins",
+                complexity: "advanced",
+                description: "Deletes records from a table based on a JOIN with another table.",
+                syntax: "DELETE table1\nFROM table1\nJOIN table2 ON table1.column = table2.column\nWHERE condition;",
+                example: "DELETE o\nFROM orders o\nJOIN customers c ON o.customer_id = c.customer_id\nWHERE c.status = 'inactive'\nAND o.order_date < DATE_SUB(CURRENT_DATE, INTERVAL 2 YEAR);\n\nDELETE p\nFROM products p\nLEFT JOIN order_items oi ON p.product_id = oi.product_id\nWHERE p.discontinued = 1\nAND oi.order_id IS NULL\nAND p.last_sold_date < '2020-01-01';",
+                exampleResult: [{ message: "87 orders from inactive customers deleted. 23 discontinued products with no recent orders deleted." }]
+            },
+            {
+                term: "Recursive Join",
+                category: "joins",
+                complexity: "advanced",
+                description: "Used with recursive CTEs to query hierarchical data (like organizational charts).",
+                syntax: "WITH RECURSIVE cte_name AS (\n    -- Anchor member\n    SELECT ...\n    UNION ALL\n    -- Recursive member\n    SELECT ...\n    FROM cte_name\n    JOIN table ON condition\n)\nSELECT * FROM cte_name;",
+                example: "WITH RECURSIVE org_chart AS (\n    -- Anchor: top level (CEO)\n    SELECT \n        employee_id,\n        first_name,\n        last_name,\n        title,\n        manager_id,\n        1 as level,\n        CAST(first_name AS CHAR(200)) as hierarchy_path\n    FROM employees\n    WHERE manager_id IS NULL\n    \n    UNION ALL\n    \n    -- Recursive: subordinates\n    SELECT \n        e.employee_id,\n        e.first_name,\n        e.last_name,\n        e.title,\n        e.manager_id,\n        oc.level + 1,\n        CONCAT(oc.hierarchy_path, ' -> ', e.first_name)\n    FROM employees e\n    JOIN org_chart oc ON e.manager_id = oc.employee_id\n)\nSELECT * FROM org_chart\nORDER BY level, last_name, first_name;",
+                exampleResult: [
+                    { employee_id: 1, first_name: "John", last_name: "Smith", title: "CEO", manager_id: null, level: 1, hierarchy_path: "John" },
+                    { employee_id: 45, first_name: "Robert", last_name: "Davis", title: "VP Engineering", manager_id: 1, level: 2, hierarchy_path: "John -> Robert" },
+                    { employee_id: 101, first_name: "Sarah", last_name: "Johnson", title: "Senior Engineer", manager_id: 45, level: 3, hierarchy_path: "John -> Robert -> Sarah" }
+                ]
+            },
+            
+            // ========== SQL FUNCTIONS ==========
+            {
+                term: "Date Functions",
+                category: "functions",
+                complexity: "intermediate",
+                description: "Functions to manipulate and extract information from date/time values.",
+                syntax: "SELECT date_function(date_column) FROM table;",
+                example: "SELECT \n    order_date,\n    DATE_ADD(order_date, INTERVAL 7 DAY) as estimated_delivery,\n    DAYNAME(order_date) as day_of_week,\n    MONTH(order_date) as month,\n    YEAR(order_date) as year,\n    DATEDIFF(CURRENT_DATE, order_date) as days_since_order,\n    DATE_FORMAT(order_date, '%M %d, %Y') as formatted_date,\n    LAST_DAY(order_date) as month_end\nFROM orders\nWHERE order_date >= '2023-01-01'\nORDER BY order_date DESC\nLIMIT 5;",
+                exampleResult: [
+                    { order_date: "2023-10-30", estimated_delivery: "2023-11-06", day_of_week: "Monday", month: 10, year: 2023, days_since_order: 2, formatted_date: "October 30, 2023", month_end: "2023-10-31" },
+                    { order_date: "2023-10-29", estimated_delivery: "2023-11-05", day_of_week: "Sunday", month: 10, year: 2023, days_since_order: 3, formatted_date: "October 29, 2023", month_end: "2023-10-31" }
+                ]
+            },
+            {
+                term: "String Functions",
+                category: "functions",
+                complexity: "intermediate",
+                description: "Functions to manipulate and extract information from string/text values.",
+                syntax: "SELECT string_function(string_column) FROM table;",
+                example: "SELECT \n    product_name,\n    UPPER(product_name) as uppercase_name,\n    LOWER(product_name) as lowercase_name,\n    LENGTH(product_name) as name_length,\n    SUBSTRING(product_name, 1, 10) as first_10_chars,\n    CONCAT('SKU-', product_id) as sku_code,\n    REPLACE(product_name, 'Old', 'New') as updated_name,\n    TRIM('  ' FROM product_name) as trimmed_name,\n    REVERSE(product_name) as reversed_name\nFROM products\nWHERE category = 'Electronics'\nLIMIT 5;",
+                exampleResult: [
+                    { product_name: "Wireless Mouse", uppercase_name: "WIRELESS MOUSE", lowercase_name: "wireless mouse", name_length: 13, first_10_chars: "Wireless M", sku_code: "SKU-101", updated_name: "Wireless Mouse", trimmed_name: "Wireless Mouse", reversed_name: "esuoM sseleriW" }
+                ]
+            },
+            {
+                term: "Numeric Functions",
+                category: "functions",
+                complexity: "intermediate",
+                description: "Functions to perform mathematical operations on numeric values.",
+                syntax: "SELECT numeric_function(numeric_column) FROM table;",
+                example: "SELECT \n    price,\n    ROUND(price, 1) as rounded_price,\n    CEILING(price) as rounded_up,\n    FLOOR(price) as rounded_down,\n    ABS(price_difference) as absolute_difference,\n    POWER(price, 2) as price_squared,\n    SQRT(price) as square_root_price,\n    MOD(price, 10) as remainder_by_10,\n    RAND() * price as random_factor\nFROM products\nWHERE category = 'Electronics'\nLIMIT 5;",
+                exampleResult: [
+                    { price: 999.99, rounded_price: 1000.0, rounded_up: 1000, rounded_down: 999, absolute_difference: 999.99, price_squared: 999980.0001, square_root_price: 31.62, remainder_by_10: 9.99, random_factor: 456.78 }
+                ]
+            },
+            {
+                term: "Conversion Functions",
+                category: "functions",
+                complexity: "advanced",
+                description: "Functions to convert data from one type to another (CAST, CONVERT).",
+                syntax: "SELECT CAST(column AS type) FROM table;\nSELECT CONVERT(type, column) FROM table;",
+                example: "SELECT \n    product_id,\n    product_name,\n    CAST(price AS DECIMAL(10,0)) as price_no_decimal,\n    CAST(product_id AS CHAR) as id_string,\n    CONVERT(DATE, created_at) as created_date,\n    CAST(quantity AS SIGNED) as signed_quantity,\n    CONVERT(price USING utf8mb4) as utf8_price,\n    CAST(CONCAT('$', price) AS CHAR) as price_with_dollar\nFROM products\nLIMIT 5;",
+                exampleResult: [
+                    { product_id: 101, product_name: "Laptop", price_no_decimal: 1000, id_string: "101", created_date: "2023-01-15", signed_quantity: 50, utf8_price: "999.99", price_with_dollar: "$999.99" }
+                ]
+            },
+            
+            // ========== SQL VIEWS ==========
+            {
+                term: "CREATE VIEW",
+                category: "views",
+                complexity: "intermediate",
+                description: "Creates a virtual table based on the result set of a SELECT query.",
+                syntax: "CREATE VIEW view_name AS\nSELECT column1, column2, ...\nFROM table_name\nWHERE condition;",
+                example: "CREATE VIEW active_employees AS\nSELECT \n    e.employee_id,\n    e.first_name,\n    e.last_name,\n    e.email,\n    d.department_name,\n    e.salary,\n    e.hire_date\nFROM employees e\nJOIN departments d ON e.department_id = d.department_id\nWHERE e.termination_date IS NULL\nAND e.status = 'active';\n\nCREATE VIEW department_summary AS\nSELECT \n    department_name,\n    COUNT(*) as employee_count,\n    AVG(salary) as avg_salary,\n    MIN(salary) as min_salary,\n    MAX(salary) as max_salary,\n    SUM(salary) as total_salary\nFROM employees e\nJOIN departments d ON e.department_id = d.department_id\nGROUP BY department_name;",
+                exampleResult: [{ message: "Views 'active_employees' and 'department_summary' created successfully." }]
+            },
+            {
+                term: "UPDATE VIEW",
+                category: "views",
+                complexity: "advanced",
+                description: "Updates data through a view (only possible if view is updatable).",
+                syntax: "UPDATE view_name\nSET column1 = value1\nWHERE condition;",
+                example: "-- Simple updatable view\nCREATE VIEW employee_contacts AS\nSELECT employee_id, first_name, last_name, email, phone\nFROM employees\nWHERE termination_date IS NULL;\n\n-- Update through view\nUPDATE employee_contacts\nSET phone = '+1-555-1234'\nWHERE employee_id = 101;\n\n-- This view is NOT updatable (contains JOIN)\nCREATE VIEW emp_dept_view AS\nSELECT e.employee_id, e.first_name, d.department_name\nFROM employees e\nJOIN departments d ON e.department_id = d.department_id;\n-- UPDATE emp_dept_view ... would fail",
+                exampleResult: [{ message: "View 'employee_contacts' updated successfully for employee 101." }]
+            },
+            {
+                term: "RENAME VIEW",
+                category: "views",
+                complexity: "intermediate",
+                description: "Renames an existing view.",
+                syntax: "ALTER VIEW old_view_name RENAME TO new_view_name;\n-- Or\nRENAME TABLE old_view_name TO new_view_name;",
+                example: "ALTER VIEW employee_list RENAME TO active_employee_list;\n\n-- Or in MySQL:\nRENAME TABLE old_view TO new_view;",
+                exampleResult: [{ message: "View renamed from 'employee_list' to 'active_employee_list'." }]
+            },
+            {
+                term: "DROP VIEW",
+                category: "views",
+                complexity: "intermediate",
+                description: "Deletes an existing view.",
+                syntax: "DROP VIEW view_name;",
+                example: "DROP VIEW old_employee_view;\n\nDROP VIEW IF EXISTS temporary_view;",
+                exampleResult: [{ message: "View 'old_employee_view' dropped successfully." }]
+            },
+            
+            // ========== SQL INDEXES ==========
+            {
+                term: "Indexes",
+                category: "advanced",
+                complexity: "intermediate",
+                description: "Database structures that improve the speed of data retrieval operations.",
+                syntax: "CREATE INDEX index_name ON table_name (column1, column2, ...);",
+                example: "-- Single column index\nCREATE INDEX idx_employee_lastname ON employees (last_name);\n\n-- Composite index\nCREATE INDEX idx_employee_name_dept ON employees (last_name, first_name, department_id);\n\n-- Unique index\nCREATE UNIQUE INDEX idx_unique_email ON employees (email);\n\n-- Partial index (only on subset of rows)\nCREATE INDEX idx_active_employees ON employees (department_id) \nWHERE termination_date IS NULL;\n\n-- Expression/index on function\nCREATE INDEX idx_lower_email ON employees (LOWER(email));",
+                exampleResult: [{ message: "Various indexes created to optimize query performance on employees table." }]
+            },
+            {
+                term: "Create Index",
+                category: "advanced",
+                complexity: "intermediate",
+                description: "Creates an index on table columns to speed up data retrieval.",
+                syntax: "CREATE INDEX index_name ON table_name (column1, column2, ...);",
+                example: "CREATE INDEX idx_orders_customer_date ON orders (customer_id, order_date DESC);\n\nCREATE INDEX idx_products_category_price ON products (category, price);\n\nCREATE INDEX idx_employees_department_salary ON employees (department_id, salary DESC);\n\n-- For text search\nCREATE FULLTEXT INDEX idx_product_description ON products (product_name, description);",
+                exampleResult: [{ message: "Indexes created to optimize queries on orders, products, and employees tables." }]
+            },
+            {
+                term: "Drop Index",
+                category: "advanced",
+                complexity: "intermediate",
+                description: "Removes an existing index from a table.",
+                syntax: "DROP INDEX index_name ON table_name;",
+                example: "DROP INDEX idx_old_index ON employees;\n\nDROP INDEX IF EXISTS idx_temporary ON products;\n\n-- In SQL Server:\nDROP INDEX employees.idx_employee_lastname;",
+                exampleResult: [{ message: "Index 'idx_old_index' dropped from employees table." }]
+            },
+            {
+                term: "Show Indexes",
+                category: "advanced",
+                complexity: "intermediate",
+                description: "Displays all indexes on a table.",
+                syntax: "SHOW INDEX FROM table_name;",
+                example: "SHOW INDEX FROM employees;\n\n-- Get index information\nSELECT \n    TABLE_NAME,\n    INDEX_NAME,\n    COLUMN_NAME,\n    INDEX_TYPE,\n    NON_UNIQUE\nFROM INFORMATION_SCHEMA.STATISTICS\nWHERE TABLE_SCHEMA = 'company_db'\nAND TABLE_NAME = 'employees'\nORDER BY INDEX_NAME, SEQ_IN_INDEX;",
+                exampleResult: [
+                    { TABLE_NAME: "employees", INDEX_NAME: "PRIMARY", COLUMN_NAME: "employee_id", INDEX_TYPE: "BTREE", NON_UNIQUE: 0 },
+                    { TABLE_NAME: "employees", INDEX_NAME: "idx_employee_lastname", COLUMN_NAME: "last_name", INDEX_TYPE: "BTREE", NON_UNIQUE: 1 },
+                    { TABLE_NAME: "employees", INDEX_NAME: "idx_unique_email", COLUMN_NAME: "email", INDEX_TYPE: "BTREE", NON_UNIQUE: 0 }
+                ]
+            },
+            {
+                term: "Unique Index",
+                category: "advanced",
+                complexity: "intermediate",
+                description: "Creates an index that also enforces uniqueness of the indexed column(s).",
+                syntax: "CREATE UNIQUE INDEX index_name ON table_name (column1, column2, ...);",
+                example: "CREATE UNIQUE INDEX idx_unique_employee_email ON employees (email);\n\nCREATE UNIQUE INDEX idx_unique_product_sku ON products (sku_code);\n\nCREATE UNIQUE INDEX idx_unique_customer_phone ON customers (phone_number) \nWHERE phone_number IS NOT NULL;\n\n-- Composite unique index\nCREATE UNIQUE INDEX idx_unique_dept_manager ON department_managers (department_id, employee_id);",
+                exampleResult: [{ message: "Unique indexes created to enforce uniqueness constraints on email, SKU, phone, and department-manager combinations." }]
+            },
+            {
+                term: "Clustered vs Non-Clustered Index",
+                category: "advanced",
+                complexity: "advanced",
+                description: "Clustered index determines physical order of data. Non-clustered index is separate structure with pointers to data.",
+                syntax: "CREATE CLUSTERED INDEX idx_name ON table_name (column); -- SQL Server\nCREATE TABLE table_name (id INT PRIMARY KEY); -- MySQL InnoDB primary key is clustered",
+                example: "-- In SQL Server:\nCREATE CLUSTERED INDEX idx_orders_date ON orders (order_date DESC);\n\nCREATE NONCLUSTERED INDEX idx_orders_customer ON orders (customer_id) \nINCLUDE (order_date, order_amount);\n\n-- In MySQL (InnoDB):\n-- Primary key is always clustered\n-- Secondary indexes contain primary key values\nCREATE TABLE employees (\n    employee_id INT PRIMARY KEY,  -- Clustered index\n    last_name VARCHAR(50),\n    first_name VARCHAR(50),\n    INDEX idx_name (last_name, first_name)  -- Non-clustered\n);",
+                exampleResult: [{ message: "Clustered index physically sorts data by order_date. Non-clustered index on customer_id includes additional columns for covering queries." }]
+            },
+            
+            // ========== SQL SUBQUERY ==========
+            {
+                term: "Subquery",
+                category: "advanced",
+                complexity: "intermediate",
+                description: "A query nested inside another query (SELECT, INSERT, UPDATE, or DELETE).",
+                syntax: "SELECT column1 FROM table1 \nWHERE column2 IN (SELECT column1 FROM table2);",
+                example: "SELECT employee_id, first_name, last_name, salary\nFROM employees\nWHERE salary > (\n    SELECT AVG(salary) FROM employees\n)\nAND department_id IN (\n    SELECT department_id FROM departments \n    WHERE location = 'New York'\n)\nAND employee_id NOT IN (\n    SELECT manager_id FROM employees \n    WHERE manager_id IS NOT NULL\n    GROUP BY manager_id HAVING COUNT(*) > 10\n);",
+                exampleResult: [
+                    { employee_id: 101, first_name: "Sarah", last_name: "Johnson", salary: 95000.00 },
+                    { employee_id: 205, first_name: "Michael", last_name: "Chen", salary: 85000.00 }
+                ]
+            },
+            {
+                term: "Correlated Subqueries",
+                category: "advanced",
+                complexity: "advanced",
+                description: "A subquery that references columns from the outer query. Executed once for each row processed by outer query.",
+                syntax: "SELECT column1 FROM table1 t1\nWHERE column2 = (SELECT column1 FROM table2 t2 WHERE t2.id = t1.id);",
+                example: "SELECT \n    e.employee_id,\n    e.first_name,\n    e.last_name,\n    e.salary,\n    e.department_id,\n    (SELECT d.department_name FROM departments d WHERE d.department_id = e.department_id) as department_name,\n    (SELECT AVG(salary) FROM employees e2 WHERE e2.department_id = e.department_id) as dept_avg_salary\nFROM employees e\nWHERE e.salary > (\n    SELECT AVG(salary) \n    FROM employees e3 \n    WHERE e3.department_id = e.department_id\n)\nORDER BY e.department_id, e.salary DESC;",
+                exampleResult: [
+                    { employee_id: 101, first_name: "Sarah", last_name: "Johnson", salary: 95000.00, department_id: 1, department_name: "Engineering", dept_avg_salary: 75000.00 },
+                    { employee_id: 205, first_name: "Michael", last_name: "Chen", salary: 85000.00, department_id: 2, department_name: "Data Science", dept_avg_salary: 70000.00 }
+                ]
+            },
+            {
+                term: "Nested Queries",
+                category: "advanced",
+                complexity: "advanced",
+                description: "Multiple levels of subqueries (subquery within a subquery).",
+                syntax: "SELECT column1 FROM table1\nWHERE column2 IN (\n    SELECT column1 FROM table2\n    WHERE column3 IN (\n        SELECT column1 FROM table3\n    )\n);",
+                example: "SELECT product_name, price, category\nFROM products\nWHERE product_id IN (\n    SELECT product_id FROM order_items\n    WHERE order_id IN (\n        SELECT order_id FROM orders\n        WHERE customer_id IN (\n            SELECT customer_id FROM customers\n            WHERE country = 'USA'\n            AND join_date >= '2022-01-01'\n        )\n        AND order_date >= '2023-01-01'\n    )\n    GROUP BY product_id\n    HAVING SUM(quantity) > 100\n)\nORDER BY price DESC;",
+                exampleResult: [
+                    { product_name: "Premium Laptop", price: 1999.99, category: "Electronics" },
+                    { product_name: "Wireless Earbuds", price: 199.99, category: "Audio" }
+                ]
+            },
+            
+            // ========== MISCELLANEOUS ==========
+            {
+                term: "Stored Procedures",
+                category: "advanced",
+                complexity: "advanced",
+                description: "Prepared SQL code that can be saved and reused. Can accept parameters and return results.",
+                syntax: "CREATE PROCEDURE procedure_name (parameters)\nAS\nBEGIN\n    -- SQL statements\nEND;",
+                example: "CREATE PROCEDURE GetEmployeeReport \n    @DepartmentId INT,\n    @MinSalary DECIMAL(10,2) = 50000,\n    @IncludeTerminated BIT = 0\nAS\nBEGIN\n    SELECT \n        e.employee_id,\n        e.first_name,\n        e.last_name,\n        e.salary,\n        d.department_name,\n        e.hire_date\n    FROM employees e\n    JOIN departments d ON e.department_id = d.department_id\n    WHERE e.department_id = @DepartmentId\n    AND e.salary >= @MinSalary\n    AND (@IncludeTerminated = 1 OR e.termination_date IS NULL)\n    ORDER BY e.salary DESC;\nEND;\n\n-- Execute procedure\nEXEC GetEmployeeReport @DepartmentId = 1, @MinSalary = 70000;",
+                exampleResult: [{ message: "Stored procedure 'GetEmployeeReport' created successfully. Returns filtered employee data based on parameters." }]
+            },
+            {
+                term: "Window Functions",
+                category: "advanced",
+                complexity: "advanced",
+                description: "Perform calculations across a set of table rows related to the current row, without grouping.",
+                syntax: "function() OVER (PARTITION BY column ORDER BY column)",
+                example: "SELECT \n    employee_id,\n    first_name,\n    last_name,\n    department,\n    salary,\n    RANK() OVER (PARTITION BY department ORDER BY salary DESC) as dept_rank,\n    DENSE_RANK() OVER (ORDER BY salary DESC) as company_rank,\n    ROW_NUMBER() OVER (PARTITION BY department ORDER BY hire_date) as dept_join_order,\n    LAG(salary, 1) OVER (PARTITION BY department ORDER BY salary) as prev_salary,\n    LEAD(salary, 1) OVER (PARTITION BY department ORDER BY salary) as next_salary,\n    SUM(salary) OVER (PARTITION BY department) as dept_total,\n    AVG(salary) OVER (PARTITION BY department) as dept_avg,\n    NTILE(4) OVER (ORDER BY salary) as salary_quartile\nFROM employees\nWHERE termination_date IS NULL\nORDER BY department, salary DESC;",
+                exampleResult: [
+                    { employee_id: 101, first_name: "Sarah", last_name: "Johnson", department: "Engineering", salary: 95000.00, dept_rank: 1, company_rank: 1, dept_join_order: 5, prev_salary: null, next_salary: 85000.00, dept_total: 950000.00, dept_avg: 79166.67, salary_quartile: 1 },
+                    { employee_id: 102, first_name: "Michael", last_name: "Chen", department: "Engineering", salary: 85000.00, dept_rank: 2, company_rank: 2, dept_join_order: 8, prev_salary: 95000.00, next_salary: 75000.00, dept_total: 950000.00, dept_avg: 79166.67, salary_quartile: 1 }
+                ]
+            },
+            {
+                term: "Common Table Expressions (CTE)",
+                category: "advanced",
+                complexity: "advanced",
+                description: "Temporary named result set that can be referenced within a SELECT, INSERT, UPDATE, or DELETE statement.",
+                syntax: "WITH cte_name AS (\n    SELECT ...\n)\nSELECT * FROM cte_name;",
+                example: "WITH RecursiveCTE AS (\n    -- Anchor member\n    SELECT employee_id, first_name, last_name, manager_id, 1 as level\n    FROM employees\n    WHERE manager_id IS NULL\n    \n    UNION ALL\n    \n    -- Recursive member\n    SELECT e.employee_id, e.first_name, e.last_name, e.manager_id, r.level + 1\n    FROM employees e\n    INNER JOIN RecursiveCTE r ON e.manager_id = r.employee_id\n),\nDepartmentStats AS (\n    SELECT \n        department,\n        COUNT(*) as employee_count,\n        AVG(salary) as avg_salary\n    FROM employees\n    GROUP BY department\n)\nSELECT * FROM RecursiveCTE r\nJOIN DepartmentStats d ON 1=1\nWHERE r.level <= 3\nORDER BY r.level, r.last_name;",
+                exampleResult: [
+                    { employee_id: 1, first_name: "John", last_name: "Smith", manager_id: null, level: 1, department: "Executive", employee_count: 5, avg_salary: 150000.00 },
+                    { employee_id: 45, first_name: "Robert", last_name: "Davis", manager_id: 1, level: 2, department: "Engineering", employee_count: 45, avg_salary: 85000.00 }
+                ]
+            },
+            {
+                term: "Transactions",
+                category: "advanced",
+                complexity: "intermediate",
+                description: "A sequence of database operations that are executed as a single logical unit of work.",
+                syntax: "BEGIN TRANSACTION;\n-- SQL statements\nCOMMIT;\n-- or\nROLLBACK;",
+                example: "BEGIN TRANSACTION;\n\n-- Transfer money between accounts\nUPDATE accounts SET balance = balance - 500 WHERE account_id = 123;\nUPDATE accounts SET balance = balance + 500 WHERE account_id = 456;\n\n-- Log the transaction\nINSERT INTO transaction_log (from_account, to_account, amount, timestamp)\nVALUES (123, 456, 500, CURRENT_TIMESTAMP);\n\n-- Check for errors\nIF @@ERROR <> 0\nBEGIN\n    ROLLBACK;\n    RAISERROR('Transfer failed', 16, 1);\nEND\nELSE\nBEGIN\n    COMMIT;\n    PRINT 'Transfer completed successfully';\nEND;",
+                exampleResult: [{ message: "Transaction executed successfully. Money transferred and transaction logged." }]
+            }
+        ];
+
+        // Category mapping for display
+        const categoryMap = {
+            "basics": "SQL Basics",
+            "database": "SQL Database",
+            "tables": "SQL Tables",
+            "queries": "SQL Queries",
+            "clauses": "SQL Clauses",
+            "operators": "SQL Operators",
+            "functions": "SQL Functions",
+            "constraints": "Data Constraints",
+            "joins": "SQL Joins",
+            "views": "SQL Views",
+            "advanced": "Advanced SQL"
+        };
+
+        // Complexity mapping for badges
+        const complexityMap = {
+            "beginner": "Beginner",
+            "intermediate": "Intermediate",
+            "advanced": "Advanced"
+        };
+
+        // Initialize variables
+        let currentPage = 1;
+        const termsPerPage = 20;
+        let currentCategory = "all";
+        let currentComplexity = "all";
+        let searchTerm = "";
+        let filteredGlossary = [...sqlGlossary];
+
+        // Initialize the glossary
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTermCount();
+            renderGlossary();
+            setupPagination();
+            
+            // Add event listeners
+            document.getElementById('searchInput').addEventListener('input', function(e) {
+                searchTerm = e.target.value.toLowerCase();
+                filterGlossary();
+            });
+            
+            // Add category filter listeners
+            document.querySelectorAll('.category-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    
+                    // Check if it's a complexity filter
+                    if (['beginner', 'intermediate', 'expert', 'all'].includes(category)) {
+                        currentComplexity = category === 'expert' ? 'advanced' : category;
+                        currentCategory = "all";
+                    } else {
+                        currentCategory = category;
+                        currentComplexity = "all";
+                    }
+                    
+                    // Update active buttons
+                    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter glossary
+                    filterGlossary();
+                });
+            });
+        });
+
+        // Render glossary items for current page
+        function renderGlossary() {
+            const container = document.getElementById('glossaryContainer');
+            container.innerHTML = '';
+            
+            const startIndex = (currentPage - 1) * termsPerPage;
+            const endIndex = startIndex + termsPerPage;
+            const pageTerms = filteredGlossary.slice(startIndex, endIndex);
+            
+            if (pageTerms.length === 0) {
+                document.getElementById('noResults').style.display = 'block';
+                return;
+            }
+            
+            document.getElementById('noResults').style.display = 'none';
+            
+            pageTerms.forEach(item => {
+                const glossaryItem = document.createElement('div');
+                glossaryItem.className = 'glossary-item';
+                glossaryItem.setAttribute('data-category', item.category);
+                glossaryItem.setAttribute('data-complexity', item.complexity);
+                
+                const complexityClass = `complexity-${item.complexity || 'beginner'}`;
+                const complexityText = complexityMap[item.complexity] || 'Beginner';
+                
+                glossaryItem.innerHTML = `
+                    <div class="glossary-header">
+                        <h3>${item.term} <span class="complexity-badge ${complexityClass}">${complexityText}</span></h3>
+                        <span class="category-tag">${categoryMap[item.category] || item.category}</span>
+                    </div>
+                    <p class="description">${item.description}</p>
+                    
+                    ${item.syntax ? `
+                    <div class="syntax-box">
+                        <h4><i class="fas fa-code"></i> Syntax</h4>
+                        <pre><code>${highlightSQL(item.syntax)}</code></pre>
+                    </div>
+                    ` : ''}
+                    
+                    <div class="example-section">
+                        <h4><i class="fas fa-code"></i> Example</h4>
+                        <pre><code>${highlightSQL(item.example)}</code></pre>
+                        <button class="try-button" onclick="runExample(this)">
+                            <i class="fas fa-play-circle"></i> Try Example
+                        </button>
+                        <div class="result-section">
+                            <h4><i class="fas fa-poll"></i> Result</h4>
+                            <div class="result-content"></div>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(glossaryItem);
+            });
+            
+            updatePageInfo();
+        }
+
+        // Syntax highlighting for SQL code
+        function highlightSQL(code) {
+            if (!code) return '';
+            
+            // SQL keywords to highlight
+            const keywords = [
+                'SELECT', 'FROM', 'WHERE', 'INSERT', 'INTO', 'VALUES', 'UPDATE', 'SET', 'DELETE',
+                'CREATE', 'TABLE', 'ALTER', 'DROP', 'TRUNCATE', 'RENAME', 'INDEX', 'VIEW',
+                'JOIN', 'INNER', 'LEFT', 'RIGHT', 'FULL', 'OUTER', 'ON', 'AS', 'AND', 'OR', 'NOT',
+                'GROUP BY', 'ORDER BY', 'HAVING', 'LIMIT', 'OFFSET', 'FETCH', 'DISTINCT',
+                'UNION', 'ALL', 'INTERSECT', 'EXCEPT', 'BETWEEN', 'IN', 'LIKE', 'IS NULL', 'IS NOT NULL',
+                'CASE', 'WHEN', 'THEN', 'ELSE', 'END', 'EXISTS', 'ANY', 'ALL',
+                'BEGIN', 'COMMIT', 'ROLLBACK', 'TRANSACTION', 'PROCEDURE', 'FUNCTION', 'TRIGGER',
+                'WITH', 'RECURSIVE', 'OVER', 'PARTITION BY', 'ROW_NUMBER', 'RANK', 'DENSE_RANK',
+                'COUNT', 'SUM', 'AVG', 'MIN', 'MAX', 'STDDEV', 'VAR', 'CAST', 'CONVERT',
+                'PRIMARY KEY', 'FOREIGN KEY', 'REFERENCES', 'UNIQUE', 'CHECK', 'DEFAULT', 'NOT NULL',
+                'NULL', 'TRUE', 'FALSE', 'ASC', 'DESC'
+            ];
+            
+            let highlighted = code;
+            
+            // Highlight keywords
+            keywords.forEach(keyword => {
+                const regex = new RegExp(`\\b${keyword}\\b`, 'gi');
+                highlighted = highlighted.replace(regex, `<span class="sql-keyword">${keyword}</span>`);
+            });
+            
+            // Highlight strings (single quotes)
+            highlighted = highlighted.replace(/'([^']*)'/g, `<span class="sql-string">'$1'</span>`);
+            
+            // Highlight comments
+            highlighted = highlighted.replace(/--.*$/gm, `<span class="sql-comment">$&</span>`);
+            highlighted = highlighted.replace(/\/\*[\s\S]*?\*\//g, `<span class="sql-comment">$&</span>`);
+            
+            // Highlight functions (words followed by parentheses)
+            highlighted = highlighted.replace(/(\w+)(?=\()/g, `<span class="sql-function">$1</span>`);
+            
+            return highlighted;
+        }
+
+        // Filter glossary based on search, category, and complexity
+        function filterGlossary() {
+            filteredGlossary = sqlGlossary.filter(item => {
+                // Check search term
+                const matchesSearch = searchTerm === '' || 
+                    item.term.toLowerCase().includes(searchTerm) || 
+                    item.description.toLowerCase().includes(searchTerm) ||
+                    (item.syntax && item.syntax.toLowerCase().includes(searchTerm)) ||
+                    (item.example && item.example.toLowerCase().includes(searchTerm));
+                
+                // Check category
+                const matchesCategory = currentCategory === 'all' || item.category === currentCategory;
+                
+                // Check complexity
+                const matchesComplexity = currentComplexity === 'all' || item.complexity === currentComplexity;
+                
+                return matchesSearch && matchesCategory && matchesComplexity;
+            });
+            
+            currentPage = 1;
+            updateTermCount();
+            renderGlossary();
+            setupPagination();
+        }
+
+        // Setup pagination
+        function setupPagination() {
+            const totalPages = Math.ceil(filteredGlossary.length / termsPerPage);
+            const paginationContainer = document.getElementById('pagination');
+            paginationContainer.innerHTML = '';
+            
+            if (totalPages <= 1) return;
+            
+            // Previous button
+            if (currentPage > 1) {
+                const prevButton = document.createElement('button');
+                prevButton.className = 'page-btn';
+                prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
+                prevButton.onclick = () => {
+                    currentPage--;
+                    renderGlossary();
+                    setupPagination();
+                    scrollToTop();
+                };
+                paginationContainer.appendChild(prevButton);
+            }
+            
+            // Page buttons
+            const maxVisiblePages = 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+            
+            if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+            
+            for (let i = startPage; i <= endPage; i++) {
+                const pageButton = document.createElement('button');
+                pageButton.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+                pageButton.textContent = i;
+                pageButton.onclick = () => {
+                    currentPage = i;
+                    renderGlossary();
+                    setupPagination();
+                    scrollToTop();
+                };
+                paginationContainer.appendChild(pageButton);
+            }
+            
+            // Next button
+            if (currentPage < totalPages) {
+                const nextButton = document.createElement('button');
+                nextButton.className = 'page-btn';
+                nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                nextButton.onclick = () => {
+                    currentPage++;
+                    renderGlossary();
+                    setupPagination();
+                    scrollToTop();
+                };
+                paginationContainer.appendChild(nextButton);
+            }
+        }
+
+        // Update page information
+        function updatePageInfo() {
+            const startIndex = (currentPage - 1) * termsPerPage + 1;
+            const endIndex = Math.min(currentPage * termsPerPage, filteredGlossary.length);
+            const totalTerms = filteredGlossary.length;
+            
+            document.getElementById('pageInfo').textContent = 
+                `Showing ${startIndex}-${endIndex} of ${totalTerms} SQL terms`;
+        }
+
+        // Update term count
+        function updateTermCount() {
+            document.getElementById('termCount').textContent = filteredGlossary.length;
+        }
+
+        // Run example and display result
+        function runExample(button) {
+            const glossaryItem = button.closest('.glossary-item');
+            const resultSection = glossaryItem.querySelector('.result-section');
+            const resultContent = glossaryItem.querySelector('.result-content');
+            
+            // Get the term to find the example data
+            const term = glossaryItem.querySelector('h3').textContent.split(' ')[0]; // Get first word
+            const glossaryData = sqlGlossary.find(item => item.term.startsWith(term));
+            
+            if (glossaryData) {
+                // Show result section
+                resultSection.style.display = 'block';
+                
+                // Clear previous content
+                resultContent.innerHTML = '';
+                
+                // Create table for results
+                if (glossaryData.exampleResult && glossaryData.exampleResult.length > 0) {
+                    // Check if it's a message or data
+                    const firstResult = glossaryData.exampleResult[0];
+                    
+                    if (firstResult.message) {
+                        // It's a message result
+                        resultContent.innerHTML = `<p style="padding: 15px; background-color: #e8f5e8; border-radius: 8px;"><strong>${firstResult.message}</strong></p>`;
+                    } else {
+                        // It's a data result - create table
+                        const table = document.createElement('table');
+                        table.className = 'result-table';
+                        
+                        // Create table header
+                        const thead = document.createElement('thead');
+                        const headerRow = document.createElement('tr');
+                        
+                        Object.keys(firstResult).forEach(key => {
+                            const th = document.createElement('th');
+                            th.textContent = key.replace(/_/g, ' ').toUpperCase();
+                            headerRow.appendChild(th);
+                        });
+                        
+                        thead.appendChild(headerRow);
+                        table.appendChild(thead);
+                        
+                        // Create table body
+                        const tbody = document.createElement('tbody');
+                        
+                        glossaryData.exampleResult.forEach(row => {
+                            const tr = document.createElement('tr');
+                            
+                            Object.values(row).forEach(value => {
+                                const td = document.createElement('td');
+                                td.textContent = value;
+                                tr.appendChild(td);
+                            });
+                            
+                            tbody.appendChild(tr);
+                        });
+                        
+                        table.appendChild(tbody);
+                        resultContent.appendChild(table);
+                    }
+                } else {
+                    resultContent.innerHTML = '<p>No example result available for this term.</p>';
+                }
+                
+                // Scroll to results
+                resultSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+
+        // Reset all filters
+        function resetFilters() {
+            document.getElementById('searchInput').value = '';
+            searchTerm = '';
+            currentCategory = 'all';
+            currentComplexity = 'all';
+            currentPage = 1;
+            
+            // Update active buttons
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-category') === 'all') {
+                    btn.classList.add('active');
+                }
+            });
+            
+            filterGlossary();
+        }
+
+        // Scroll to top of glossary
+        function scrollToTop() {
+            document.querySelector('.glossary-container').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        }
+
+        // Show random SQL term
+        function showRandomTerm() {
+            const randomIndex = Math.floor(Math.random() * sqlGlossary.length);
+            const randomTerm = sqlGlossary[randomIndex].term;
+            
+            // Set search to find the term
+            document.getElementById('searchInput').value = randomTerm;
+            searchTerm = randomTerm.toLowerCase();
+            currentCategory = 'all';
+            currentComplexity = 'all';
+            currentPage = 1;
+            
+            // Update active buttons
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-category') === 'all') {
+                    btn.classList.add('active');
+                }
+            });
+            
+            filterGlossary();
+            
+            // Highlight the term
+            setTimeout(() => {
+                const termElements = document.querySelectorAll('.glossary-item h3');
+                termElements.forEach(el => {
+                    if (el.textContent.includes(randomTerm)) {
+                        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        el.style.backgroundColor = '#fffacd';
+                        el.style.padding = '10px';
+                        el.style.borderRadius = '5px';
+                        el.style.transition = 'background-color 2s';
+                        
+                        setTimeout(() => {
+                            el.style.backgroundColor = '';
+                        }, 2000);
+                    }
+                });
+            }, 300);
+        }
+    </script>
+</body>
+</html>

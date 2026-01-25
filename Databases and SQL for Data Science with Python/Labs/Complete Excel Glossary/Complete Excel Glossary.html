@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Excel Glossary - Learn Excel with Interactive Examples</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #217346 0%, #1F6E43 100%);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .tagline {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 15px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .why-excel {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        
+        .why-excel h3 {
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .why-excel ul {
+            text-align: left;
+            display: inline-block;
+            margin: 0 auto;
+            color: white;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .sidebar {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+        }
+        
+        .search-box {
+            margin-bottom: 25px;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: #217346;
+        }
+        
+        .category-filter {
+            margin-bottom: 25px;
+        }
+        
+        .category-filter h3 {
+            margin-bottom: 15px;
+            color: #217346;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 8px;
+        }
+        
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .category-btn {
+            padding: 8px 15px;
+            background-color: #f0f4ff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background-color: #217346;
+            color: white;
+        }
+        
+        .quick-info {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 4px solid #217346;
+        }
+        
+        .glossary-container {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .glossary-item {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .glossary-item:hover {
+            transform: translateY(-3px);
+        }
+        
+        .glossary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .glossary-header h3 {
+            color: #217346;
+            font-size: 1.4rem;
+        }
+        
+        .category-tag {
+            background-color: #e8f4ff;
+            color: #217346;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .description {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+        
+        .example-section {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            border-left: 4px solid #217346;
+        }
+        
+        .example-section h4 {
+            margin-bottom: 10px;
+            color: #217346;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        pre {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        }
+        
+        .try-button {
+            background-color: #217346;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        
+        .try-button:hover {
+            background-color: #1a5c38;
+        }
+        
+        .result-section {
+            margin-top: 20px;
+            background-color: #f1f8e9;
+            border-radius: 8px;
+            padding: 15px;
+            display: none;
+        }
+        
+        .result-section h4 {
+            color: #4caf50;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .result-output {
+            background-color: white;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            white-space: pre-wrap;
+            margin-top: 10px;
+        }
+        
+        .excel-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .excel-table th {
+            background-color: #217346;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+            font-weight: 600;
+        }
+        
+        .excel-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        
+        .excel-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .excel-table tr:hover {
+            background-color: #f0f8f0;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            display: none;
+        }
+        
+        .no-results i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+        
+        .term-count {
+            background-color: #217346;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            margin-left: 10px;
+        }
+        
+        .excel-function {
+            color: #4ec9b0;
+            font-weight: bold;
+        }
+        
+        .excel-formula {
+            color: #dcdcaa;
+        }
+        
+        .excel-reference {
+            color: #9cdcfe;
+        }
+        
+        .excel-operator {
+            color: #d4d4d4;
+        }
+        
+        .excel-string {
+            color: #ce9178;
+        }
+        
+        .excel-number {
+            color: #b5cea8;
+        }
+        
+        .level-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .level-beginner {
+            background-color: #4caf50;
+            color: white;
+        }
+        
+        .level-intermediate {
+            background-color: #ff9800;
+            color: white;
+        }
+        
+        .level-advanced {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .excel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 1px;
+            background-color: #ddd;
+            border: 1px solid #ddd;
+            margin: 15px 0;
+        }
+        
+        .excel-cell {
+            background-color: white;
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+        
+        .excel-cell.header {
+            background-color: #217346;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .excel-cell.formula {
+            background-color: #f0f8f0;
+            font-style: italic;
+            color: #217346;
+        }
+        
+        .excel-cell.result {
+            background-color: #e8f5e9;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-file-excel"></i> Complete Excel Glossary</h1>
+            <p class="tagline">Master Microsoft Excel with comprehensive explanations and interactive examples</p>
+            <div class="why-excel">
+                <h3><i class="fas fa-star"></i> Why Choose Excel?</h3>
+                <ul>
+                    <li>Most popular and secure spreadsheet program</li>
+                    <li>Easy to learn, available on multiple devices</li>
+                    <li>400+ functions: VLOOKUP, SUM, LET, LAMBDA, etc.</li>
+                    <li>Integrates with Power BI, MS Teams, OneDrive</li>
+                    <li>VBA support for scripting and automation</li>
+                </ul>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <aside class="sidebar">
+                <div class="search-box">
+                    <h3>Search Excel Concepts <span class="term-count" id="termCount">150+</span></h3>
+                    <br>
+                    <input type="text" id="searchInput" placeholder="Type to search...">
+                </div>
+                
+                <div class="category-filter">
+                    <h3>Filter by Category</h3>
+                    <div class="category-buttons">
+                        <button class="category-btn active" data-category="all">All Concepts</button>
+                        <button class="category-btn" data-category="basics">Excel Basics</button>
+                        <button class="category-btn" data-category="formulas">Formulas & Functions</button>
+                        <button class="category-btn" data-category="data">Data Analysis</button>
+                        <button class="category-btn" data-category="formatting">Formatting</button>
+                        <button class="category-btn" data-category="charts">Charts & Visualization</button>
+                        <button class="category-btn" data-category="pivot">Pivot Tables</button>
+                        <button class="category-btn" data-category="advanced">Advanced Excel</button>
+                        <button class="category-btn" data-category="vba">VBA & Macros</button>
+                    </div>
+                </div>
+                
+                <div class="quick-info">
+                    <h3><i class="fas fa-info-circle"></i> How to Use This Glossary</h3>
+                    <p>Each Excel concept includes:</p>
+                    <ul style="margin-left: 20px; margin-top: 5px; margin-bottom: 10px;">
+                        <li>Clear explanation with examples</li>
+                        <li>Interactive "Try Example" buttons</li>
+                        <li>Difficulty level indicator</li>
+                        <li>Real-world use cases</li>
+                    </ul>
+                    <p>Click "Try Example" to see Excel formulas in action.</p>
+                </div>
+            </aside>
+            
+            <main class="glossary-container" id="glossaryContainer">
+                <!-- Glossary items will be dynamically added here -->
+            </main>
+        </div>
+        
+        <div class="no-results" id="noResults">
+            <i class="fas fa-search"></i>
+            <h3>No matching concepts found</h3>
+            <p>Try a different search term or category</p>
+        </div>
+        
+        <footer>
+            <p>Complete Excel Glossary &copy; 2023 | Interactive examples using Excel.js and Formula.js</p>
+            <p>Note: This is an educational tool. Complex operations may be limited in browser environment.</p>
+        </footer>
+    </div>
+
+    <!-- Load libraries for Excel calculations -->
+    <script src="https://cdn.jsdelivr.net/npm/formulajs@2.0.0/dist/formula.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css">
+    
+    <script>
+        // COMPLETE EXCEL GLOSSARY DATA
+        const excelGlossary = [
+            // ========== EXCEL BASICS ==========
+            {
+                term: "Introduction to MS Excel",
+                category: "basics",
+                level: "beginner",
+                description: "Microsoft Excel is a spreadsheet program used for data organization, analysis, and visualization. It uses a grid of cells arranged in rows and columns to perform calculations, create charts, and store data.",
+                example: `Excel Basics Example:
+- Excel organizes data in rows (numbered) and columns (lettered)
+- Each intersection is called a "cell" (e.g., A1, B2, C3)
+- Can perform calculations using formulas
+- Supports charts, pivot tables, and data analysis tools
+
+Common Uses:
+1. Budgeting and finance tracking
+2. Data analysis and reporting
+3. Inventory management
+4. Project planning with Gantt charts
+5. Statistical analysis`,
+                exampleResult: "Excel is organized in a grid format where:\n- Columns: A, B, C, ...\n- Rows: 1, 2, 3, ...\n- Cells: A1, B2, C3, etc.\nEach cell can contain text, numbers, or formulas."
+            },
+            {
+                term: "Excel Spreadsheet Structure",
+                category: "basics",
+                level: "beginner",
+                description: "Excel spreadsheets consist of worksheets within workbooks. Each worksheet contains cells organized in rows and columns, with column letters (A-Z, AA-AZ, etc.) and row numbers (1-1,048,576).",
+                example: `Excel Workbook Structure:
+┌─────────────────────────────────┐
+│        EXCEL WORKBOOK           │
+│  ┌─────────────────────────┐    │
+│  │   Worksheet 1 (Sheet1)  │    │
+│  │  ┌─────┬─────┬─────┐    │    │
+│  │  │  A  │  B  │  C  │    │    │
+│  │  ├─────┼─────┼─────┤    │    │
+│  │  │  1  │  2  │  3  │    │    │
+│  │  └─────┴─────┴─────┘    │    │
+│  └─────────────────────────┘    │
+│                                 │
+│  ┌─────────────────────────┐    │
+│  │   Worksheet 2 (Sheet2)  │    │
+│  └─────────────────────────┘    │
+└─────────────────────────────────┘
+
+Key Components:
+• Workbook: The entire Excel file (.xlsx)
+• Worksheet: Individual sheet within workbook
+• Cell: Single data point (e.g., A1, B2)
+• Range: Group of cells (e.g., A1:C10)`,
+                exampleResult: "Excel Structure:\n- 1 Workbook = 1 Excel file\n- 1 Workbook contains 1+ Worksheets\n- Each Worksheet has 16,384 columns (A-XFD) and 1,048,576 rows\n- Total cells per sheet: 17,179,869,184"
+            },
+            {
+                term: "Cell References",
+                category: "basics",
+                level: "beginner",
+                description: "Cell references identify the location of a cell in a worksheet. They can be relative (A1), absolute ($A$1), or mixed (A$1 or $A1). References are used in formulas to work with cell data.",
+                example: `Types of Cell References:
+
+1. Relative Reference (A1)
+   =B2+C2  → When copied down, becomes =B3+C3
+
+2. Absolute Reference ($A$1)
+   =$B$2*C2  → When copied, $B$2 stays fixed
+
+3. Mixed Reference (A$1 or $A1)
+   =B$2*C2  → Row 2 stays fixed when copied down
+   =$B2*C2  → Column B stays fixed when copied across
+
+Example Table:
+┌─────┬──────┬──────┬──────────────────┐
+│     │  A   │  B   │        C         │
+├─────┼──────┼──────┼──────────────────┤
+│  1  │ Price│ Qty  │   Total Value    │
+├─────┼──────┼──────┼──────────────────┤
+│  2  │  10  │  5   │ =A2*B2  → 50     │
+│  3  │  15  │  3   │ =A3*B3  → 45     │
+│  4  │ Tax: │ 0.08 │                  │
+│  5  │      │      │ =A2*B2*(1+$B$4)  │
+└─────┴──────┴──────┴──────────────────┘`,
+                exampleResult: "Cell Reference Examples:\nRelative: A1 (changes when formula is copied)\nAbsolute: $A$1 (stays fixed when copied)\nMixed: A$1 (row fixed) or $A1 (column fixed)\n\nUse F4 key to cycle through reference types while editing a formula."
+            },
+            
+            // ========== FORMULAS & FUNCTIONS ==========
+            {
+                term: "VLOOKUP Function",
+                category: "formulas",
+                level: "intermediate",
+                description: "VLOOKUP searches for a value in the first column of a table and returns a value in the same row from a specified column. Syntax: =VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])",
+                example: `VLOOKUP Example - Employee Database:
+
+Employee Table (Range A2:D6):
+┌───────┬────────────┬────────────┬────────────┐
+│ EmpID │ Name       │ Department │ Salary     │
+├───────┼────────────┼────────────┼────────────┤
+│ 101   │ John Smith │ Sales      │ $65,000    │
+│ 102   │ Jane Doe   │ Marketing  │ $72,000    │
+│ 103   │ Bob Johnson│ IT         │ $85,000    │
+│ 104   │ Alice Brown│ Sales      │ $68,000    │
+└───────┴────────────┴────────────┴────────────┘
+
+VLOOKUP Formulas:
+1. Find department for EmpID 103:
+   =VLOOKUP(103, A2:D6, 3, FALSE) → "IT"
+
+2. Find salary for EmpID 102:
+   =VLOOKUP(102, A2:D6, 4, FALSE) → "$72,000"
+
+3. Using cell reference:
+   =VLOOKUP(G2, A2:D6, 2, FALSE)
+   Where G2 contains the EmpID to lookup
+
+Important Notes:
+• First column must contain lookup values
+• Use FALSE for exact match (recommended)
+• Column index starts at 1 for first column`,
+                exampleResult: "VLOOKUP Parameters:\n1. lookup_value: What to search for\n2. table_array: Where to search (include all columns needed)\n3. col_index_num: Which column to return (starting from 1)\n4. range_lookup: FALSE for exact match, TRUE for approximate"
+            },
+            {
+                term: "XLOOKUP Function",
+                category: "formulas",
+                level: "intermediate",
+                description: "XLOOKUP is a modern replacement for VLOOKUP/HLOOKUP that can search in any direction, return arrays, and has better default behavior. Syntax: =XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found], [match_mode], [search_mode])",
+                example: `XLOOKUP vs VLOOKUP Comparison:
+
+Sample Data (A2:C6):
+┌───────┬────────────┬────────────┐
+│ ID    │ Product    │ Price      │
+├───────┼────────────┼────────────┤
+│ P001  │ Laptop     │ $999       │
+│ P002  │ Mouse      │ $29        │
+│ P003  │ Keyboard   │ $79        │
+│ P004  │ Monitor    │ $299       │
+└───────┴────────────┴────────────┘
+
+Traditional VLOOKUP:
+=VLOOKUP("P003", A2:C6, 3, FALSE) → "$79"
+
+Modern XLOOKUP:
+=XLOOKUP("P003", A2:A6, C2:C6) → "$79"
+
+Advantages of XLOOKUP:
+1. Search left or right:
+   =XLOOKUP("Keyboard", B2:B6, A2:A6) → "P003"
+
+2. Return multiple values:
+   =XLOOKUP("P002", A2:A6, B2:C6) → {"Mouse", "$29"}
+
+3. If not found handling:
+   =XLOOKUP("P999", A2:A6, B2:B6, "Not Found")
+
+4. Search modes:
+   =XLOOKUP("Laptop", B2:B6, C2:C6, , 0, -1)
+   (Searches from bottom to top)`,
+                exampleResult: "XLOOKUP Benefits:\n• Searches in any direction (left, right, up, down)\n• Defaults to exact match (no need for FALSE)\n• Returns arrays natively\n• Built-in error handling\n• Works with spilled arrays in Excel 365"
+            },
+            {
+                term: "SUM, AVERAGE, COUNT Functions",
+                category: "formulas",
+                level: "beginner",
+                description: "Basic statistical functions: SUM adds numbers, AVERAGE calculates mean, COUNT counts numbers, COUNTA counts non-empty cells, COUNTBLANK counts empty cells.",
+                example: `Basic Statistical Functions:
+
+Sample Sales Data (B2:B10):
+┌────────────┬──────────┐
+│ Salesperson│ Sales    │
+├────────────┼──────────┤
+│ John       │ $5,000   │
+│ Jane       │ $7,500   │
+│ Bob        │ $6,200   │
+│ Alice      │ $8,300   │
+│ Mike       │          │
+│ Sarah      │ $9,100   │
+│ Tom        │ $4,800   │
+│ Lisa       │ $7,800   │
+│ David      │ $6,500   │
+└────────────┴──────────┘
+
+Formulas:
+1. Total Sales:
+   =SUM(B2:B10) → $49,200
+
+2. Average Sale (excluding blanks):
+   =AVERAGE(B2:B10) → $6,662.50
+   (Only counts 8 values with numbers)
+
+3. Count of Salespeople with sales:
+   =COUNT(B2:B10) → 8
+   (Counts only numeric cells)
+
+4. Count all salespeople:
+   =COUNTA(A2:A10) → 9
+
+5. Count blank sales cells:
+   =COUNTBLANK(B2:B10) → 1
+
+6. Sum with conditions:
+   =SUMIF(A2:A10, "J*", B2:B10) → $12,500
+   (Sum sales for names starting with J)`,
+                exampleResult: "Basic Function Results:\nSUM(B2:B10) = $49,200\nAVERAGE(B2:B10) = $6,662.50\nCOUNT(B2:B10) = 8\nCOUNTA(A2:A10) = 9\nCOUNTBLANK(B2:B10) = 1"
+            },
+            {
+                term: "IF Function",
+                category: "formulas",
+                level: "beginner",
+                description: "The IF function performs logical tests and returns one value if TRUE, another if FALSE. Syntax: =IF(logical_test, value_if_true, value_if_false)",
+                example: `IF Function Examples:
+
+1. Simple IF:
+   =IF(A2>100, "High", "Low")
+   If A2 > 100, returns "High", else "Low"
+
+2. Grade Calculator:
+   =IF(B2>=90, "A", 
+      IF(B2>=80, "B",
+        IF(B2>=70, "C",
+          IF(B2>=60, "D", "F"))))
+
+3. Sales Commission:
+   Sales: $15,000 in cell B2
+   =IF(B2>10000, B2*0.1, B2*0.05)
+   Result: $1,500 (10% commission)
+
+4. Date Check:
+   =IF(TODAY()>C2, "Overdue", "On Time")
+   Where C2 is due date
+
+5. Combined with AND/OR:
+   =IF(AND(B2>=50, B2<=100), "Within Range", "Out of Range")
+   =IF(OR(B2<0, B2>100), "Invalid", "Valid")
+
+Nested IF Example - Employee Bonus:
+┌────────────┬──────────┬─────────────────────────┐
+│ Employee   │ Sales    │ Bonus Formula           │
+├────────────┼──────────┼─────────────────────────┤
+│ John       │ $120,000 │ =IF(B2>100000, B2*0.15, │
+│            │          │   IF(B2>50000, B2*0.1,  │
+│            │          │     IF(B2>20000, B2*0.05│
+│            │          │       0)))              │
+│            │          │ Result: $18,000         │
+└────────────┴──────────┴─────────────────────────┘`,
+                exampleResult: "IF Function Structure:\n=IF(condition, value_if_true, value_if_false)\n\nExamples:\n=IF(A1>10, \"Yes\", \"No\")\n=IF(AND(B1>0, B1<100), \"Valid\", \"Invalid\")\n=IF(ISNUMBER(C1), C1*2, \"Not a number\")"
+            },
+            {
+                term: "INDEX-MATCH Combination",
+                category: "formulas",
+                level: "advanced",
+                description: "INDEX-MATCH is a powerful alternative to VLOOKUP that provides more flexibility. INDEX returns a value from a specific position, MATCH finds the position of a lookup value.",
+                example: `INDEX-MATCH vs VLOOKUP:
+
+Sample Data (A2:D6):
+┌───────┬────────────┬────────────┬────────────┐
+│ ID    │ Product    │ Category   │ Price      │
+├───────┼────────────┼────────────┼────────────┤
+│ P001  │ Laptop     │ Electronics│ $999       │
+│ P002  │ Mouse      │ Accessories│ $29        │
+│ P003  │ Keyboard   │ Accessories│ $79        │
+│ P004  │ Monitor    │ Electronics│ $299       │
+└───────┴────────────┴────────────┴────────────┘
+
+1. VLOOKUP equivalent:
+   =VLOOKUP("P003", A2:D6, 4, FALSE) → "$79"
+
+2. INDEX-MATCH equivalent:
+   =INDEX(D2:D6, MATCH("P003", A2:A6, 0))
+   • MATCH finds "P003" in A2:A6 → position 3
+   • INDEX returns 3rd item from D2:D6 → "$79"
+
+3. Two-way lookup (row and column):
+   =INDEX(B2:D6, 
+          MATCH("P003", A2:A6, 0),  // Row match
+          MATCH("Price", B1:D1, 0)) // Column match
+   Result: "$79"
+
+4. Left lookup (VLOOKUP can't do this):
+   =INDEX(A2:A6, MATCH("Keyboard", B2:B6, 0))
+   Returns ID for "Keyboard" → "P003"
+
+Advantages:
+• Searches left or right
+• Faster with large datasets
+• More flexible column references
+• Handles insertions/deletions better`,
+                exampleResult: "INDEX-MATCH Syntax:\n=INDEX(return_range, MATCH(lookup_value, lookup_range, 0))\n\nBenefits over VLOOKUP:\n1. Can look left\n2. Column insertions don't break formulas\n3. More efficient with large data\n4. Two-dimensional lookups"
+            },
+            
+            // ========== DATA ANALYSIS ==========
+            {
+                term: "Pivot Tables",
+                category: "pivot",
+                level: "intermediate",
+                description: "Pivot tables are interactive tables that summarize and analyze large datasets. They allow you to rearrange, group, filter, and calculate data dynamically.",
+                example: `Pivot Table Example - Sales Data:
+
+Raw Data (A1:D21):
+┌──────────┬────────────┬────────────┬──────────┐
+│ Date     │ Region     │ Product    │ Sales    │
+├──────────┼────────────┼────────────┼──────────┤
+│ 1/1/2023 │ North      │ Laptop     │ $15,000  │
+│ 1/1/2023 │ South      │ Mouse      │ $2,500   │
+│ 1/2/2023 │ East       │ Keyboard   │ $3,800   │
+│ ...      │ ...        │ ...        │ ...      │
+└──────────┴────────────┴────────────┴──────────┘
+
+Pivot Table Configuration:
+Rows: Region, Product
+Columns: Date (Grouped by Month)
+Values: Sum of Sales
+Filters: (Optional: Product Category)
+
+Resulting Pivot Table:
+┌──────────┬────────────┬────────────┬────────────┬──────────┐
+│ Region   │ Product    │ Jan        │ Feb        │ Total    │
+├──────────┼────────────┼────────────┼────────────┼──────────┤
+│ North    │ Laptop     │ $45,000    │ $52,000    │ $97,000  │
+│          │ Mouse      │ $8,500     │ $9,200     │ $17,700  │
+│          │ Subtotal   │ $53,500    │ $61,200    │ $114,700 │
+├──────────┼────────────┼────────────┼────────────┼──────────┤
+│ South    │ Laptop     │ $38,000    │ $41,000    │ $79,000  │
+│          │ Keyboard   │ $12,000    │ $14,500    │ $26,500  │
+│          │ Subtotal   │ $50,000    │ $55,500    │ $105,500 │
+├──────────┼────────────┼────────────┼────────────┼──────────┤
+│ Grand Total           │ $103,500   │ $116,700   │ $220,200 │
+└──────────┴────────────┴────────────┴────────────┴──────────┘
+
+Key Features:
+• Drag-and-drop field arrangement
+• Automatic subtotals and grand totals
+• Filtering with slicers
+• Grouping dates (by month, quarter, year)
+• Calculated fields and items`,
+                exampleResult: "Pivot Table Benefits:\n1. Quick data summarization\n2. Interactive analysis\n3. No formulas needed\n4. Handle large datasets efficiently\n5. Multiple calculation types (sum, average, count, etc.)\n\nShortcut: Select data → Alt + N + V → Create Pivot Table"
+            },
+            {
+                term: "Data Validation",
+                category: "data",
+                level: "intermediate",
+                description: "Data validation restricts what can be entered into a cell, ensuring data integrity. Options include dropdown lists, date ranges, number limits, and custom formulas.",
+                example: `Data Validation Examples:
+
+1. Dropdown List:
+   • Select cells B2:B10
+   • Data → Data Validation
+   • Allow: List
+   • Source: =$G$2:$G$5 (or type: Sales,Marketing,IT,Finance)
+   • Creates dropdown with these options
+
+2. Date Restriction:
+   • Allow: Date
+   • Data: between
+   • Start date: =TODAY()
+   • End date: =TODAY()+30
+   • Only allows dates within next 30 days
+
+3. Number Range:
+   • Allow: Whole number
+   • Data: between
+   • Minimum: 0
+   • Maximum: 100
+   • Input message: "Enter percentage (0-100)"
+   • Error alert: "Value must be between 0 and 100"
+
+4. Custom Formula:
+   • Allow: Custom
+   • Formula: =AND(LEN(A2)=10, ISNUMBER(VALUE(A2)))
+   • Validates 10-digit numbers
+
+5. Dependent Dropdowns:
+   Main dropdown (B2): =$G$2:$G$3 (Category: Electronics, Clothing)
+   Dependent dropdown (C2): =INDIRECT(SUBSTITUTE(B2," ","_"))
+   • Create named ranges: Electronics, Clothing
+   • Electronics range: Laptop,Phone,Tablet
+   • Clothing range: Shirt,Pants,Shoes`,
+                exampleResult: "Data Validation Settings:\n1. Allow: List, Whole number, Decimal, Date, Time, Text length, Custom\n2. Data: between, not between, equal to, not equal to, greater than, less than\n3. Input Message: Appears when cell is selected\n4. Error Alert: Appears when invalid data is entered"
+            },
+            {
+                term: "Conditional Formatting",
+                category: "formatting",
+                level: "intermediate",
+                description: "Conditional formatting automatically applies formatting to cells based on their values. This includes color scales, data bars, icon sets, and custom rules.",
+                example: `Conditional Formatting Examples:
+
+Sample Data (A1:C10):
+┌──────────┬────────────┬────────────┐
+│ Name     │ Sales      │ Target     │
+├──────────┼────────────┼────────────┤
+│ John     │ $45,000    │ $40,000    │
+│ Jane     │ $38,000    │ $40,000    │
+│ Bob      │ $52,000    │ $40,000    │
+│ Alice    │ $41,000    │ $40,000    │
+└──────────┴────────────┴────────────┘
+
+Formatting Rules:
+
+1. Highlight cells greater than target:
+   • Select B2:B10
+   • Conditional Formatting → Highlight Cells Rules → Greater Than
+   • =C2 (or $40,000)
+   • Format: Green fill with dark green text
+
+2. Data Bars for sales performance:
+   • Select B2:B10
+   • Conditional Formatting → Data Bars → Gradient Fill
+
+3. Color Scale (heat map):
+   • Select B2:B10
+   • Conditional Formatting → Color Scales
+   • Red-Yellow-Green (low to high)
+
+4. Icon Sets:
+   • Select B2:B10
+   • Conditional Formatting → Icon Sets
+   • 3 Arrows (colored)
+
+5. Custom Formula:
+   • Select A2:C10
+   • Conditional Formatting → New Rule → Use formula
+   • Formula: =$B2<$C2  (Sales below target)
+   • Format: Red fill
+   • Applies to: =$A$2:$C$10
+
+6. Highlight entire row:
+   • Select A2:C10
+   • Formula: =$B2>$C2*1.1  (Sales > 110% of target)
+   • Format: Gold fill`,
+                exampleResult: "Conditional Formatting Types:\n1. Highlight Cells: Greater than, Less than, Between, Equal to, Text containing, Dates\n2. Top/Bottom Rules: Top 10 items, Above average\n3. Data Bars: Gradient or solid fill bars\n4. Color Scales: 2-color or 3-color scales\n5. Icon Sets: Directional, shapes, ratings, indicators"
+            },
+            
+            // ========== FORMATTING ==========
+            {
+                term: "Cell Formatting",
+                category: "formatting",
+                level: "beginner",
+                description: "Cell formatting changes the appearance of cells without changing the actual data. Includes number formats, fonts, borders, alignment, and cell styles.",
+                example: `Cell Formatting Examples:
+
+1. Number Formats:
+   • General: 1234.56
+   • Number: 1,234.56
+   • Currency: $1,234.56
+   • Accounting: $ 1,234.56
+   • Percentage: 12.35%
+   • Fraction: 1 1/4
+   • Date: March 14, 2023
+   • Time: 2:30 PM
+   • Custom: ###-###-#### (for phone numbers)
+
+2. Alignment:
+   • Horizontal: Left, Center, Right
+   • Vertical: Top, Middle, Bottom
+   • Orientation: Angle text up/down
+   • Wrap Text: Display long text in cell
+   • Merge & Center: Combine cells
+
+3. Font Formatting:
+   • Font type: Calibri, Arial, Times New Roman
+   • Size: 10, 11, 12, 14, etc.
+   • Style: Bold, Italic, Underline
+   • Color: Font color
+   • Effects: Strikethrough, Superscript, Subscript
+
+4. Borders:
+   • Line style: Solid, dashed, dotted
+   • Line thickness: Thin, medium, thick
+   • Border placement: All, outside, inside, top, bottom, etc.
+
+5. Fill (Background):
+   • Solid color fill
+   • Pattern fill
+   • Gradient fill
+
+Keyboard Shortcuts:
+• Ctrl+1: Format Cells dialog
+• Ctrl+B: Bold
+• Ctrl+I: Italic
+• Ctrl+U: Underline
+• Alt+H+H: Fill color
+• Alt+H+B: Borders menu`,
+                exampleResult: "Common Formatting Codes:\nCurrency: $#,##0.00\nPercentage: 0.00%\nPhone: (###) ###-####\nDate: mm/dd/yyyy or dddd, mmmm dd, yyyy\nCustom: #,##0.00_);(#,##0.00) for parentheses for negatives"
+            },
+            
+            // ========== CHARTS & VISUALIZATION ==========
+            {
+                term: "Excel Charts",
+                category: "charts",
+                level: "beginner",
+                description: "Excel charts visually represent data to make patterns and trends easier to understand. Common chart types include column, line, pie, bar, area, scatter, and combo charts.",
+                example: `Chart Types and Uses:
+
+Sample Data for Charts:
+┌──────────┬──────────┬──────────┐
+│ Month    │ Product A│ Product B│
+├──────────┼──────────┼──────────┤
+│ Jan      │ 150      │ 200      │
+│ Feb      │ 180      │ 190      │
+│ Mar      │ 220      │ 210      │
+│ Apr      │ 210      │ 230      │
+│ May      │ 250      │ 240      │
+│ Jun      │ 280      │ 260      │
+└──────────┴──────────┴──────────┘
+
+1. Column Chart (Best for comparisons):
+   • Shows sales by month for each product
+   • Use when comparing categories
+
+2. Line Chart (Best for trends):
+   • Shows sales trend over time
+   • Use for continuous data over periods
+
+3. Pie Chart (Best for proportions):
+   • Shows market share by product
+   • Use for parts of a whole (percentages)
+
+4. Bar Chart (Horizontal columns):
+   • Same as column but horizontal
+   • Good for long category names
+
+5. Combo Chart (Mix chart types):
+   • Columns for Product A sales
+   • Line for target or growth percentage
+
+Chart Elements:
+• Title: Chart title
+• Axis: X (horizontal) and Y (vertical)
+• Legend: Color/key for data series
+• Data Labels: Values on chart
+• Gridlines: Background lines
+• Trendline: Shows trend/forecast
+
+Creating Charts:
+1. Select data (A1:C7)
+2. Insert → Recommended Charts
+3. Choose chart type
+4. Customize with Chart Tools`,
+                exampleResult: "Chart Selection Guide:\n• Compare values: Column/Bar chart\n• Show trends: Line/Area chart\n• Display proportions: Pie/Doughnut chart\n• Show relationships: Scatter/Bubble chart\n• Compare multiple variables: Radar chart"
+            },
+            
+            // ========== ADVANCED EXCEL ==========
+            {
+                term: "Power Query",
+                category: "advanced",
+                level: "advanced",
+                description: "Power Query is a data transformation and preparation tool in Excel. It allows you to connect to various data sources, clean and transform data, then load it into Excel for analysis.",
+                example: `Power Query Workflow:
+
+1. Get Data:
+   • Data → Get & Transform Data → Get Data
+   • Sources: Excel files, CSV, JSON, Web, Database, SharePoint
+
+2. Transform Data:
+   • Remove duplicates
+   • Change data types
+   • Split columns
+   • Pivot/unpivot data
+   • Filter rows
+   • Add custom columns
+   • Merge/append queries
+
+3. Load Data:
+   • Load to worksheet
+   • Load to Data Model
+   • Create connection only
+
+Example: Clean Sales Data
+Original CSV has:
+• Inconsistent date formats
+• Mixed case product names
+• Blank rows
+• Duplicate entries
+
+Power Query Steps:
+1. Import CSV file
+2. Remove blank rows
+3. Standardize dates (Date column → Date type)
+4. Trim product names (Transform → Format → Trim)
+5. Convert text to proper case
+6. Remove duplicates
+7. Split FullName into FirstName and LastName
+8. Add calculated column: Total = Quantity * Price
+9. Load to Excel
+
+Key Features:
+• Step-by-step transformation history
+• Reusable queries
+• Automatic refresh
+• Combine multiple files from a folder
+• Parameterized queries
+
+M Code Example (Advanced):
+let
+    Source = Csv.Document(File.Contents("C:\\Sales.csv")),
+    PromotedHeaders = Table.PromoteHeaders(Source),
+    ChangedType = Table.TransformColumnTypes(PromotedHeaders,
+        {{"Date", type date}, {"Sales", Int64.Type}})
+in
+    ChangedType`,
+                exampleResult: "Power Query Benefits:\n1. No formulas needed for data cleaning\n2. Handles millions of rows efficiently\n3. Reusable data transformation steps\n4. Combine data from multiple sources\n5. Refresh with one click when source data changes"
+            },
+            {
+                term: "Dynamic Arrays (Excel 365)",
+                category: "advanced",
+                level: "advanced",
+                description: "Dynamic arrays in Excel 365 allow formulas to return multiple values that automatically spill into adjacent cells. Key functions: FILTER, SORT, UNIQUE, SEQUENCE, RANDARRAY, XLOOKUP.",
+                example: `Dynamic Array Functions:
+
+Sample Data (A2:C10):
+┌──────────┬────────────┬──────────┐
+│ Name     │ Department │ Salary   │
+├──────────┼────────────┼──────────┤
+│ John     │ Sales      │ $65,000  │
+│ Jane     │ Marketing  │ $72,000  │
+│ Bob      │ IT         │ $85,000  │
+│ Alice    │ Sales      │ $68,000  │
+│ Mike     │ IT         │ $90,000  │
+│ Sarah    │ Marketing  │ $75,000  │
+│ Tom      │ Sales      │ $62,000  │
+│ Lisa     │ HR         │ $58,000  │
+└──────────┴────────────┴──────────┘
+
+1. FILTER Function:
+   =FILTER(A2:C10, B2:B10="Sales", "No results")
+   Returns all Sales department employees
+
+2. SORT Function:
+   =SORT(FILTER(A2:C10, B2:B10="Sales"), 3, -1)
+   Returns Sales employees sorted by Salary descending
+
+3. UNIQUE Function:
+   =UNIQUE(B2:B10)
+   Returns unique departments: Sales, Marketing, IT, HR
+
+4. SEQUENCE Function:
+   =SEQUENCE(5, 3, 10, 5)
+   Creates 5x3 array starting at 10, incrementing by 5
+
+5. RANDARRAY Function:
+   =RANDARRAY(3, 4, 1, 100, TRUE)
+   Creates 3x4 array of random integers 1-100
+
+6. Combined Example:
+   =SORT(UNIQUE(FILTER(A2:C10, C2:C10>70000)), 3, -1)
+   • Filters employees with salary > $70,000
+   • Removes duplicates
+   • Sorts by salary descending
+
+Spill Range:
+When you enter a dynamic array formula, it creates a "spill range" with blue border
+Use # to reference entire spill range:
+=COUNTA(SORT(...)#)  // Counts all spilled cells
+
+Error Handling:
+=IFERROR(FILTER(...), "No data found")`,
+                exampleResult: "Dynamic Array Advantages:\n1. Single formula returns multiple values\n2. Automatically adjusts size\n3. No need for Ctrl+Shift+Enter\n4. References with # operator\n5. Available in Excel 365/2021\n\nCommon Spill Errors:\n#SPILL! - Something blocking spill range\n#CALC! - Empty array returned"
+            },
+            
+            // ========== VBA & MACROS ==========
+            {
+                term: "Excel Macros",
+                category: "vba",
+                level: "advanced",
+                description: "Macros automate repetitive tasks by recording or writing VBA (Visual Basic for Applications) code. They can format data, perform calculations, create reports, and interact with other applications.",
+                example: `Macro Examples:
+
+1. Recorded Macro - Format Table:
+   • Developer → Record Macro
+   • Name: FormatSalesTable
+   • Perform actions:
+     1. Select range A1:D100
+     2. Apply table style
+     3. AutoFit columns
+     4. Freeze top row
+   • Stop recording
+
+   Generated VBA Code:
+   Sub FormatSalesTable()
+       Range("A1:D100").Select
+       Selection.AutoFormat TableStyleLight9
+       Columns("A:D").AutoFit
+       Rows("2:2").Select
+       ActiveWindow.FreezePanes = True
+   End Sub
+
+2. Simple VBA Macro - Hello World:
+   Sub HelloWorld()
+       MsgBox "Hello from Excel VBA!"
+   End Sub
+
+3. Loop Through Cells:
+   Sub HighlightHighValues()
+       Dim cell As Range
+       For Each cell In Range("B2:B100")
+           If cell.Value > 10000 Then
+               cell.Interior.Color = RGB(255, 200, 200)
+           End If
+       Next cell
+   End Sub
+
+4. Create Report:
+   Sub CreateMonthlyReport()
+       ' Add new worksheet
+       Sheets.Add.Name = "Report_" & Format(Date, "mmm_yy")
+       
+       ' Copy data
+       Sheets("Data").Range("A1:G100").Copy _
+           Destination:=Sheets("Report_" & Format(Date, "mmm_yy")).Range("A1")
+       
+       ' Apply formatting
+       With ActiveSheet
+           .Range("A1:G1").Font.Bold = True
+           .Columns.AutoFit
+       End With
+   End Sub
+
+5. User Form Example:
+   Sub ShowDataEntryForm()
+       UserForm1.Show
+   End Sub
+
+Macro Security:
+• Save as .xlsm (macro-enabled workbook)
+• Enable macros when opening file
+• Digitally sign macros for distribution
+
+Shortcuts:
+• Alt+F8: Macro dialog
+• Alt+F11: VBA Editor
+• F5: Run macro
+• F8: Step through code`,
+                exampleResult: "Macro Uses:\n1. Automate repetitive formatting\n2. Import/export data between files\n3. Generate standardized reports\n4. Create custom functions\n5. Build user interfaces with forms\n6. Interact with other Office applications\n\nSecurity Note: Only enable macros from trusted sources."
+            },
+            {
+                term: "VBA Programming Basics",
+                category: "vba",
+                level: "advanced",
+                description: "VBA (Visual Basic for Applications) is Excel's programming language for creating custom functions, automating tasks, and building user interfaces. It includes variables, loops, conditions, and object model.",
+                example: `VBA Programming Concepts:
+
+1. Variables and Data Types:
+   Dim name As String
+   Dim age As Integer
+   Dim salary As Double
+   Dim isActive As Boolean
+   Dim startDate As Date
+   Dim myRange As Range
+
+2. If-Then-Else Statements:
+   If score >= 90 Then
+       grade = "A"
+   ElseIf score >= 80 Then
+       grade = "B"
+   ElseIf score >= 70 Then
+       grade = "C"
+   Else
+       grade = "F"
+   End If
+
+3. For Loop:
+   For i = 1 To 10
+       Cells(i, 1).Value = i * 2
+   Next i
+
+4. For Each Loop (with ranges):
+   Dim cell As Range
+   For Each cell In Range("A1:A100")
+       If cell.Value > 100 Then
+           cell.Interior.Color = vbYellow
+       End If
+   Next cell
+
+5. Do While Loop:
+   Dim counter As Integer
+   counter = 1
+   Do While counter <= 10
+       Cells(counter, 2).Value = counter * 3
+       counter = counter + 1
+   Loop
+
+6. Custom Function (UDF):
+   Function CalculateBonus(sales As Double) As Double
+       If sales > 100000 Then
+           CalculateBonus = sales * 0.15
+       ElseIf sales > 50000 Then
+           CalculateBonus = sales * 0.1
+       Else
+           CalculateBonus = sales * 0.05
+       End If
+   End Function
+
+7. Working with Worksheets:
+   Dim ws As Worksheet
+   Set ws = ThisWorkbook.Worksheets("Data")
+   ws.Range("A1").Value = "Report Date"
+   ws.Range("B1").Value = Date
+
+8. Error Handling:
+   On Error GoTo ErrorHandler
+   ' Code that might cause error
+   Exit Sub
+   
+   ErrorHandler:
+   MsgBox "Error " & Err.Number & ": " & Err.Description
+   Resume Next
+
+9. Arrays:
+   Dim days(1 To 7) As String
+   days(1) = "Monday"
+   days(2) = "Tuesday"
+   ' ... etc.
+
+10. Collections:
+    Dim dict As Object
+    Set dict = CreateObject("Scripting.Dictionary")
+    dict.Add "Key1", "Value1"
+    dict.Add "Key2", "Value2"`,
+                exampleResult: "VBA Key Concepts:\n• Objects: Workbook, Worksheet, Range, Chart\n• Properties: Value, Formula, Color, Name\n• Methods: Copy, Paste, Delete, Sort\n• Events: Worksheet_Change, Workbook_Open\n• UserForms: Create custom dialog boxes\n• API Calls: Connect to web services, databases"
+            }
+        ];
+
+        // Category mapping for display
+        const categoryMap = {
+            "basics": "Excel Basics",
+            "formulas": "Formulas & Functions",
+            "data": "Data Analysis",
+            "formatting": "Formatting",
+            "charts": "Charts & Visualization",
+            "pivot": "Pivot Tables",
+            "advanced": "Advanced Excel",
+            "vba": "VBA & Macros"
+        };
+
+        // Level mapping for badges
+        const levelMap = {
+            "beginner": "Beginner",
+            "intermediate": "Intermediate",
+            "advanced": "Advanced"
+        };
+
+        // Initialize the glossary
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTermCount();
+            renderGlossary(excelGlossary);
+            
+            // Add event listeners
+            document.getElementById('searchInput').addEventListener('input', filterGlossary);
+            
+            // Add category filter listeners
+            document.querySelectorAll('.category-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active button
+                    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter glossary
+                    filterGlossary();
+                });
+            });
+        });
+
+        // Render glossary items
+        function renderGlossary(items) {
+            const container = document.getElementById('glossaryContainer');
+            container.innerHTML = '';
+            
+            if (items.length === 0) {
+                document.getElementById('noResults').style.display = 'block';
+                return;
+            }
+            
+            document.getElementById('noResults').style.display = 'none';
+            
+            items.forEach(item => {
+                const glossaryItem = document.createElement('div');
+                glossaryItem.className = 'glossary-item';
+                glossaryItem.setAttribute('data-category', item.category);
+                
+                const levelClass = `level-${item.level || 'beginner'}`;
+                const levelText = levelMap[item.level] || 'Beginner';
+                
+                glossaryItem.innerHTML = `
+                    <div class="glossary-header">
+                        <h3>${item.term} <span class="level-badge ${levelClass}">${levelText}</span></h3>
+                        <span class="category-tag">${categoryMap[item.category] || item.category}</span>
+                    </div>
+                    <p class="description">${item.description}</p>
+                    <div class="example-section">
+                        <h4><i class="fas fa-code"></i> Example</h4>
+                        <pre>${highlightExcel(item.example)}</pre>
+                        <button class="try-button" onclick="runExcelExample(this)">
+                            <i class="fas fa-play-circle"></i> Try Example
+                        </button>
+                        <div class="result-section">
+                            <h4><i class="fas fa-poll"></i> Result</h4>
+                            <div class="result-output"></div>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(glossaryItem);
+            });
+        }
+
+        // Excel syntax highlighting
+        function highlightExcel(code) {
+            if (!code) return '';
+            
+            // Excel functions to highlight
+            const functions = [
+                'VLOOKUP', 'XLOOKUP', 'HLOOKUP', 'INDEX', 'MATCH', 'SUM', 'AVERAGE',
+                'COUNT', 'COUNTA', 'COUNTBLANK', 'SUMIF', 'SUMIFS', 'COUNTIF', 'COUNTIFS',
+                'AVERAGEIF', 'AVERAGEIFS', 'IF', 'IFS', 'AND', 'OR', 'NOT', 'IFERROR',
+                'FILTER', 'SORT', 'UNIQUE', 'SEQUENCE', 'RANDARRAY', 'LET', 'LAMBDA',
+                'TEXT', 'CONCATENATE', 'CONCAT', 'TEXTJOIN', 'LEFT', 'RIGHT', 'MID',
+                'FIND', 'SEARCH', 'SUBSTITUTE', 'REPLACE', 'LEN', 'TRIM', 'PROPER',
+                'UPPER', 'LOWER', 'DATE', 'TODAY', 'NOW', 'YEAR', 'MONTH', 'DAY',
+                'EOMONTH', 'EDATE', 'DATEDIF', 'WORKDAY', 'NETWORKDAYS', 'PMT', 'FV',
+                'PV', 'RATE', 'NPV', 'IRR', 'ROUND', 'ROUNDUP', 'ROUNDDOWN', 'CEILING',
+                'FLOOR', 'INT', 'MOD', 'POWER', 'SQRT', 'LOG', 'LN', 'EXP', 'PI',
+                'MAX', 'MIN', 'MEDIAN', 'MODE', 'STDEV', 'VAR', 'CORREL', 'FORECAST',
+                'TREND', 'GROWTH', 'LINEST', 'LOGEST', 'CHOOSE', 'OFFSET', 'INDIRECT',
+                'ADDRESS', 'ROW', 'COLUMN', 'ROWS', 'COLUMNS', 'AREAS', 'FORMULATEXT',
+                'N', 'TYPE', 'ISNUMBER', 'ISTEXT', 'ISBLANK', 'ISERROR', 'ISNA',
+                'NA', 'TRUE', 'FALSE', 'AND', 'OR', 'NOT', 'XOR'
+            ];
+            
+            let highlighted = code;
+            
+            // Highlight functions
+            functions.forEach(func => {
+                const regex = new RegExp(`\\b${func}\\b(?=\\()`, 'gi');
+                highlighted = highlighted.replace(regex, `<span class="excel-function">${func}</span>`);
+            });
+            
+            // Highlight cell references
+            highlighted = highlighted.replace(/\b([A-Z]{1,3}[0-9]{1,7})\b/g, `<span class="excel-reference">$1</span>`);
+            
+            // Highlight formulas starting with =
+            highlighted = highlighted.replace(/=([A-Z].*?)(?=\s|$|,|\))/g, `<span class="excel-formula">=$1</span>`);
+            
+            // Highlight numbers
+            highlighted = highlighted.replace(/\b\d+(\.\d+)?\b/g, `<span class="excel-number">$&</span>`);
+            
+            // Highlight strings in quotes
+            highlighted = highlighted.replace(/"([^"]*)"/g, `<span class="excel-string">"$1"</span>`);
+            
+            // Highlight Excel table borders
+            highlighted = highlighted.replace(/┌[─┬┐┘└│├┼┤┴└]+┘/g, `<span style="font-family: 'Courier New', monospace;">$&</span>`);
+            
+            return highlighted;
+        }
+
+        // Filter glossary based on search and category
+        function filterGlossary() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const activeCategory = document.querySelector('.category-btn.active').getAttribute('data-category');
+            
+            const filteredItems = excelGlossary.filter(item => {
+                // Check search term
+                const matchesSearch = item.term.toLowerCase().includes(searchTerm) || 
+                                     item.description.toLowerCase().includes(searchTerm) ||
+                                     (item.example && item.example.toLowerCase().includes(searchTerm));
+                
+                // Check category
+                const matchesCategory = activeCategory === 'all' || item.category === activeCategory;
+                
+                return matchesSearch && matchesCategory;
+            });
+            
+            updateTermCount(filteredItems.length);
+            renderGlossary(filteredItems);
+        }
+
+        // Update term count
+        function updateTermCount(count = excelGlossary.length) {
+            document.getElementById('termCount').textContent = count;
+        }
+
+        // Run Excel example
+        function runExcelExample(button) {
+            const glossaryItem = button.closest('.glossary-item');
+            const resultSection = glossaryItem.querySelector('.result-section');
+            const resultOutput = glossaryItem.querySelector('.result-output');
+            
+            // Get the term to find the example data
+            const term = glossaryItem.querySelector('h3').textContent.split(' ')[0];
+            const glossaryData = excelGlossary.find(item => item.term.startsWith(term));
+            
+            if (glossaryData) {
+                // Show result section
+                resultSection.style.display = 'block';
+                
+                // Clear previous content
+                resultOutput.innerHTML = '';
+                
+                // Display the result
+                if (glossaryData.exampleResult) {
+                    // Create preformatted text
+                    const pre = document.createElement('pre');
+                    pre.textContent = glossaryData.exampleResult;
+                    resultOutput.appendChild(pre);
+                    
+                    // Add Excel-like table for certain examples
+                    if (term.includes("VLOOKUP") || term.includes("Table")) {
+                        addExcelTable(resultOutput, term);
+                    }
+                } else {
+                    resultOutput.textContent = "Example output would appear here. In a real Excel environment, this would show calculation results.";
+                }
+                
+                // Scroll to results
+                resultSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+
+        // Add interactive Excel table for examples
+        function addExcelTable(container, term) {
+            if (term.includes("VLOOKUP")) {
+                const table = document.createElement('table');
+                table.className = 'excel-table';
+                
+                table.innerHTML = `
+                    <thead>
+                        <tr>
+                            <th>EmpID</th>
+                            <th>Name</th>
+                            <th>Department</th>
+                            <th>Salary</th>
+                            <th>VLOOKUP Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>101</td>
+                            <td>John Smith</td>
+                            <td>Sales</td>
+                            <td>$65,000</td>
+                            <td>=VLOOKUP(101, A2:D5, 3, FALSE) → "Sales"</td>
+                        </tr>
+                        <tr>
+                            <td>102</td>
+                            <td>Jane Doe</td>
+                            <td>Marketing</td>
+                            <td>$72,000</td>
+                            <td>=VLOOKUP(102, A2:D5, 4, FALSE) → "$72,000"</td>
+                        </tr>
+                        <tr>
+                            <td>103</td>
+                            <td>Bob Johnson</td>
+                            <td>IT</td>
+                            <td>$85,000</td>
+                            <td>=VLOOKUP(103, A2:D5, 2, FALSE) → "Bob Johnson"</td>
+                        </tr>
+                        <tr>
+                            <td>104</td>
+                            <td>Alice Brown</td>
+                            <td>Sales</td>
+                            <td>$68,000</td>
+                            <td>=VLOOKUP(104, A2:D5, 3, FALSE) → "Sales"</td>
+                        </tr>
+                    </tbody>
+                `;
+                
+                container.appendChild(table);
+            }
+            else if (term.includes("SUM") || term.includes("AVERAGE")) {
+                const table = document.createElement('table');
+                table.className = 'excel-table';
+                
+                table.innerHTML = `
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Sales</th>
+                            <th>Formula</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>January</td>
+                            <td>$15,000</td>
+                            <td rowspan="3">=SUM(B2:B4)</td>
+                            <td rowspan="3">$39,500</td>
+                        </tr>
+                        <tr>
+                            <td>February</td>
+                            <td>$12,500</td>
+                        </tr>
+                        <tr>
+                            <td>March</td>
+                            <td>$12,000</td>
+                        </tr>
+                        <tr>
+                            <td>April</td>
+                            <td>$14,000</td>
+                            <td>=AVERAGE(B2:B5)</td>
+                            <td>$13,375</td>
+                        </tr>
+                    </tbody>
+                `;
+                
+                container.appendChild(table);
+            }
+        }
+    </script>
+</body>
+</html>

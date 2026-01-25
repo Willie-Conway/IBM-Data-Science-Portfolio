@@ -58,7 +58,7 @@
 - **Business Impact**: Site selection should consider payload mass for optimal success probability
 
 ### 4. Orbit Type Success Rate Analysis
-![Orbit Success](https://img.shields.io/badge/ES-L1_100%25-Success-27AE60?style=flat-square)
+![Orbit Success](https://img.shields.io/badge/ES--L1_100%25-Success-27AE60?style=flat-square)
 ![GTO Challenge](https://img.shields.io/badge/GTO_48.1%25-Most_Challenging-FF6B6B?style=flat-square)
 ![ISS Reliability](https://img.shields.io/badge/ISS_85.7%25-High_Success-3498DB?style=flat-square)
 

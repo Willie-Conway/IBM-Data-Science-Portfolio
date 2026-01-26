@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpaceX Falcon 9 Launch Analytics Capstone</title>
+    <title>SpaceX Falcon 9 Launch Analytics Capstone - Enhanced</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
     <style>
         :root {
             --module1-color: #3498db;  /* Data Collection */
@@ -299,6 +304,31 @@
             padding: 20px; 
             box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
             position: relative;
+        }
+        
+        .chart-container-large { 
+            height: 400px; 
+            background: white; 
+            border-radius: 12px; 
+            margin: 25px 0; 
+            padding: 20px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+        }
+        
+        .chart-container-map { 
+            height: 500px; 
+            background: white; 
+            border-radius: 12px; 
+            margin: 25px 0; 
+            padding: 20px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+        }
+        
+        .map-container { 
+            height: 100%; 
+            width: 100%; 
+            border-radius: 8px; 
+            overflow: hidden; 
         }
         
         .results-grid { 
@@ -595,8 +625,14 @@ launch_dict = {
                             </div>
                         </div>
                         
+                        <!-- Original Chart -->
                         <div class="chart-container">
                             <canvas id="apiDataChart"></canvas>
+                        </div>
+                        
+                        <!-- New Bubble Chart from App 2 -->
+                        <div class="chart-container-large">
+                            <canvas id="apiDataBubbleChart"></canvas>
                         </div>
                     </div>
                     
@@ -655,8 +691,14 @@ def extract_wikipedia_data(url):
                             </div>
                         </div>
                         
+                        <!-- Original Chart -->
                         <div class="chart-container">
                             <canvas id="wikiDataChart"></canvas>
+                        </div>
+                        
+                        <!-- New Scatter Chart from App 2 -->
+                        <div class="chart-container-large">
+                            <canvas id="wikiScatterChart"></canvas>
                         </div>
                         
                         <div class="insights-box">
@@ -712,6 +754,11 @@ def collect_spacex_data():
     return pd.DataFrame(validated_data)
                         </div>
                         
+                        <!-- New Chart for Data Collection Pipeline -->
+                        <div class="chart-container-large">
+                            <canvas id="dataPipelineChart"></canvas>
+                        </div>
+                        
                         <table class="data-table">
                             <thead>
                                 <tr>
@@ -753,6 +800,7 @@ def collect_spacex_data():
                         <h3 class="section-title-main"><span>📊</span> Data Quality Assessment</h3>
                         <p>Comprehensive assessment of collected data quality, completeness, and readiness for analysis.</p>
                         
+                        <!-- Original Chart -->
                         <div class="chart-container">
                             <canvas id="dataQualityChart"></canvas>
                         </div>
@@ -780,6 +828,7 @@ def collect_spacex_data():
                             </div>
                         </div>
                         
+                        <!-- Insights Box -->
                         <div class="insights-box">
                             <div style="font-weight: bold; color: #155724; margin-bottom: 10px;">✅ Data Collection Success Metrics</div>
                             <p><strong>Multi-source Integration:</strong> Successfully combined API and web scraping data for comprehensive coverage</p>
@@ -841,8 +890,14 @@ print(f"Success Rate: {df['Class'].mean():.2%}")
                             </div>
                         </div>
                         
+                        <!-- Original Chart -->
                         <div class="chart-container">
                             <canvas id="successFailureChart"></canvas>
+                        </div>
+                        
+                        <!-- New Bubble Chart from App 2 -->
+                        <div class="chart-container-large">
+                            <canvas id="successFailureBubbleChart"></canvas>
                         </div>
                         
                         <p style="margin-top: 15px;"><strong>Business Impact:</strong> This binary `Class` variable directly models the <strong>$103M decision</strong>: a successful landing (Class 1) enables rocket reuse for a ~$62M launch, while a failure (Class 0) requires a new ~$165M rocket.</p>
@@ -853,8 +908,14 @@ print(f"Success Rate: {df['Class'].mean():.2%}")
                         <h3 class="section-title-main"><span>🗺️</span> Launch Site & Orbit Analysis</h3>
                         <p>Comprehensive analysis of launch site distribution and orbit type patterns across Falcon 9 missions.</p>
                         
+                        <!-- Original Chart -->
                         <div class="chart-container">
                             <canvas id="launchSiteChart"></canvas>
+                        </div>
+                        
+                        <!-- New Scatter Chart from App 2 -->
+                        <div class="chart-container-large">
+                            <canvas id="launchSiteScatterChart"></canvas>
                         </div>
                         
                         <table class="data-table">
@@ -906,8 +967,14 @@ print(f"Success Rate: {df['Class'].mean():.2%}")
                         <h3 class="section-title-main"><span>📊</span> Success Metrics Analysis</h3>
                         <p>Detailed analysis of landing success patterns by method, orbit type, and site characteristics.</p>
                         
+                        <!-- Original Chart -->
                         <div class="chart-container">
                             <canvas id="successMetricsChart"></canvas>
+                        </div>
+                        
+                        <!-- New Line Chart from App 2 -->
+                        <div class="chart-container-large">
+                            <canvas id="successTrendsLineChart"></canvas>
                         </div>
                         
                         <div class="results-grid">
@@ -932,48 +999,6 @@ print(f"Success Rate: {df['Class'].mean():.2%}")
                                 <div class="result-label">Early Missions</div>
                             </div>
                         </div>
-                        
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Orbit Type</th>
-                                    <th>Launches</th>
-                                    <th>Success Rate</th>
-                                    <th>Mission Type</th>
-                                    <th>Complexity</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>GTO</td>
-                                    <td>27</td>
-                                    <td>48.1%</td>
-                                    <td>Commercial Satellites</td>
-                                    <td>High</td>
-                                </tr>
-                                <tr>
-                                    <td>ISS</td>
-                                    <td>21</td>
-                                    <td>85.7%</td>
-                                    <td>Space Station Resupply</td>
-                                    <td>Medium</td>
-                                </tr>
-                                <tr>
-                                    <td>VLEO</td>
-                                    <td>14</td>
-                                    <td>78.6%</td>
-                                    <td>Earth Observation</td>
-                                    <td>Low</td>
-                                </tr>
-                                <tr>
-                                    <td>PO</td>
-                                    <td>9</td>
-                                    <td>66.7%</td>
-                                    <td>Polar Imaging</td>
-                                    <td>Medium</td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                     
                     <!-- Lesson 2-4 -->
@@ -1015,6 +1040,11 @@ def clean_spacex_data(df):
     return df
                         </div>
                         
+                        <!-- New Chart for Data Cleaning -->
+                        <div class="chart-container-large">
+                            <canvas id="dataCleaningProgressChart"></canvas>
+                        </div>
+                        
                         <div class="insights-box">
                             <div style="font-weight: bold; color: #155724; margin-bottom: 10px;">✅ Data Wrangling Complete</div>
                             <p><strong>Target Variable Created:</strong> Binary `Class` variable for landing success prediction</p>
@@ -1037,8 +1067,14 @@ def clean_spacex_data(df):
                         <h3 class="section-title-main"><span>📈</span> Key Pattern: Flight Number vs. Success</h3>
                         <p>One of the strongest predictors emerged: <strong>launch experience</strong>. Success rates improved dramatically with higher flight numbers.</p>
                         
+                        <!-- Original Chart -->
                         <div class="chart-container">
                             <canvas id="flightNumberChart"></canvas>
+                        </div>
+                        
+                        <!-- New Scatter Chart from App 2 -->
+                        <div class="chart-container-large">
+                            <canvas id="flightNumberScatterChart"></canvas>
                         </div>
                         
                         <div class="results-grid">
@@ -1106,6 +1142,16 @@ GROUP BY
     LaunchSite;
                         </div>
                         
+                        <!-- Original Chart -->
+                        <div class="chart-container">
+                            <canvas id="sqlAnalyticsChart"></canvas>
+                        </div>
+                        
+                        <!-- New Bubble Chart from App 2 -->
+                        <div class="chart-container-large">
+                            <canvas id="sqlAnalyticsBubbleChart"></canvas>
+                        </div>
+                        
                         <table class="data-table">
                             <thead>
                                 <tr>
@@ -1140,10 +1186,6 @@ GROUP BY
                                 </tr>
                             </tbody>
                         </table>
-                        
-                        <div class="chart-container">
-                            <canvas id="sqlAnalyticsChart"></canvas>
-                        </div>
                     </div>
                     
                     <!-- Lesson 3-3 -->
@@ -1211,6 +1253,11 @@ def engineer_features(df):
                                 <div class="result-label">Engineered</div>
                             </div>
                         </div>
+                        
+                        <!-- New Scatter Chart from App 2 -->
+                        <div class="chart-container-large">
+                            <canvas id="featureEngineeringScatterChart"></canvas>
+                        </div>
                     </div>
                     
                     <!-- Lesson 3-4 -->
@@ -1218,6 +1265,7 @@ def engineer_features(df):
                         <h3 class="section-title-main"><span>🔍</span> Pattern Discovery & Insights</h3>
                         <p>Key patterns and relationships discovered through comprehensive exploratory analysis.</p>
                         
+                        <!-- Original Chart -->
                         <div class="chart-container">
                             <canvas id="patternDiscoveryChart"></canvas>
                         </div>
@@ -1282,38 +1330,43 @@ def engineer_features(df):
                         <h3 class="section-title-main"><span>🗺️</span> Geospatial Analysis of Launch Sites</h3>
                         <p>Interactive mapping and proximity analysis of SpaceX launch sites using Folium.</p>
                         
+                        <!-- Folium Map Container -->
+                        <div class="chart-container-map">
+                            <div id="foliumMap" class="map-container"></div>
+                        </div>
+                        
                         <div class="code-block">
-# Geospatial analysis with Folium
-import folium
-from folium.plugins import MarkerCluster
-
-# Create base map
-nasa_coordinate = [28.573, -80.648]
-site_map = folium.Map(location=nasa_coordinate, zoom_start=5)
-
-# Add marker cluster
-marker_cluster = MarkerCluster().add_to(site_map)
-
-# Add launch site markers
-for index, record in spacex_df.iterrows():
-    marker_color = 'green' if record['Class'] == 1 else 'red'
-    
-    marker = folium.Marker(
-        [record['Lat'], record['Long']],
-        icon=folium.Icon(color='white', icon_color=marker_color),
-        popup=f"Flight {record['FlightNumber']}: {record['Outcome']}"
-    )
-    marker_cluster.add_child(marker)
-
-# Add coastline proximity lines
-for site in launch_sites:
-    distance_to_coast = calculate_distance(site['coordinates'], nearest_coastpoint)
-    folium.PolyLine(
-        [site['coordinates'], nearest_coastpoint],
-        color='blue',
-        weight=2,
-        popup=f"Distance to coast: {distance_to_coast:.2f} km"
-    ).add_to(site_map)
+// JavaScript Implementation of Folium Map
+const spacexLaunchSites = [
+    {
+        name: "CCAFS LC-40",
+        coordinates: [28.562302, -80.577356],
+        successRate: 44,
+        launches: 55,
+        color: 'green'
+    },
+    {
+        name: "CCAFS SLC-40", 
+        coordinates: [28.563197, -80.576820],
+        successRate: 50,
+        launches: 8,
+        color: 'orange'
+    },
+    {
+        name: "KSC LC-39A",
+        coordinates: [28.573255, -80.646895],
+        successRate: 71.4,
+        launches: 14,
+        color: 'blue'
+    },
+    {
+        name: "VAFB SLC-4E",
+        coordinates: [34.632834, -120.610745],
+        successRate: 45.5,
+        launches: 11,
+        color: 'red'
+    }
+];
                         </div>
                         
                         <div class="results-grid">
@@ -1339,10 +1392,6 @@ for site in launch_sites:
                             </div>
                         </div>
                         
-                        <div class="chart-container">
-                            <canvas id="geospatialChart"></canvas>
-                        </div>
-                        
                         <div class="insights-box">
                             <div style="font-weight: bold; color: #155724; margin-bottom: 10px;">📍 Geographic Insights</div>
                             <p><strong>Coastal Locations:</strong> All launch sites within 0.86km of coastline for safety and trajectory</p>
@@ -1357,6 +1406,7 @@ for site in launch_sites:
                         <h3 class="section-title-main"><span>🤖</span> Machine Learning Model Performance</h3>
                         <p>After feature engineering (creating 83 predictive features), four classification models were trained and evaluated.</p>
                         
+                        <!-- Original Chart -->
                         <div class="chart-container">
                             <canvas id="modelComparisonChart"></canvas>
                         </div>
@@ -1382,6 +1432,11 @@ for site in launch_sites:
                                 <div class="result-value">$103M</div>
                                 <div class="result-label">Cost Decision Supported</div>
                             </div>
+                        </div>
+                        
+                        <!-- New Bubble Chart from App 2 -->
+                        <div class="chart-container-large">
+                            <canvas id="modelBubbleChart"></canvas>
                         </div>
                         
                         <table class="data-table">
@@ -1432,10 +1487,12 @@ for site in launch_sites:
                         <h3 class="section-title-main"><span>📊</span> Success Rate Visualization</h3>
                         <p>Comprehensive visualization of success rates by site, orbit type, and payload ranges.</p>
                         
+                        <!-- Original Chart -->
                         <div class="chart-container">
                             <canvas id="successVisualizationChart"></canvas>
                         </div>
                         
+                        <!-- Insights Box -->
                         <div class="insights-box">
                             <div style="font-weight: bold; color: #155724; margin-bottom: 10px;">🎯 Visualization Insights</div>
                             <p><strong>Site Performance:</strong> KSC LC-39A consistently outperforms other sites across all metrics</p>
@@ -1504,6 +1561,11 @@ def landing_success_pipeline(df):
         }
     
     return results
+                        </div>
+                        
+                        <!-- New Line Chart from App 2 -->
+                        <div class="chart-container-large">
+                            <canvas id="mlPipelineLineChart"></canvas>
                         </div>
                         
                         <div class="insights-box">
@@ -1594,6 +1656,11 @@ app.layout = html.Div(children=[
                                 <div class="result-label">Pie + Scatter</div>
                             </div>
                         </div>
+                        
+                        <!-- New Chart for Dashboard Architecture -->
+                        <div class="chart-container-large">
+                            <canvas id="dashboardArchitectureChart"></canvas>
+                        </div>
                     </div>
                     
                     <!-- Lesson 5-2 -->
@@ -1658,6 +1725,9 @@ def update_scatter_chart(selected_site, payload_range):
     return fig
                         </div>
                         
+                        <!-- Interactive Plotly Dashboard -->
+                        <div id="plotly-dashboard" class="chart-container-large"></div>
+                        
                         <div class="insights-box">
                             <div style="font-weight: bold; color: #155724; margin-bottom: 10px;">🔄 Real-time Interactivity</div>
                             <p><strong>Dynamic Filtering:</strong> Users can select specific launch sites and payload ranges</p>
@@ -1672,7 +1742,7 @@ def update_scatter_chart(selected_site, payload_range):
                         <h3 class="section-title-main"><span>📈</span> Launch Analysis Dashboard</h3>
                         <p>Comprehensive launch success analysis through interactive dashboard visualizations.</p>
                         
-                        <div id="plotly-dashboard" class="chart-container"></div>
+                        <div id="plotly-dashboard-2" class="chart-container"></div>
                         
                         <table class="data-table">
                             <thead>
@@ -1740,6 +1810,11 @@ def update_scatter_chart(selected_site, payload_range):
                             </div>
                         </div>
                         
+                        <!-- New Chart for Dashboard Value -->
+                        <div class="chart-container-large">
+                            <canvas id="dashboardValueChart"></canvas>
+                        </div>
+                        
                         <div class="insights-box">
                             <div style="font-weight: bold; color: #155724; margin-bottom: 10px;">🎯 Dashboard Business Value</div>
                             <p><strong>Decision Support:</strong> Real-time data for $103M launch cost decisions</p>
@@ -1786,6 +1861,11 @@ def update_scatter_chart(selected_site, payload_range):
                             </div>
                         </div>
                         
+                        <!-- Changed ID to avoid duplicate -->
+                        <div class="chart-container-large">
+                            <canvas id="executiveSummaryChart"></canvas>
+                        </div>
+                        
                         <div class="insights-box">
                             <div style="font-weight: bold; color: #155724; margin-bottom: 10px;">🏆 Project Achievements</div>
                             <p><strong>Comprehensive Analysis:</strong> 90+ Falcon 9 launches analyzed across 6 modules</p>
@@ -1801,8 +1881,14 @@ def update_scatter_chart(selected_site, payload_range):
                         <h3 class="section-title-main"><span>💰</span> Financial Impact Analysis</h3>
                         <p>Detailed analysis of the $103M cost implications and optimization opportunities.</p>
                         
+                        <!-- Added unique ID -->
                         <div class="chart-container">
-                            <canvas id="financialImpactChart"></canvas>
+                            <canvas id="financialImpactChart2"></canvas>
+                        </div>
+                        
+                        <!-- Added unique ID -->
+                        <div class="chart-container-large">
+                            <canvas id="financialOptimizationChart"></canvas>
                         </div>
                         
                         <table class="data-table">
@@ -1884,6 +1970,11 @@ def update_scatter_chart(selected_site, payload_range):
                             </div>
                         </div>
                         
+                        <!-- Added unique ID -->
+                        <div class="chart-container-large">
+                            <canvas id="strategicInsightsChart2"></canvas>
+                        </div>
+                        
                         <table class="data-table">
                             <thead>
                                 <tr>
@@ -1932,27 +2023,59 @@ def update_scatter_chart(selected_site, payload_range):
                         <h3 class="section-title-main"><span>🚀</span> Implementation Roadmap</h3>
                         <p>Phased implementation plan for deploying insights and tools across the organization.</p>
                         
+                        <!-- Original Chart with unique ID -->
                         <div class="chart-container">
-                            <canvas id="roadmapChart"></canvas>
+                            <canvas id="roadmapChart2"></canvas>
                         </div>
                         
-                        <div class="insights-box">
-                            <div style="font-weight: bold; color: #155724; margin-bottom: 10px;">📅 90-Day Implementation Plan</div>
+                        <!-- Enhanced Launch Analysis Dashboard with Interactive Components -->
+                        <div class="insights-box" style="margin-top: 30px;">
+                            <div style="font-weight: bold; color: #155724; margin-bottom: 15px; font-size: 18px;">📊 Launch Analysis Dashboard - Interactive Features</div>
                             
-                            <p><strong>Phase 1: Immediate Actions (Days 1-30)</strong></p>
-                            <p>• Deploy Decision Tree classifier into launch planning system</p>
-                            <p>• Train operations team on model interpretation</p>
-                            <p>• Establish success probability thresholds</p>
+                            <!-- Site Selection Dropdown -->
+                            <div style="margin: 20px 0;">
+                                <label style="font-weight: bold; display: block; margin-bottom: 10px;">Site Selection Dropdown:</label>
+                                <select id="dashboard-site-dropdown" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ddd;">
+                                    <option value="ALL">All Sites</option>
+                                    <option value="CCAFS LC-40">CCAFS LC-40</option>
+                                    <option value="CCAFS SLC-40">CCAFS SLC-40</option>
+                                    <option value="KSC LC-39A">KSC LC-39A</option>
+                                    <option value="VAFB SLC-4E">VAFB SLC-4E</option>
+                                </select>
+                                <p style="font-size: 14px; color: #666; margin-top: 5px;">Filter launches by location - Click selection for site-specific performance analysis</p>
+                            </div>
                             
-                            <p><strong>Phase 2: Operational Integration (Days 31-60)</strong></p>
-                            <p>• Route high-value missions to KSC LC-39A</p>
-                            <p>• Implement site-specific success metrics</p>
-                            <p>• Update orbit selection criteria</p>
+                            <!-- Payload Range Slider -->
+                            <div style="margin: 20px 0;">
+                                <label style="font-weight: bold; display: block; margin-bottom: 10px;">Payload Range Slider:</label>
+                                <div style="padding: 10px; background: #f8f9fa; border-radius: 5px;">
+                                    <input type="range" id="dashboard-payload-slider" min="0" max="10000" value="5000" style="width: 100%;" />
+                                    <div style="display: flex; justify-content: space-between; margin-top: 5px;">
+                                        <span>0 kg</span>
+                                        <span id="slider-value">5000 kg</span>
+                                        <span>10000 kg</span>
+                                    </div>
+                                </div>
+                                <p style="font-size: 14px; color: #666; margin-top: 5px;">Filter by payload mass - Drag handles for payload optimization analysis</p>
+                            </div>
                             
-                            <p><strong>Phase 3: Enterprise Deployment (Days 61-90)</strong></p>
-                            <p>• Full dashboard integration with operational systems</p>
-                            <p>• Real-time data feeds from launch operations</p>
-                            <p>• Multi-team training and adoption</p>
+                            <!-- Success Pie Chart -->
+                            <div style="margin: 20px 0;">
+                                <label style="font-weight: bold; display: block; margin-bottom: 10px;">Success Pie Chart:</label>
+                                <div class="chart-container" style="height: 250px;">
+                                    <canvas id="dashboard-pie-chart"></canvas>
+                                </div>
+                                <p style="font-size: 14px; color: #666; margin-top: 5px;">Visualize success rates - Hover for details for quick success/failure assessment</p>
+                            </div>
+                            
+                            <!-- Scatter Plot -->
+                            <div style="margin: 20px 0;">
+                                <label style="font-weight: bold; display: block; margin-bottom: 10px;">Payload vs Success Scatter Plot:</label>
+                                <div class="chart-container" style="height: 300px;">
+                                    <canvas id="dashboard-scatter-chart"></canvas>
+                                </div>
+                                <p style="font-size: 14px; color: #666; margin-top: 5px;">Payload vs success correlation - Hover, zoom, pan to identify optimal payload ranges</p>
+                            </div>
                         </div>
                         
                         <div class="results-grid">
@@ -1988,10 +2111,12 @@ def update_scatter_chart(selected_site, payload_range):
         let currentModule = 1;
         let currentLesson = '1-1';
         let charts = {};
-        let plotlyChart = null;
+        let foliumMap = null;
+        let markerCluster = null;
 
-        // Sample data for all charts
+        // Sample data for all charts (combined from both apps)
         const sampleData = {
+            // Module 1 Data
             launchSites: {
                 labels: ['CCAFS SLC 40', 'KSC LC 39A', 'VAFB SLC 4E'],
                 data: [55, 22, 13],
@@ -2001,12 +2126,16 @@ def update_scatter_chart(selected_site, payload_range):
                 labels: ['ASDS (Drone Ship)', 'RTLS (Return to Site)', 'Ocean Platform', 'None Attempted'],
                 data: [45.6, 15.6, 5.6, 21.1]
             },
+            
+            // Module 3 Data
             orbitSuccess: {
                 labels: ['GTO', 'ISS', 'VLEO', 'PO', 'ES-L1', 'GEO'],
                 successRates: [48.1, 85.7, 78.6, 66.7, 100, 100],
                 launches: [27, 21, 14, 9, 2, 2]
             },
             flightNumbers: Array.from({length: 90}, (_, i) => i + 1),
+            
+            // Module 4 Data
             modelPerformance: {
                 labels: ['Decision Tree', 'SVM', 'Logistic Regression', 'K-Nearest Neighbors'],
                 validation: [87.68, 84.82, 84.64, 84.82],
@@ -2016,9 +2145,26 @@ def update_scatter_chart(selected_site, payload_range):
                 years: ['2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'],
                 successRates: [20, 25, 40, 64, 67, 67, 69, 71]
             },
+            
+            // Module 6 Data
             financialImpact: {
                 labels: ['New Rocket (Failure)', 'Reused Rocket (Success)', 'Current Performance', 'Optimized Target'],
                 costs: [165, 62, 103, 87]
+            },
+            
+            // Enhanced data for App 2 charts
+            apiRecords: {
+                years: [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021],
+                records: [2, 1, 2, 3, 6, 7, 8, 18, 21, 13, 7, 2],
+                successRates: [0, 0, 0, 20, 25, 40, 64, 67, 67, 69, 71, 70],
+                payloadMass: [3315, 4800, 2625, 2100, 3200, 2850, 4200, 5800, 6400, 7200, 8500, 9200]
+            },
+            
+            orbitAnalysis: {
+                labels: ['GTO', 'ISS', 'VLEO', 'PO', 'ES-L1', 'GEO', 'LEO', 'SSO', 'MEO', 'HEO', 'SO'],
+                successRates: [48.1, 85.7, 78.6, 66.7, 100, 100, 71.4, 50, 100, 100, 100],
+                launches: [27, 21, 14, 9, 2, 2, 7, 4, 1, 1, 1],
+                avgPayload: [4500, 3200, 2800, 1900, 6500, 4800, 4200, 3100, 5500, 6000, 5000]
             }
         };
 
@@ -2124,63 +2270,106 @@ def update_scatter_chart(selected_site, payload_range):
             });
             charts = {};
             
-            // Clear Plotly chart
-            if (plotlyChart) {
-                Plotly.purge('plotly-dashboard');
-                plotlyChart = null;
+            // Clear Folium map
+            if (foliumMap) {
+                foliumMap.remove();
+                foliumMap = null;
+                markerCluster = null;
             }
+            
+            // Clear Plotly charts
+            Plotly.purge('plotly-dashboard');
+            Plotly.purge('plotly-dashboard-2');
             
             // Initialize specific charts for each lesson
             switch(lesson) {
                 case '1-1':
                     createApiDataChart();
+                    createApiDataBubbleChart();
                     break;
                 case '1-2':
                     createWikiDataChart();
+                    createWikiScatterChart();
+                    break;
+                case '1-3':
+                    createDataPipelineChart();
                     break;
                 case '1-4':
                     createDataQualityChart();
                     break;
                 case '2-1':
                     createSuccessFailureChart();
+                    createSuccessFailureBubbleChart();
                     break;
                 case '2-2':
                     createLaunchSiteChart();
+                    createLaunchSiteScatterChart();
                     break;
                 case '2-3':
                     createSuccessMetricsChart();
+                    createSuccessTrendsLineChart();
+                    break;
+                case '2-4':
+                    createDataCleaningProgressChart();
                     break;
                 case '3-1':
                     createFlightNumberChart();
+                    createFlightNumberScatterChart();
                     break;
                 case '3-2':
                     createSqlAnalyticsChart();
+                    createSqlAnalyticsBubbleChart();
+                    break;
+                case '3-3':
+                    createFeatureEngineeringScatterChart();
                     break;
                 case '3-4':
                     createPatternDiscoveryChart();
                     break;
                 case '4-1':
-                    createGeospatialChart();
+                    createFoliumMap();
                     break;
                 case '4-2':
                     createModelComparisonChart();
+                    createModelBubbleChart();
                     break;
                 case '4-3':
                     createSuccessVisualizationChart();
                     break;
-                case '5-3':
+                case '4-4':
+                    createMlPipelineLineChart();
+                    break;
+                case '5-1':
+                    createDashboardArchitectureChart();
+                    break;
+                case '5-2':
                     createPlotlyDashboard();
                     break;
+                case '5-3':
+                    createLaunchAnalysisDashboard();
+                    break;
+                case '5-4':
+                    createDashboardValueChart();
+                    break;
+                case '6-1':
+                    createExecutiveSummaryChart();
+                    break;
                 case '6-2':
-                    createFinancialImpactChart();
+                    createFinancialImpactChart2();
+                    createFinancialOptimizationChart();
+                    break;
+                case '6-3':
+                    createStrategicInsightsChart2();
                     break;
                 case '6-4':
-                    createRoadmapChart();
+                    createRoadmapChart2();
+                    initializeDashboardComponents();
                     break;
             }
         }
 
-        // === CHART CREATION FUNCTIONS ===
+        // === ORIGINAL APP 1 CHART FUNCTIONS ===
+
         function createApiDataChart() {
             const ctx = document.getElementById('apiDataChart')?.getContext('2d');
             if (!ctx) return;
@@ -2592,63 +2781,6 @@ def update_scatter_chart(selected_site, payload_range):
             });
         }
 
-        function createGeospatialChart() {
-            const ctx = document.getElementById('geospatialChart')?.getContext('2d');
-            if (!ctx) return;
-            
-            charts.geospatialChart = new Chart(ctx, {
-                type: 'scatter',
-                data: {
-                    datasets: [{
-                        label: 'Launch Sites',
-                        data: [
-                            {x: 28.562, y: -80.577, r: 20}, // CCAFS SLC 40
-                            {x: 28.573, y: -80.648, r: 15}, // KSC LC 39A
-                            {x: 34.632, y: -120.610, r: 12}, // VAFB SLC 4E
-                            {x: 28.561, y: -80.577, r: 18}  // CCAFS LC 40
-                        ],
-                        backgroundColor: '#3498db',
-                        borderColor: '#2980b9',
-                        borderWidth: 2
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            title: {
-                                display: true,
-                                text: 'Longitude'
-                            }
-                        },
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Latitude'
-                            }
-                        }
-                    },
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Geospatial Analysis: Launch Site Locations',
-                            font: { size: 16, weight: 'bold' },
-                            padding: 20
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    const sites = ['CCAFS SLC 40', 'KSC LC 39A', 'VAFB SLC 4E', 'CCAFS LC 40'];
-                                    return sites[context.dataIndex];
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        }
-
         function createModelComparisonChart() {
             const ctx = document.getElementById('modelComparisonChart')?.getContext('2d');
             if (!ctx) return;
@@ -2762,6 +2894,990 @@ def update_scatter_chart(selected_site, payload_range):
             });
         }
 
+        // === APP 2 CHART FUNCTIONS ===
+
+        function createApiDataBubbleChart() {
+            const ctx = document.getElementById('apiDataBubbleChart')?.getContext('2d');
+            if (!ctx) return;
+            
+            // Generate bubble chart data
+            const bubbleData = sampleData.apiRecords.years.map((year, index) => {
+                return {
+                    x: sampleData.apiRecords.records[index],
+                    y: sampleData.apiRecords.successRates[index],
+                    r: sampleData.apiRecords.payloadMass[index] / 500,
+                    year: year
+                };
+            });
+            
+            charts.apiDataBubbleChart = new Chart(ctx, {
+                type: 'bubble',
+                data: {
+                    datasets: [{
+                        label: 'API Data Collection',
+                        data: bubbleData,
+                        backgroundColor: 'rgba(52, 152, 219, 0.6)',
+                        borderColor: 'rgba(52, 152, 219, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Number of Records'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Success Rate (%)'
+                            },
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'API Data Collection: Records vs Success Rate (Bubble Size = Avg Payload Mass)',
+                            font: { size: 16, weight: 'bold' },
+                            padding: 20
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return [
+                                        `Year: ${context.raw.year}`,
+                                        `Records: ${context.raw.x}`,
+                                        `Success Rate: ${context.raw.y}%`,
+                                        `Avg Payload: ${Math.round(context.raw.r * 500)} kg`
+                                    ];
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createWikiScatterChart() {
+            const ctx = document.getElementById('wikiScatterChart')?.getContext('2d');
+            if (!ctx) return;
+            
+            // Generate scatter plot data for Wikipedia scraping
+            const scatterData = [];
+            for (let i = 0; i < 121; i++) {
+                const year = 2010 + Math.floor(Math.random() * 12);
+                const success = Math.random() > 0.3;
+                scatterData.push({
+                    x: year,
+                    y: Math.random() * 10000,
+                    success: success
+                });
+            }
+            
+            charts.wikiScatterChart = new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [
+                        {
+                            label: 'Successful Launches',
+                            data: scatterData.filter(d => d.success),
+                            backgroundColor: 'rgba(46, 204, 113, 0.6)',
+                            borderColor: 'rgba(46, 204, 113, 1)',
+                            pointRadius: 5
+                        },
+                        {
+                            label: 'Failed Launches',
+                            data: scatterData.filter(d => !d.success),
+                            backgroundColor: 'rgba(231, 76, 60, 0.6)',
+                            borderColor: 'rgba(231, 76, 60, 1)',
+                            pointRadius: 5
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Year'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return value; // Remove commas
+                                }
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Payload Mass (kg)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Wikipedia Scraping: Historical Launch Data Analysis',
+                            font: { size: 16, weight: 'bold' },
+                            padding: 20
+                        }
+                    }
+                }
+            });
+        }
+
+        function createSuccessFailureBubbleChart() {
+            const ctx = document.getElementById('successFailureBubbleChart')?.getContext('2d');
+            if (!ctx) return;
+            
+            // Generate bubble data for success/failure distribution
+            const successBubbles = [];
+            const failureBubbles = [];
+            
+            for (let i = 0; i < 60; i++) {
+                successBubbles.push({
+                    x: 2010 + Math.floor(Math.random() * 12),
+                    y: 1000 + Math.random() * 9000,
+                    r: 5 + Math.random() * 10
+                });
+            }
+            
+            for (let i = 0; i < 30; i++) {
+                failureBubbles.push({
+                    x: 2010 + Math.floor(Math.random() * 12),
+                    y: 1000 + Math.random() * 9000,
+                    r: 5 + Math.random() * 10
+                });
+            }
+            
+            charts.successFailureBubbleChart = new Chart(ctx, {
+                type: 'bubble',
+                data: {
+                    datasets: [
+                        {
+                            label: 'Successful Landings',
+                            data: successBubbles,
+                            backgroundColor: 'rgba(46, 204, 113, 0.6)',
+                            borderColor: 'rgba(46, 204, 113, 1)'
+                        },
+                        {
+                            label: 'Failed Landings',
+                            data: failureBubbles,
+                            backgroundColor: 'rgba(231, 76, 60, 0.6)',
+                            borderColor: 'rgba(231, 76, 60, 1)'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Year'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return value; // Remove commas
+                                }
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Payload Mass (kg)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Landing Success Distribution by Year and Payload Mass (Bubble Size = Mission Complexity)',
+                            font: { size: 16, weight: 'bold' },
+                            padding: 20
+                        }
+                    }
+                }
+            });
+        }
+
+        function createLaunchSiteScatterChart() {
+            const ctx = document.getElementById('launchSiteScatterChart')?.getContext('2d');
+            if (!ctx) return;
+            
+            // Generate scatter data for launch sites
+            const sitesData = [];
+            const sites = sampleData.launchSites.labels;
+            const payloadRanges = {
+                'CCAFS SLC 40': { min: 1000, max: 20000 },
+                'KSC LC 39A': { min: 1000, max: 22000 },
+                'VAFB SLC 4E': { min: 1000, max: 16000 }
+            };
+            
+            sites.forEach((site, index) => {
+                const range = payloadRanges[site] || { min: 1000, max: 20000 };
+                for (let i = 0; i < sampleData.launchSites.data[index]; i++) {
+                    const success = Math.random() * 100 < sampleData.launchSites.successRates[index];
+                    sitesData.push({
+                        x: site,
+                        y: range.min + Math.random() * (range.max - range.min),
+                        success: success
+                    });
+                }
+            });
+            
+            charts.launchSiteScatterChart = new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [
+                        {
+                            label: 'Successful Launches',
+                            data: sitesData.filter(d => d.success),
+                            backgroundColor: 'rgba(46, 204, 113, 0.6)',
+                            borderColor: 'rgba(46, 204, 113, 1)',
+                            pointRadius: 6
+                        },
+                        {
+                            label: 'Failed Launches',
+                            data: sitesData.filter(d => !d.success),
+                            backgroundColor: 'rgba(231, 76, 60, 0.6)',
+                            borderColor: 'rgba(231, 76, 60, 1)',
+                            pointRadius: 6
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Payload Mass (kg)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Launch Site Performance: Payload Mass vs Success Rate',
+                            font: { size: 16, weight: 'bold' },
+                            padding: 20
+                        }
+                    }
+                }
+            });
+        }
+
+        function createSuccessTrendsLineChart() {
+            const ctx = document.getElementById('successTrendsLineChart')?.getContext('2d');
+            if (!ctx) return;
+            
+            charts.successTrendsLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'],
+                    datasets: [
+                        {
+                            label: 'Overall Success Rate',
+                            data: [20, 25, 40, 64, 67, 67, 69, 71],
+                            borderColor: '#2ecc71',
+                            backgroundColor: 'rgba(46, 204, 113, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'ASDS Success Rate',
+                            data: [10, 15, 30, 45, 50, 52, 54, 56],
+                            borderColor: '#3498db',
+                            backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'RTLS Success Rate',
+                            data: [5, 8, 12, 15, 16, 16, 17, 18],
+                            borderColor: '#9b59b6',
+                            backgroundColor: 'rgba(155, 89, 182, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Success Rate (%)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Landing Success Rate Trends by Method (2013-2020)',
+                            font: { size: 16, weight: 'bold' },
+                            padding: 20
+                        }
+                    }
+                }
+            });
+        }
+
+        function createFlightNumberScatterChart() {
+            const ctx = document.getElementById('flightNumberScatterChart')?.getContext('2d');
+            if (!ctx) return;
+            
+            const data = Array.from({length: 90}, (_, i) => ({
+                x: i + 1,
+                y: i <= 10 ? 22 + Math.random() * 10 :
+                    i <= 30 ? 45 + Math.random() * 15 :
+                    75 + Math.random() * 20
+            }));
+            
+            // Add regression line
+            const regressionLine = [];
+            for (let i = 1; i <= 90; i++) {
+                regressionLine.push({
+                    x: i,
+                    y: Math.min(22 + (i * 0.8), 95)
+                });
+            }
+            
+            charts.flightNumberScatterChart = new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [
+                        {
+                            label: 'Launch Success',
+                            data: data,
+                            backgroundColor: 'rgba(52, 152, 219, 0.6)',
+                            borderColor: 'rgba(52, 152, 219, 1)',
+                            pointRadius: 4
+                        },
+                        {
+                            label: 'Learning Curve (Regression)',
+                            data: regressionLine,
+                            type: 'line',
+                            borderColor: '#e74c3c',
+                            backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                            borderWidth: 2,
+                            fill: false,
+                            pointRadius: 0
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Flight Number'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Success Rate (%)'
+                            },
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Flight Experience Correlation: Success Rate vs Flight Number with Regression Line',
+                            font: { size: 16, weight: 'bold' },
+                            padding: 20
+                        }
+                    }
+                }
+            });
+        }
+
+        function createSqlAnalyticsBubbleChart() {
+            const ctx = document.getElementById('sqlAnalyticsBubbleChart')?.getContext('2d');
+            if (!ctx) return;
+            
+            const bubbleData = sampleData.orbitAnalysis.labels.map((orbit, index) => {
+                return {
+                    x: sampleData.orbitAnalysis.launches[index],
+                    y: sampleData.orbitAnalysis.successRates[index],
+                    r: sampleData.orbitAnalysis.avgPayload[index] / 200,
+                    label: orbit
+                };
+            });
+            
+            charts.sqlAnalyticsBubbleChart = new Chart(ctx, {
+                type: 'bubble',
+                data: {
+                    datasets: [{
+                        label: 'Orbit Analysis',
+                        data: bubbleData,
+                        backgroundColor: 'rgba(155, 89, 182, 0.6)',
+                        borderColor: 'rgba(155, 89, 182, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Number of Launches'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Success Rate (%)'
+                            },
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'SQL Analytics: Orbit Performance Analysis (Bubble Size = Average Payload Mass)',
+                            font: { size: 16, weight: 'bold' },
+                            padding: 20
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return [
+                                        `Orbit: ${context.raw.label}`,
+                                        `Launches: ${context.raw.x}`,
+                                        `Success Rate: ${context.raw.y}%`,
+                                        `Avg Payload: ${Math.round(context.raw.r * 200)} kg`
+                                    ];
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createFeatureEngineeringScatterChart() {
+            const ctx = document.getElementById('featureEngineeringScatterChart')?.getContext('2d');
+            if (!ctx) return;
+            
+            // Generate scatter data for feature relationships
+            const scatterData = [];
+            for (let i = 0; i < 50; i++) {
+                scatterData.push({
+                    x: Math.random() * 100, // Feature importance
+                    y: Math.random() * 100, // Correlation with target
+                    size: 5 + Math.random() * 15,
+                    category: Math.floor(Math.random() * 4)
+                });
+            }
+            
+            const colors = ['#3498db', '#2ecc71', '#9b59b6', '#e74c3c'];
+            const categories = ['Temporal', 'Experience', 'Payload', 'Engineering'];
+            
+            const datasets = categories.map((category, index) => {
+                return {
+                    label: category,
+                    data: scatterData.filter(d => d.category === index),
+                    backgroundColor: colors[index] + '80',
+                    borderColor: colors[index],
+                    pointRadius: scatterData.filter(d => d.category === index).map(d => d.size / 3)
+                };
+            });
+            
+            charts.featureEngineeringScatterChart = new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Feature Importance'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Correlation with Landing Success'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Feature Engineering: 83 Predictive Features Analysis',
+                            font: { size: 16, weight: 'bold' },
+                            padding: 20
+                        }
+                    }
+                }
+            });
+        }
+
+        function createFoliumMap() {
+            const mapContainer = document.getElementById('foliumMap');
+            if (!mapContainer) return;
+            
+            // Initialize the map
+            foliumMap = L.map('foliumMap').setView([28.573, -80.648], 5);
+            
+            // Add tile layer
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(foliumMap);
+            
+            // Add marker cluster
+            markerCluster = L.markerClusterGroup();
+            
+            // Add launch site markers
+            const launchSites = [
+                {
+                    name: "CCAFS LC-40",
+                    lat: 28.562302,
+                    lng: -80.577356,
+                    successRate: 44,
+                    launches: 55,
+                    color: 'red'
+                },
+                {
+                    name: "CCAFS SLC-40",
+                    lat: 28.563197,
+                    lng: -80.576820,
+                    successRate: 50,
+                    launches: 8,
+                    color: 'orange'
+                },
+                {
+                    name: "KSC LC-39A",
+                    lat: 28.573255,
+                    lng: -80.646895,
+                    successRate: 71.4,
+                    launches: 14,
+                    color: 'green'
+                },
+                {
+                    name: "VAFB SLC-4E",
+                    lat: 34.632834,
+                    lng: -120.610745,
+                    successRate: 45.5,
+                    launches: 11,
+                    color: 'blue'
+                }
+            ];
+            
+            launchSites.forEach(site => {
+                const marker = L.marker([site.lat, site.lng])
+                    .bindPopup(`
+                        <strong>${site.name}</strong><br>
+                        Success Rate: ${site.successRate}%<br>
+                        Total Launches: ${site.launches}<br>
+                        Latitude: ${site.lat}<br>
+                        Longitude: ${site.lng}
+                    `);
+                
+                markerCluster.addLayer(marker);
+            });
+            
+            foliumMap.addLayer(markerCluster);
+            
+            // Add coastline proximity lines
+            launchSites.forEach(site => {
+                // Simulated coastline points
+                const coastlineLat = site.lat;
+                const coastlineLng = site.lng + 0.01; // 0.86km east
+                
+                const line = L.polyline([
+                    [site.lat, site.lng],
+                    [coastlineLat, coastlineLng]
+                ], {
+                    color: 'blue',
+                    weight: 2,
+                    opacity: 0.7
+                }).bindPopup(`Distance to coast: 0.86 km`);
+                
+                foliumMap.addLayer(line);
+            });
+            
+            // Fit bounds to show all markers
+            const bounds = L.latLngBounds(launchSites.map(site => [site.lat, site.lng]));
+            foliumMap.fitBounds(bounds);
+        }
+
+        function createModelBubbleChart() {
+            const ctx = document.getElementById('modelBubbleChart')?.getContext('2d');
+            if (!ctx) return;
+            
+            const bubbleData = sampleData.modelPerformance.labels.map((model, index) => {
+                return {
+                    x: sampleData.modelPerformance.validation[index],
+                    y: sampleData.modelPerformance.test[index],
+                    r: [0.8, 1.2, 0.5, 0.7][index] * 10,
+                    label: model,
+                    complexity: [85, 90, 75, 82][index]
+                };
+            });
+            
+            charts.modelBubbleChart = new Chart(ctx, {
+                type: 'bubble',
+                data: {
+                    datasets: [{
+                        label: 'Machine Learning Models',
+                        data: bubbleData,
+                        backgroundColor: 'rgba(52, 152, 219, 0.6)',
+                        borderColor: 'rgba(52, 152, 219, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Validation Accuracy (%)'
+                            },
+                            beginAtZero: true,
+                            max: 100
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Test Accuracy (%)'
+                            },
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Machine Learning Model Performance Comparison (Bubble Size = Training Time)',
+                            font: { size: 16, weight: 'bold' },
+                            padding: 20
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return [
+                                        `Model: ${context.raw.label}`,
+                                        `Validation: ${context.raw.x}%`,
+                                        `Test: ${context.raw.y}%`,
+                                        `Training Time: ${context.raw.r/10}s`,
+                                        `Complexity: ${context.raw.complexity}/100`
+                                    ];
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createMlPipelineLineChart() {
+            const ctx = document.getElementById('mlPipelineLineChart')?.getContext('2d');
+            if (!ctx) return;
+            
+            charts.mlPipelineLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Data Collection', 'Data Wrangling', 'Feature Engineering', 'Model Training', 'Validation', 'Testing', 'Deployment'],
+                    datasets: [
+                        {
+                            label: 'Accuracy (%)',
+                            data: [60, 70, 75, 82, 87, 83, 83],
+                            borderColor: '#2ecc71',
+                            backgroundColor: 'rgba(46, 204, 113, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Data Quality (%)',
+                            data: [94, 95, 96, 97, 98, 98, 98],
+                            borderColor: '#3498db',
+                            backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Feature Count',
+                            data: [18, 18, 83, 83, 83, 83, 83],
+                            borderColor: '#9b59b6',
+                            backgroundColor: 'rgba(155, 89, 182, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: {
+                                display: true,
+                                text: 'Percentage (%)'
+                            },
+                            beginAtZero: true,
+                            max: 100
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: {
+                                display: true,
+                                text: 'Feature Count'
+                            },
+                            beginAtZero: true,
+                            max: 100,
+                            grid: {
+                                drawOnChartArea: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Machine Learning Pipeline: Progress Through Development Stages',
+                            font: { size: 16, weight: 'bold' },
+                            padding: 20
+                        }
+                    }
+                }
+            });
+        }
+
+        // === NEW CHARTS FOR ADDITIONAL SECTIONS ===
+
+        function createDataPipelineChart() {
+            const ctx = document.getElementById('dataPipelineChart')?.getContext('2d');
+            if (!ctx) return;
+            
+            charts.dataPipelineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['API Fetch', 'Web Scraping', 'Data Enrichment', 'Validation', 'Cleaning', 'Final Dataset'],
+                    datasets: [
+                        {
+                            label: 'Records Processed',
+                            data: [90, 121, 90, 90, 90, 90],
+                            borderColor: '#3498db',
+                            backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Features Added',
+                            data: [18, 10, 8, 0, 5, 18],
+                            borderColor: '#2ecc71',
+                            backgroundColor: 'rgba(46, 204, 113, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: {
+                                display: true,
+                                text: 'Records Processed'
+                            },
+                            beginAtZero: true
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: {
+                                display: true,
+                                text: 'Features Added'
+                            },
+                            beginAtZero: true,
+                            grid: {
+                                drawOnChartArea: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Data Collection Pipeline: Multi-Source Integration Process',
+                            font: { size: 16, weight: 'bold' },
+                            padding: 20
+                        }
+                    }
+                }
+            });
+        }
+
+        function createDataCleaningProgressChart() {
+            const ctx = document.getElementById('dataCleaningProgressChart')?.getContext('2d');
+            if (!ctx) return;
+            
+            charts.dataCleaningProgressChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Raw Data', 'Missing Values', 'Outliers', 'Standardization', 'Encoding', 'Feature Creation', 'Final Dataset'],
+                    datasets: [
+                        {
+                            label: 'Data Quality Score (%)',
+                            data: [70, 80, 85, 90, 92, 94, 96],
+                            borderColor: '#2ecc71',
+                            backgroundColor: 'rgba(46, 204, 113, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Processing Time (relative)',
+                            data: [0, 15, 25, 40, 60, 80, 100],
+                            borderColor: '#3498db',
+                            backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: {
+                                display: true,
+                                text: 'Data Quality (%)'
+                            },
+                            beginAtZero: true,
+                            max: 100
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: {
+                                display: true,
+                                text: 'Processing Progress (%)'
+                            },
+                            beginAtZero: true,
+                            max: 100,
+                            grid: {
+                                drawOnChartArea: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Data Cleaning Pipeline: Quality Improvement Through Processing Stages',
+                            font: { size: 16, weight: 'bold' },
+                            padding: 20
+                        }
+                    }
+                }
+            });
+        }
+
+        function createDashboardArchitectureChart() {
+            const ctx = document.getElementById('dashboardArchitectureChart')?.getContext('2d');
+            if (!ctx) return;
+            
+            charts.dashboardArchitectureChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['User Interface', 'Data Processing', 'Real-time Updates', 'Visualizations', 'Interactivity', 'Scalability'],
+                    datasets: [
+                        {
+                            label: 'Dashboard Components',
+                            data: [90, 85, 80, 95, 92, 75],
+                            backgroundColor: 'rgba(243, 156, 18, 0.2)',
+                            borderColor: '#f39c12',
+                            borderWidth: 3,
+                            pointBackgroundColor: '#f39c12',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: '#f39c12'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                stepSize: 20,
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Dashboard Architecture: Component Performance Assessment',
+                            font: { size: 16, weight: 'bold' },
+                            padding: 20
+                        }
+                    }
+                }
+            });
+        }
+
         function createPlotlyDashboard() {
             const container = document.getElementById('plotly-dashboard');
             if (!container) return;
@@ -2790,19 +3906,182 @@ def update_scatter_chart(selected_site, payload_range):
                 barmode: 'group',
                 xaxis: { title: 'Launch Site' },
                 yaxis: { title: 'Number of Launches' },
+                height: 400,
+                showlegend: true,
+                margin: { t: 50, b: 50, l: 50, r: 50 }
+            };
+            
+            Plotly.newPlot(container, data, layout);
+        }
+
+        function createLaunchAnalysisDashboard() {
+            const container = document.getElementById('plotly-dashboard-2');
+            if (!container) return;
+            
+            // Create sample data for launch analysis dashboard
+            const trace1 = {
+                x: ['2015', '2016', '2017', '2018', '2019', '2020'],
+                y: [40, 64, 67, 67, 69, 71],
+                name: 'Success Rate',
+                type: 'scatter',
+                mode: 'lines+markers',
+                line: { color: '#2ecc71', width: 3 },
+                marker: { size: 8 }
+            };
+            
+            const trace2 = {
+                x: ['2015', '2016', '2017', '2018', '2019', '2020'],
+                y: [2850, 4200, 5800, 6400, 7200, 8500],
+                name: 'Avg Payload (kg)',
+                type: 'scatter',
+                mode: 'lines+markers',
+                line: { color: '#3498db', width: 3 },
+                marker: { size: 8 },
+                yaxis: 'y2'
+            };
+            
+            const data = [trace1, trace2];
+            
+            const layout = {
+                title: 'Launch Analysis: Success Rate vs Payload Mass Over Time',
+                xaxis: { title: 'Year' },
+                yaxis: {
+                    title: 'Success Rate (%)',
+                    titlefont: { color: '#2ecc71' },
+                    tickfont: { color: '#2ecc71' }
+                },
+                yaxis2: {
+                    title: 'Payload Mass (kg)',
+                    titlefont: { color: '#3498db' },
+                    tickfont: { color: '#3498db' },
+                    overlaying: 'y',
+                    side: 'right'
+                },
                 height: 350,
                 showlegend: true,
                 margin: { t: 50, b: 50, l: 50, r: 50 }
             };
             
-            plotlyChart = Plotly.newPlot(container, data, layout);
+            Plotly.newPlot(container, data, layout);
         }
 
-        function createFinancialImpactChart() {
-            const ctx = document.getElementById('financialImpactChart')?.getContext('2d');
+        function createDashboardValueChart() {
+            const ctx = document.getElementById('dashboardValueChart')?.getContext('2d');
             if (!ctx) return;
             
-            charts.financialImpactChart = new Chart(ctx, {
+            charts.dashboardValueChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Decision Speed', 'Planning Efficiency', 'Risk Reduction', 'Cost Savings', 'Competitive Edge'],
+                    datasets: [
+                        {
+                            label: 'Value Improvement (%)',
+                            data: [45, 38, 52, 67, 41],
+                            backgroundColor: [
+                                '#3498db',
+                                '#2ecc71',
+                                '#9b59b6',
+                                '#f39c12',
+                                '#e74c3c'
+                            ],
+                            borderColor: [
+                                '#2980b9',
+                                '#27ae60',
+                                '#8e44ad',
+                                '#d35400',
+                                '#c0392b'
+                            ],
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Improvement (%)'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Dashboard Business Value: Measurable Improvements Across Key Metrics',
+                            font: { size: 16, weight: 'bold' },
+                            padding: 20
+                        }
+                    }
+                }
+            });
+        }
+
+        // === MODULE 6 CHART FUNCTIONS ===
+
+        function createExecutiveSummaryChart() {
+            const ctx = document.getElementById('executiveSummaryChart')?.getContext('2d');
+            if (!ctx) return;
+            
+            charts.executiveSummaryChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Prediction Accuracy', 'Success Rate', 'Data Quality', 'Financial Impact'],
+                    datasets: [{
+                        label: 'Performance Metrics',
+                        data: [83.33, 66.7, 94.4, 103],
+                        backgroundColor: [
+                            'rgba(52, 152, 219, 0.8)',
+                            'rgba(46, 204, 113, 0.8)',
+                            'rgba(155, 89, 182, 0.8)',
+                            'rgba(243, 156, 18, 0.8)'
+                        ],
+                        borderColor: [
+                            '#3498db',
+                            '#2ecc71',
+                            '#9b59b6',
+                            '#f39c12'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Value'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Executive Summary: Key Project Metrics',
+                            font: { size: 16, weight: 'bold' },
+                            padding: 20
+                        }
+                    }
+                }
+            });
+        }
+
+        function createFinancialImpactChart2() {
+            const ctx = document.getElementById('financialImpactChart2')?.getContext('2d');
+            if (!ctx) return;
+            
+            charts.financialImpactChart2 = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: sampleData.financialImpact.labels,
@@ -2847,11 +4126,146 @@ def update_scatter_chart(selected_site, payload_range):
             });
         }
 
-        function createRoadmapChart() {
-            const ctx = document.getElementById('roadmapChart')?.getContext('2d');
+        function createFinancialOptimizationChart() {
+            const ctx = document.getElementById('financialOptimizationChart')?.getContext('2d');
             if (!ctx) return;
             
-            charts.roadmapChart = new Chart(ctx, {
+            charts.financialOptimizationChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['50%', '60%', '66.7%', '70%', '75%', '80%', '85%', '90%', '95%', '100%'],
+                    datasets: [
+                        {
+                            label: 'Cost per Launch ($M)',
+                            data: [124, 112, 103, 98, 87, 76, 68, 64, 62, 62],
+                            backgroundColor: 'rgba(231, 76, 60, 0.6)',
+                            borderColor: '#e74c3c',
+                            borderWidth: 2
+                        },
+                        {
+                            label: 'Annual Savings ($M)',
+                            data: [0, 310, 620, 780, 1030, 1240, 1450, 1550, 1620, 1650],
+                            backgroundColor: 'rgba(46, 204, 113, 0.6)',
+                            borderColor: '#2ecc71',
+                            borderWidth: 2,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: {
+                                display: true,
+                                text: 'Cost per Launch ($M)'
+                            },
+                            beginAtZero: true
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: {
+                                display: true,
+                                text: 'Annual Savings ($M)'
+                            },
+                            beginAtZero: true,
+                            grid: {
+                                drawOnChartArea: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Financial Optimization: Cost Impact of Success Rate Improvement',
+                            font: { size: 16, weight: 'bold' },
+                            padding: 20
+                        }
+                    }
+                }
+            });
+        }
+
+        function createStrategicInsightsChart2() {
+            const ctx = document.getElementById('strategicInsightsChart2')?.getContext('2d');
+            if (!ctx) return;
+            
+            charts.strategicInsightsChart2 = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Model Deployment', 'Site Optimization', 'Payload Guidance', 'Dashboard Rollout', 'Team Training'],
+                    datasets: [
+                        {
+                            label: 'Expected Success Improvement (%)',
+                            data: [5, 3, 2, 2.5, 1.5],
+                            backgroundColor: '#2ecc71',
+                            borderColor: '#27ae60',
+                            borderWidth: 2,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'Implementation Timeline (Days)',
+                            data: [30, 60, 90, 45, 30],
+                            backgroundColor: '#3498db',
+                            borderColor: '#2980b9',
+                            borderWidth: 2,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: {
+                                display: true,
+                                text: 'Success Improvement (%)'
+                            },
+                            beginAtZero: true,
+                            max: 6
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: {
+                                display: true,
+                                text: 'Timeline (Days)'
+                            },
+                            beginAtZero: true,
+                            max: 100,
+                            grid: {
+                                drawOnChartArea: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Strategic Insights: Recommendations with Expected Impact and Timeline',
+                            font: { size: 16, weight: 'bold' },
+                            padding: 20
+                        }
+                    }
+                }
+            });
+        }
+
+        function createRoadmapChart2() {
+            const ctx = document.getElementById('roadmapChart2')?.getContext('2d');
+            if (!ctx) return;
+            
+            charts.roadmapChart2 = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: ['Day 0', 'Day 30', 'Day 60', 'Day 90'],
@@ -2899,6 +4313,157 @@ def update_scatter_chart(selected_site, payload_range):
                     }
                 }
             });
+        }
+
+        // Dashboard interactive components
+        function initializeDashboardComponents() {
+            // Site dropdown functionality
+            const siteDropdown = document.getElementById('dashboard-site-dropdown');
+            const payloadSlider = document.getElementById('dashboard-payload-slider');
+            const sliderValue = document.getElementById('slider-value');
+            
+            if (siteDropdown) {
+                siteDropdown.addEventListener('change', updateDashboardCharts);
+            }
+            
+            if (payloadSlider) {
+                payloadSlider.addEventListener('input', function() {
+                    sliderValue.textContent = this.value + ' kg';
+                    updateDashboardCharts();
+                });
+            }
+            
+            // Initial chart creation
+            createDashboardCharts();
+        }
+
+        function createDashboardCharts() {
+            const site = document.getElementById('dashboard-site-dropdown')?.value || 'ALL';
+            const payloadValue = document.getElementById('dashboard-payload-slider')?.value || 5000;
+            
+            // Create pie chart
+            const pieCtx = document.getElementById('dashboard-pie-chart')?.getContext('2d');
+            if (pieCtx) {
+                if (charts.dashboardPieChart) charts.dashboardPieChart.destroy();
+                
+                const successData = site === 'ALL' ? [60, 30] : 
+                                   site === 'KSC LC-39A' ? [10, 4] :
+                                   site === 'CCAFS LC-40' ? [24, 31] :
+                                   site === 'VAFB SLC-4E' ? [6, 7] : [4, 4];
+                
+                charts.dashboardPieChart = new Chart(pieCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Successful Landings', 'Failed Landings'],
+                        datasets: [{
+                            data: successData,
+                            backgroundColor: ['#2ecc71', '#e74c3c'],
+                            borderColor: ['#27ae60', '#c0392b'],
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: `Launch Success for ${site === 'ALL' ? 'All Sites' : site}`,
+                                font: { size: 14 }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // Create scatter chart
+            const scatterCtx = document.getElementById('dashboard-scatter-chart')?.getContext('2d');
+            if (scatterCtx) {
+                if (charts.dashboardScatterChart) charts.dashboardScatterChart.destroy();
+                
+                // Generate sample data based on site and payload
+                const scatterData = generateScatterData(site, parseInt(payloadValue));
+                
+                charts.dashboardScatterChart = new Chart(scatterCtx, {
+                    type: 'scatter',
+                    data: {
+                        datasets: [
+                            {
+                                label: 'Successful Launches',
+                                data: scatterData.success,
+                                backgroundColor: 'rgba(46, 204, 113, 0.7)',
+                                borderColor: '#27ae60',
+                                pointRadius: 6
+                            },
+                            {
+                                label: 'Failed Launches',
+                                data: scatterData.failure,
+                                backgroundColor: 'rgba(231, 76, 60, 0.7)',
+                                borderColor: '#c0392b',
+                                pointRadius: 6
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Payload Mass (kg)'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Success Probability'
+                                },
+                                beginAtZero: true,
+                                max: 1
+                            }
+                        },
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: `Payload vs Success Probability (${site === 'ALL' ? 'All Sites' : site})`,
+                                font: { size: 14 }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        function generateScatterData(site, payloadThreshold) {
+            const success = [];
+            const failure = [];
+            
+            // Generate sample data
+            const baseCount = site === 'ALL' ? 20 : 8;
+            
+            for (let i = 0; i < baseCount; i++) {
+                const payload = Math.random() * 10000;
+                const successProb = payload < payloadThreshold ? 0.7 + Math.random() * 0.3 : 0.3 + Math.random() * 0.5;
+                
+                if (Math.random() > 0.3) { // 70% success rate
+                    success.push({
+                        x: payload,
+                        y: successProb
+                    });
+                } else {
+                    failure.push({
+                        x: payload,
+                        y: 1 - successProb
+                    });
+                }
+            }
+            
+            return { success, failure };
+        }
+
+        function updateDashboardCharts() {
+            createDashboardCharts();
         }
     </script>
 </body>

@@ -324,7 +324,7 @@ Key packages include:
 - ✅ Created professional data science portfolio
 - ✅ Gained hands-on experience with industry-standard tools
 
-## 🤝 **Contributing**
+## 🤝🏿 **Contributing**
 
 This portfolio represents my personal learning journey through the IBM Data Science Professional Certificate. While this is primarily a showcase of my work, I welcome discussions, feedback, and collaborations on data science projects.
 

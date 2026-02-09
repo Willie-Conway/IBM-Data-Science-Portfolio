@@ -2,7 +2,7 @@
 
 ![IBM Data Science](https://images.credly.com/size/680x680/images/42ce4209-8839-431a-9046-f2ce2e72e04b/Coursera_20Data_20Science_20Professional_20Certificate.png)
 
-![IBM Data Science](https://img.shields.io/badge/IBM-Data%20Science%20Professional%20Certificate-FF6B35?style=for-the-badge&logo=ibm&logoColor=white)
+![IBM Data Science](https://img.shields.io/badge/IBM-Data%20Science-FF6B35?style=for-the-badge&logo=ibm&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)

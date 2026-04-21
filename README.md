@@ -338,7 +338,7 @@ This project is for portfolio purposes and contains educational materials from t
 - GitHub: [@Willie-Conway](https://github.com/Willie-Conway)
 - LinkedIn: [willieconway](https://www.linkedin.com/in/willieconway/)
 - Email: hire.willie.conway@gmail.com
-- Portfolio: [Data Science Portfolio](https://github.com/Willie-Conway/Portfolio.io)
+- Portfolio: [Portfolio](willie-conway.github.io/Portfolio.io/)
 
 ---
 
